@@ -1,0 +1,59 @@
+{
+  "name": "OtwartaPlatformaWyborczaFronted",
+  "version": "0.0.1",
+  "description": "fronted app",
+  "main": "index.html",
+  "scripts": {
+	 "test": "grunt test",
+  	"postinstall": "bower install",
+  	
+    "prebuild" : "npm install",
+    "build": "grunt build",
+
+    "preserver-prod" : "npm run build",
+    "server-prod": "grunt server-prod",
+    
+    "server-dev": "grunt server-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcintokarski/OtwartaPlatformaWyborczaFronted.git"
+  },
+  "author": "Marcin Tokarski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcintokarski/OtwartaPlatformaWyborczaFronted/issues"
+  },
+  "homepage": "https://github.com/marcintokarski/OtwartaPlatformaWyborczaFronted",
+  
+  
+    "devDependencies": {
+    "connect-livereload": "^0.5.3",
+    "connect-modrewrite": "^0.7.11",
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^2.2.0",
+    "grunt-bowercopy": "^1.2.0",
+    "grunt-browser-sync": "^2.0.0",
+    "grunt-connect-proxy": "^0.1.11",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-cssmin": "^0.11.0",
+    "grunt-contrib-htmlmin": "^0.3.0",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-filerev": "^2.2.0",
+    "grunt-filerev-replace": "^0.1.4",
+    "grunt-newer": "^1.1.0",
+    "grunt-usemin": "^3.0.0",
+    "grunt-wiredep": "^2.0.0",
+    "jshint-stylish": "^1.0.1",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

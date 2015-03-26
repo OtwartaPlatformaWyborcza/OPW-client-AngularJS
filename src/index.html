@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<title>Otwarta Platforma Wyborcza</title>
+	<meta charset="utf-8">
+    <base href="/" />
+	
+	<!-- build:js(.) js/vendors.min.js-->
+		
+		<!-- bower:js -->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<!-- endbower -->
+
+	<!-- endbuild -->
+	<!-- build:css css/style.css-->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- endbuild -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<!-- endbower -->
+</head>
+<body ng-app="opwApp">
+	<div ng-view></div>
+
+
+ <!-- build:js js/myapp.js -->
+	<script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/app.constants.js"></script>
+
+    <script src="app/components/login/loginController.js"></script>
+    <script src="app/shared/auth/authService.js"></script>
+
+ <!-- endbuild -->
+
+</body>
+</html>
