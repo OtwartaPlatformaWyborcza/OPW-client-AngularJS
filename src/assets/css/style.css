@@ -20,7 +20,6 @@ body {
   background:         linear-gradient(90deg, #485563 10%, #29323c 90%); /* W3C */
   
   height: 100%;
-  background-color: #060;
   color: #fff;
 }
 
@@ -43,3 +42,15 @@ body {
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
+
+.container{
+  background: #fff;
+}
+.bg-none{
+  background: none;
+}
+
+.alerts-controller{
+  
+  padding-top: 20px;
+}

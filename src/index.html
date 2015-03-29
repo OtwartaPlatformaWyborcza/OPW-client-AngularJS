@@ -1,40 +1,79 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" ng-app="opwApp">
+
 <head>
-	<title>Otwarta Platforma Wyborcza</title>
-	<meta charset="utf-8">
+    <title>Otwarta Platforma Wyborcza</title>
+    <meta charset="utf-8">
     <base href="/" />
-	
-	<!-- build:js(.) js/vendors.min.js-->
-		
-		<!-- bower:js -->
-		<script src="bower_components/jquery/dist/jquery.js"></script>
-		<script src="bower_components/angular/angular.js"></script>
-		<script src="bower_components/angular-route/angular-route.js"></script>
-		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<!-- endbower -->
 
-	<!-- endbuild -->
-	<!-- build:css css/style.css-->
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<!-- endbuild -->
-	<!-- bower:css -->
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-	<!-- endbower -->
+    <!-- build:js(.) js/vendors.min.js-->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+
+    <!-- endbuild -->
+    <!-- build:css css/style.css-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- endbuild -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
 </head>
-<body ng-app="opwApp">
-	<div ng-view></div>
+
+<body ng-controller="ApplicationController">
+    <nav ng-controller="NavController" ng-show="isUserAuthenticated()" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">OPW</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/komisja-obwodowa/lista">Lista Komisji Obwodowych</a></li>
+                    
+                </ul>
+                <a href="/auth/logout" class="btn btn-sm btn-danger pull-right" style="margin-top:8px;"><span class="glyphicon glyphicon-off"></span> Wyloguj się</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container alerts-controller" ng-controller="AlertsController" ng-hide="areAlertsEmpty() == true" ng-class="{'container' : isUserAuthenticated() === true,  'container bg-none' : isUserAuthenticated() == false }">
+        <div ng-repeat="(key,val) in alerts" class="alert {{key}}">
+            <div ng-repeat="msg in val">{{msg}}</div>
+        </div>
+    </div>
+    <div ng-view ng-class="{'container' : isUserAuthenticated() === true,  'container bg-none' : isUserAuthenticated() == false }">
+
+    </div>
 
 
- <!-- build:js js/myapp.js -->
-	<script src="app/app.module.js"></script>
+    <!-- build:js js/myapp.js -->
+    <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
     <script src="app/app.constants.js"></script>
 
-    <script src="app/components/login/loginController.js"></script>
-    <script src="app/shared/auth/authService.js"></script>
+    <script src="app/components/application/ApplicationController.js"></script>
+    <script src="app/components/auth/LoginController.js"></script>
+    <script src="app/components/auth/LogoutController.js"></script>
+    <script src="app/components/komisja-obwodowa/KomisjaObwodowaListController.js"></script>
+    <script src="app/components/komisja-obwodowa/KomisjaObwodowaController.js"></script>
+    <script src="app/shared/auth/AuthService.js"></script>
+    <script src="app/shared/session/SessionService.js"></script>
+    <script src="app/shared/alerts/AlertsController.js"></script>
+    <script src="app/shared/alerts/AlertsService.js"></script>
+    <script src="app/shared/nav/NavController.js"></script>
 
- <!-- endbuild -->
+    <!-- endbuild -->
 
 </body>
+
 </html>
