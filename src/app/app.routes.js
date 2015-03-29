@@ -5,15 +5,15 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
  
     
     .when('/auth/login', {
-            templateUrl: 'app/components/auth/loginView.html',
+            templateUrl: 'app/components/auth/LoginView.html',
             controller: 'LoginController'
     })
     .when('/komisja-obwodowa/id/:id', {
-            templateUrl: 'app/components/komisja-obwodowa/komisjaObwodowaView.html',
+            templateUrl: 'app/components/komisja-obwodowa/KomisjaObwodowaView.html',
             controller: 'KomisjaObwodowaController'
     })
     .when('/komisja-obwodowa/lista', {
-            templateUrl: 'app/components/komisja-obwodowa/komisjaObwodowaListView.html',
+            templateUrl: 'app/components/komisja-obwodowa/KomisjaObwodowaListView.html',
             controller: 'KomisjaObwodowaListController'
     })
     
