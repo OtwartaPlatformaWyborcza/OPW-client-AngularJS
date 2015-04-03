@@ -1,6 +1,5 @@
-/*global app*/
 'use strict';
-app.controller('LoginController', ['$scope', '$location', 'AuthService', 'AlertsService', function($scope, $location, AuthService, AlertsService) {
+function LoginController($scope, $location, AuthService, AlertsService) {
 
     if (AuthService.isUserAuthenticated()) {
         $location.path('/komisja-obwodowa/lista');
@@ -25,4 +24,4 @@ app.controller('LoginController', ['$scope', '$location', 'AuthService', 'Alerts
                 });
 
     };
-}]);
+}

@@ -1,8 +1,6 @@
-/*global app*/
 'use strict';
-app.controller('ApplicationController', function ($scope,
-                                               USER_ROLES,
-                                               AuthService) {
+function ApplicationController($scope, USER_ROLES,AuthService) {
+	
   $scope.currentUser = null;
   $scope.userRoles = USER_ROLES;
   $scope.isAuthorized = AuthService.isAuthorized;
@@ -14,4 +12,5 @@ app.controller('ApplicationController', function ($scope,
   $scope.isUserAuthenticated = function (){
     return AuthService.isUserAuthenticated();
     };
-});
+}
+

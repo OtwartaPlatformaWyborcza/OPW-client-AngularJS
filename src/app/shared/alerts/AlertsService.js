@@ -1,6 +1,5 @@
-/*global app */
 'use strict';
-app.factory('AlertsService', function(ALERT_TYPE) {
+function AlertsService(ALERT_TYPE) {
     return {
         alerts: {},
         addAlert: function(message, type) {
@@ -22,4 +21,4 @@ app.factory('AlertsService', function(ALERT_TYPE) {
         	addAlert(message,ALERT_TYPE.warning);
         }
     };
-});
+}

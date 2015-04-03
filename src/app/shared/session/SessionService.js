@@ -1,6 +1,5 @@
-/*global app */
 'use strict';
-app.service('SessionService', function () {
+function SessionService() {
   this.create = function (token, userId, userRole) {
     this.token = token;
     this.userId = userId;
@@ -15,4 +14,4 @@ app.service('SessionService', function () {
   this.getUserId = function(){
     return 1;
   }
-})
+}

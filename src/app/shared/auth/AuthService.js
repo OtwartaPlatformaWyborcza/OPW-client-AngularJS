@@ -1,7 +1,7 @@
 /*global app */
 'use strict';
-app.service('AuthService', ['$http', '$q', '$location', 'SessionService', 'USER_ROLES', function($http, $q, $location, SessionService,
-    USER_ROLES) {
+function AuthService($http, $q, $location, SessionService,USER_ROLES) {
+    
     var authenticated = false;
     this.isUserAuthenticated = function() {
         return authenticated;
@@ -9,8 +9,8 @@ app.service('AuthService', ['$http', '$q', '$location', 'SessionService', 'USER_
     this.login = function(credentials) {
         var config = {
             headers: {
-                'login': credentials.login,
-                'password': credentials.password
+                'X-OPW-login': credentials.login,
+                'X-OPW-password': credentials.password
             }
         };
 
@@ -20,6 +20,7 @@ app.service('AuthService', ['$http', '$q', '$location', 'SessionService', 'USER_
             if (data.activeSession) {
                 localStorage.token = data.token;
                 localStorage.id = data.id;
+                localStorage.login = credentials.login; 
 
                 
                 SessionService.create(data.token, data.id, USER_ROLES.admin);
@@ -55,7 +56,4 @@ app.service('AuthService', ['$http', '$q', '$location', 'SessionService', 'USER_
             authenticated = true;
         } 
     };
-
-
-
-}]);
+}

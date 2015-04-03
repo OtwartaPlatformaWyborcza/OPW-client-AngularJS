@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" ng-app="opwApp">
+<html lang="pl" ng-app="app">
 
 <head>
     <title>Otwarta Platforma Wyborcza</title>
@@ -24,7 +24,7 @@
     <!-- endbower -->
 </head>
 
-<body ng-controller="ApplicationController">
+<body ng-controller="ApplicationController"  ng-cloak="">
     <nav ng-controller="NavController" ng-show="isUserAuthenticated()" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -57,20 +57,48 @@
 
 
     <!-- build:js js/myapp.js -->
-    <script src="app/app.module.js"></script>
-    <script src="app/app.routes.js"></script>
-    <script src="app/app.constants.js"></script>
+    <script src="app/app.run-config.js"></script>
+    <script src="app/app.routes-config.js"></script>
+    <script src="app/app.js"></script>
+    
+    
+    <script src="app/components/Components.js"></script>
+    <script src="app/shared/Shared.js"></script>
+
+
+    <script src="app/shared/session/SessionService.js"></script>
+    <script src="app/shared/session/Session.js"></script>
+
+    <script src="app/shared/auth/AuthInterceptor.js"></script>
+    <script src="app/shared/auth/AuthService.js"></script>
+    <script src="app/shared/auth/AuthConstants.js"></script>
+    <script src="app/shared/auth/Auth.js"></script>
 
     <script src="app/components/application/ApplicationController.js"></script>
-    <script src="app/components/auth/LoginController.js"></script>
-    <script src="app/components/auth/LogoutController.js"></script>
-    <script src="app/components/komisja-obwodowa/KomisjaObwodowaListController.js"></script>
-    <script src="app/components/komisja-obwodowa/KomisjaObwodowaController.js"></script>
-    <script src="app/shared/auth/AuthService.js"></script>
-    <script src="app/shared/session/SessionService.js"></script>
+    <script src="app/components/application/Application.js"></script>
+    
+
     <script src="app/shared/alerts/AlertsController.js"></script>
     <script src="app/shared/alerts/AlertsService.js"></script>
+    <script src="app/shared/alerts/AlertsConstants.js"></script>
+    <script src="app/shared/alerts/Alerts.js"></script>
+
     <script src="app/shared/nav/NavController.js"></script>
+    <script src="app/shared/nav/Nav.js"></script>
+
+    <script src="app/components/auth/login/LoginController.js"></script>
+    <script src="app/components/auth/login/Login.js"></script>
+
+    <script src="app/components/auth/logout/LogoutController.js"></script>
+    <script src="app/components/auth/logout/Logout.js"></script>
+
+    <script src="app/components/komisja-obwodowa/KomisjaObwodowaController.js"></script>
+    <script src="app/components/komisja-obwodowa/KomisjaObwodowaService.js"></script>
+    <script src="app/components/komisja-obwodowa/KomisjaObwodowa.js"></script>
+
+    <script src="app/components/komisja-obwodowa/lista/KomisjaObwodowaListaController.js"></script>
+    <script src="app/components/komisja-obwodowa/lista/KomisjaObwodowaLista.js"></script>
+   
 
     <!-- endbuild -->
 
