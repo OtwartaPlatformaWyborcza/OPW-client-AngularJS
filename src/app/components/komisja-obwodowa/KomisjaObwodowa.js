@@ -2,7 +2,7 @@
 'use strict';
 angular.module('komisja-obwodowa',[])
 .controller('KomisjaObwodowaController',[
-					'$routeParams',
+					'$stateParams',
 					'KomisjaObwodowaService',
 					'AlertsService',KomisjaObwodowaController])
 .service('KomisjaObwodowaService',

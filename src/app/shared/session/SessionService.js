@@ -1,5 +1,5 @@
 'use strict';
-function SessionService() {
+function SessionService(USER_ROLES) {
   this.create = function (token, userId, userRole) {
     this.token = token;
     this.userId = userId;
@@ -14,4 +14,6 @@ function SessionService() {
   this.getUserId = function(){
     return 1;
   }
+
+  this.userRole = USER_ROLES.guest;
 }

@@ -1,13 +1,13 @@
-/*global routesConfig*/
+/*global routesConfig, runConfig*/
 'use strict';
 angular.module('app',[
-	'ngRoute',
+	'ui.router',
     'components',
     'shared'
 
 	])
 
-.config(['$routeProvider', '$locationProvider', routesConfig])
+.config(['$stateProvider', '$urlRouterProvider','$locationProvider','USER_ROLES', routesConfig])
 
 .run(['$rootScope','$location','AuthService', runConfig])
 

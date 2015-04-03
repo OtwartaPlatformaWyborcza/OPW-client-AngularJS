@@ -15,15 +15,16 @@ angular.module('auth',[
     }
 
     $rootScope.$on('$stateChangeStart', function(event, next) {
-        var authorizedRoles = next.data.authorizedRoles;
-       
+        var authorizedRoles = next.authorizedRoles;
+        
         if (!AuthService.isUserAuthorized(authorizedRoles)) {
-            event.preventDefault();
+            //event.preventDefault();
             if (AuthService.isUserAuthenticated()) {
                 // user is not allowed
                 $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
             } else {
                 // user is not logged in
+                console.log("user notAuthenticated")
                 $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             }
         }

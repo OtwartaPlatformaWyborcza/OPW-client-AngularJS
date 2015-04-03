@@ -1,9 +1,9 @@
 'use strict';
-function KomisjaObwodowaController($routeParams,KomisjaObwodowaService,AlertsService) {
+function KomisjaObwodowaController($stateParams,KomisjaObwodowaService,AlertsService) {
 
 	var viewModel = this;
 
-    KomisjaObwodowaService.getById($routeParams.id).then(function(response) {
+    KomisjaObwodowaService.getById($stateParams.id).then(function(response) {
         console.log(response);
         viewModel.data = JSON.stringify(response.data);
     }, function(response) {

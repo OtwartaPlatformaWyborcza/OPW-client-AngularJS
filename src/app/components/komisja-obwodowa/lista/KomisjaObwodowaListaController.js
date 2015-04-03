@@ -1,7 +1,7 @@
 /*global app*/
 'use strict';
 function KomisjaObwodowaListaController(KomisjaObwodowaService,SessionService, AlertsService) {
-    
+    console.log("komisja obwodowa lista");
     var viewModel = this;
 
     KomisjaObwodowaService.getForUser(SessionService.getUserId()).then(function(response) {

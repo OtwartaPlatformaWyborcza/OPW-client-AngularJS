@@ -23,7 +23,7 @@ function AuthService($http, $q, $location, SessionService,USER_ROLES) {
                 localStorage.login = credentials.login; 
 
                 
-                SessionService.create(data.token, data.id, USER_ROLES.admin);
+                SessionService.create(data.token, data.id, USER_ROLES.guest);
                 
                 authenticated = true;
             } else {
@@ -42,10 +42,11 @@ function AuthService($http, $q, $location, SessionService,USER_ROLES) {
         $location.path('/auth/login');
     };
 
-    this.isAuthorized = function(authorizedRoles) {
+    this.isUserAuthorized = function(authorizedRoles) {
         if (!angular.isArray(authorizedRoles)) {
             authorizedRoles = [authorizedRoles];
         }
+       
         return (this.isUserAuthenticated() &&
             authorizedRoles.indexOf(SessionService.userRole) !== -1);
     };
