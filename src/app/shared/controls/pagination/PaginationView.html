@@ -1,17 +1,17 @@
 <nav>
   <ul class="pagination">
-    <li ng-class="{'disabled' : vm.currentPage == 1}">
-      <a href="{{vm.getHref(vm.currentPage - 1)}}" aria-label="Previous">
+    <li ng-class="{'disabled' : vm.getCurrentPage() == 1}">
+      <a href="{{vm.getHref(vm.getCurrentPage() - 1)}}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
     
-    <li ng-class="{'active': n == vm.currentPage}" ng-repeat="n in vm.getPageRange()">
+    <li ng-class="{'active': n == vm.getCurrentPage()}" ng-repeat="n in vm.getPageRange()">
     	<a href="{{vm.getHref(n)}}">{{n}}</a>
-    </li>
+    </li> 
 
-    <li ng-class="{'disabled' : vm.currentPage == vm.lastPage}">
-      <a href="{{vm.getHref(vm.lastPage + 1)}}" aria-label="Next">
+    <li ng-class="{'disabled' : vm.getCurrentPage() == vm.lastPage}">
+      <a href="{{vm.getHref(vm.getCurrentPage()+1)}}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

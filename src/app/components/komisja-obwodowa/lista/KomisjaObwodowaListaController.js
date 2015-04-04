@@ -24,7 +24,7 @@ function KomisjaObwodowaListaController($stateParams,KomisjaObwodowaService,Sess
     	viewModel.currentPage = currentPage;
     	viewModel.lastPage = lastPage;
 
-    	console.log(viewModel);
+    
 
     }, function(response) {
         AlertsService.addError('Nie udało się pobrać listy komisji. (status: ' + response.status + ' ' + response.statusText + ')');

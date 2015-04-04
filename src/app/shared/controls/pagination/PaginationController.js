@@ -11,8 +11,10 @@
 
 		return items;
 	}
+	vm.getCurrentPage = function(){
+		return parseInt(vm.currentPage);
+	}
 
-	var callCounter =0;
 	vm.getHref = function(n){
 		var params,href;
 		if (vm.sParams){
@@ -23,6 +25,7 @@
 			params[vm.sPageParamName] = n;
 		}
 		
+		console.log(params);
 		href =  $state.href('komisja-obwodowa-lista',params);
 		//console.log(++callCounter + " n:" + n + " last page:" + vm.lastPage + " href: " +href);
 		return href;

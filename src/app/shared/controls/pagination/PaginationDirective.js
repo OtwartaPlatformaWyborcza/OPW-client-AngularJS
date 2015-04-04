@@ -18,10 +18,13 @@ function Pagination() {
 	controller: ['$state',PaginationController],
     controllerAs: 'vm',
     bindToController: true,
-    link: function(scope, element, attrs){
-       if (!attrs.pageparamname) {attrs.pageparamname = 'page'; }
-       if (!attrs.sparams) { sparams = ''; }
-
-    }
+    
+    link: function postLink(scope, iElement, iAttrs){
+    	//console.log(parseInt(iAttrs.pageparamname));
+       if (!iAttrs.pageparamname) {iAttrs.pageparamname = 'page'; }
+       if (!iAttrs.sparams) { sparams = ''; }
+       
+    },
+    
   };
 }
