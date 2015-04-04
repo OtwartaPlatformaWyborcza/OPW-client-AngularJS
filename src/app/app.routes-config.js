@@ -20,9 +20,14 @@ function routesConfig($stateProvider, $urlRouterProvider,$locationProvider,USER_
         })
         
         .state('komisja-obwodowa-lista', {
-            url: '/komisja-obwodowa/lista',
+            url: '/komisja-obwodowa/lista/{page:[0-9]*}',
             templateUrl: 'app/components/komisja-obwodowa/lista/KomisjaObwodowaListaView.html',
-            controller: 'KomisjaObwodowaListaController as ctrl'
+            controller: 'KomisjaObwodowaListaController as ctrl',
+            params: {
+                page: {
+                  value: 1,
+                  squash: true
+            } }
         })
         
         .state('authlogout', {

@@ -7,7 +7,7 @@
 		<th>Nazwa</th>
 		<th>Adres</th>
 	</tr>
-    <tr ng-repeat="item in ctrl.items" class="alert {{key}}">
+    <tr ng-repeat="item in ctrl.items" class="alert {{key}}" ng-show="$index >= ctrl.visibleFrom && $index < ctrl.visibleTo">
         <td>{{item.id}}</td>
         <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
         <td>{{item.name}}</td>
@@ -15,3 +15,7 @@
         
     </tr>
 </table>
+
+<div class="text-center">
+	<pagination currentpage="{{ctrl.currentPage}}" lastpage="{{ctrl.lastPage}}" sname="komisja-obwodowa-lista" />
+</div>
