@@ -51,7 +51,7 @@
             <div ng-repeat="msg in val">{{msg}}</div>
         </div>
     </div>
-    <div ui-view ng-class="{'container' : isUserAuthenticated() === true,  'container bg-none' : isUserAuthenticated() == false }">
+    <div ui-view ng-class="{'container ui-view' : isUserAuthenticated() === true,  'container bg-none' : isUserAuthenticated() == false }">
 
     </div>
 

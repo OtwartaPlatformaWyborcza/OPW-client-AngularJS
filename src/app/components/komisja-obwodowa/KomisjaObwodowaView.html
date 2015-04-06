@@ -1,2 +1,99 @@
-Komisja obwodowa
-<pre>{{ctrl.data}}</pre>
+<form ng-submit="vm.submit(vm.form.$valid)" name="vm.form" novalidate class="form-horizontal">
+<div class="container-fluid">
+	<div class="row text-left">
+		<div class="col-lg-8 col-lg-offset-2">
+			
+			<div class="panel panel-default">
+				<div class="panel-heading text-center">
+					<h3>Obwodowa Komisja wyborcza</h3>
+				</div>
+				<table class="table table-bordered text-center">
+					<tr>
+						<td><h4>{{vm.komisja.name}}</h4></td>
+						<td class="col-lg-4"><h4>{{vm.komisja.pkwId}}</h4></td>
+					<tr>
+					<tr>
+						<td colspan="2"><h4>{{vm.komisja.address}}</h4></td>
+					<tr>
+					<tr>
+						<td colspan="2"><h4>Obwodowa Komisja Wyborcza</h4></td>
+					<tr>
+				</table>
+
+				<div class="panel-body">
+					<div class="container-fluid text-center">
+						<div class="row" >
+							<div class="col-lg-4 col-lg-offset-8">
+								<button type="button" class="btn btn-primary btn-lg btn-block">Zły obwód? Powrót</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div ng-repeat="label in vm.labels" class="container-fluid form-group form-group-lg" ng-class="{ 'has-error' : numbers.val.$invalid && (!numbers.val.$pristine || vm.form.submitted) }">
+						<ng-form name="numbers">
+						<div class="row">
+							<div class="col-lg-8">
+								<label class="control-label " for="numbers">{{label}}</label>
+							</div>
+							<div class="col-lg-4">
+								<input ng-model="vm.numbers[$index]" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" />
+							</div>
+						</div>
+						<div class="row" style="margin-bottom:10px;">
+							<div class="col-lg-12 text-right">
+								<p ng-show="numbers.val.$error.required && (!numbers.val.$pristine || vm.form.submitted)" class="help-block">Pole jest wymagane</p>
+								<p ng-show="numbers.val.$error.number" class="help-block">Wprowadz poprawna liczbe</p>
+								<p ng-show="numbers.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
+							</div>
+						</div>
+						</ng-form>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading text-center">
+					<h3>II. 14 Kandydaci otrzymali głosów ważnych</h3>
+				</div>
+				
+				<table class="table table-striped table-bordered table-hover">
+					 <colgroup>
+			            <col class="col-lg-1">
+			            <col class="col-lg-7">
+			            <col class="col-lg-4">
+    				</colgroup>
+					<tr >
+						<th style="height:50px; vertical-align:middle">Lp.</th>
+						<th style="height:50px; vertical-align:middle">Nazwisko i Imię - imiona</th>
+						<th style="height:50px; vertical-align:middle">Głosy</th>
+					</tr>
+					<tr ng-repeat="candidate in vm.komisja.kandydatList">
+						<td style="vertical-align:middle" class="text-center">{{$index+1}}</td>
+						<td style="vertical-align:middle">{{candidate.fullname}}</td>
+						<td>
+							<input type="number" min="0" ngRequired ng-model="vm.votes[candidate.pkwId]" value="{{candidate.glosow}}" class="form-control input-lg text-right"/>
+						</td>
+					</tr>
+				</table>
+				<div class="panel-body">
+					<div class="container-fluid text-center">
+						<div class="row" >
+							<div class="col-lg-4 col-lg-offset-8">
+								<button ng-click="console.log(vm.form.numbers.$error)" ng-disabled="form.$invalid" type="submit" class="btn btn-primary btn-lg btn-block">Wyślij dane</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+</form>

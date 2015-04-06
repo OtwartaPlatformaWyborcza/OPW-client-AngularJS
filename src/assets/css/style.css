@@ -54,3 +54,6 @@ body {
   
   padding-top: 20px;
 }
+.container.ui-view{
+  padding-top:20px;
+}

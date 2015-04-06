@@ -14,9 +14,9 @@ function routesConfig($stateProvider, $urlRouterProvider,$locationProvider,USER_
         })
         
         .state('komisja-obwodowa', {
-            url: '/komisja-obwodowa/{id:[0-9]{4}-[0-9]{2}}',
+            url: '/komisja-obwodowa/{id:[0-9]{4}-[0-9]{1,2}}',
             templateUrl: 'app/components/komisja-obwodowa/KomisjaObwodowaView.html',
-            controller: 'KomisjaObwodowaController as ctrl'
+            controller: 'KomisjaObwodowaController as vm'
         })
         
         .state('komisja-obwodowa-lista', {
