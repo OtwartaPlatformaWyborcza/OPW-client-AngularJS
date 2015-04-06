@@ -57,3 +57,9 @@ body {
 .container.ui-view{
   padding-top:20px;
 }
+
+table.table.vote-result tr th{
+  height:50px;
+  vertical-align: middle;
+  text-align: center;
+}

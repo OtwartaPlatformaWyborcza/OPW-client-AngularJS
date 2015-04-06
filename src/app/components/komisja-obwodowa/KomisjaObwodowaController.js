@@ -23,12 +23,13 @@ function KomisjaObwodowaController($stateParams,KomisjaObwodowaService,AlertsSer
 
     vm.submit = function(isValid){
     	vm.submitted = true;
-    	console.log(vm.numbers);
+        console.log(vm.form.subform);
+    	console.log(vm.form.subform);
 
     	if (vm.form.$valid) {
       // Submit as normal
     } else {
       vm.form.submitted = true;
     }
-    }
+    };
 }
