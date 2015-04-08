@@ -2,17 +2,21 @@
 
 <table  class="table table-hover table-bordered table-striped">
 	<tr>
-		<th>#</th>
-		<th>PKW ID</th>
+		<th style="width:20px;">#</th>
+		<th class="col-lg-1">PKW ID</th>
 		<th>Nazwa</th>
 		<th>Adres</th>
+		<th>Akcje</th>
 	</tr>
     <tr ng-repeat="item in ctrl.items" class="alert {{key}}" ng-show="$index >= ctrl.visibleFrom && $index < ctrl.visibleTo">
         <td>{{item.id}}</td>
         <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
         <td>{{item.name}}</td>
         <td>{{item.address}}</td>
-        
+        <td class="text-right col-lg-3">
+        	<a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+        	<a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >Wgrane protokoły (0)</a>
+        </td>
     </tr>
 </table>
 

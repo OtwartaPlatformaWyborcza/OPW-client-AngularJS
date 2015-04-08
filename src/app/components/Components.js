@@ -7,6 +7,7 @@ angular.module('components',[
 	'alerts',
 	'komisja-obwodowa',
 	'komisja-obwodowa.lista',
+	'komisja-obwodowa.wgrane-protokoly',
 	/*shared*/
 	'shared'
 	]);

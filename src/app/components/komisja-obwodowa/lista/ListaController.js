@@ -1,6 +1,5 @@
-/*global app*/
 'use strict';
-function KomisjaObwodowaListaController($stateParams,KomisjaObwodowaService,SessionService, AlertsService) {
+function KOListaController($stateParams,KomisjaObwodowaService,SessionService, AlertsService) {
  
     var viewModel = this,
 	currentPage = parseInt($stateParams.page),

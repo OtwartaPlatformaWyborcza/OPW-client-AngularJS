@@ -63,3 +63,9 @@ table.table.vote-result tr th{
   vertical-align: middle;
   text-align: center;
 }
+
+.pull-down {
+  display: table-cell;
+  vertical-align: bottom;
+  float: none;
+}

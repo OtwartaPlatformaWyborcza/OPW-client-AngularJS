@@ -11,7 +11,7 @@ function KomisjaObwodowaController($stateParams,KomisjaObwodowaService,AlertsSer
 
  	vm.numbers = [];
     KomisjaObwodowaService.getById($stateParams.id).then(function(response) {
-        console.log(response);
+        console.log(response.data);
         vm.data = JSON.stringify(response.data);
         vm.komisja = response.data;
 
