@@ -1,4 +1,6 @@
-function AuthInterceptor ($rootScope,$q, $location, AUTH,AUTH_EVENTS,AuthService) {
+'use strict';
+
+function AuthInterceptor($rootScope, $q, $location, AUTH, AUTH_EVENTS, AuthService) {
 
     return {
         response: function(response) {
@@ -13,10 +15,11 @@ function AuthInterceptor ($rootScope,$q, $location, AUTH,AUTH_EVENTS,AuthService
         request: function(config) {
             //console.log('send token: ' + localStorage.token)
             config.headers[AUTH.TOKEN_HEADER_NAME] = localStorage.token;
-            if(!config.headers[AUTH.LOGIN_HEADER_NAME]){ //no override if it has been set in other components (for example login action)
-                config.headers[AUTH.LOGIN_HEADER_NAME] = localStorage.login;    
+            //no override if it has been set in other components (for example login action)
+            if (!config.headers[AUTH.LOGIN_HEADER_NAME]) {
+                config.headers[AUTH.LOGIN_HEADER_NAME] = localStorage.login;
             }
-            
+
             return config;
         },
 

@@ -1,3 +1,3 @@
-angular.module('controls',[
-		'controls.pagination'
-	]);
+angular.module('controls', [
+    'controls.pagination'
+]);

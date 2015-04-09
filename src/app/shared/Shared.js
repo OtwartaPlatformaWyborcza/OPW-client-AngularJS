@@ -1,8 +1,8 @@
 'use strict';
-angular.module('shared',[
-	'alerts',
-	'auth',
-	'nav',
-	'session',
-	'controls'
+angular.module('shared', [
+    'alerts',
+    'auth',
+    'nav',
+    'session',
+    'controls'
 ]);

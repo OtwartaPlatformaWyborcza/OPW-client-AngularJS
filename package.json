@@ -4,15 +4,12 @@
   "description": "fronted app",
   "main": "index.html",
   "scripts": {
-	 "test": "grunt test",
-  	"postinstall": "bower install",
-  	
-    "prebuild" : "npm install",
+    "test": "grunt test",
+    "postinstall": "bower install",
+    "prebuild": "npm install",
     "build": "grunt build",
-
-    "preserver-prod" : "npm run build",
+    "preserver-prod": "npm run build",
     "server-prod": "grunt server-prod",
-    
     "server-dev": "grunt server-dev"
   },
   "repository": {
@@ -25,9 +22,7 @@
     "url": "https://github.com/marcintokarski/OtwartaPlatformaWyborczaFronted/issues"
   },
   "homepage": "https://github.com/marcintokarski/OtwartaPlatformaWyborczaFronted",
-  
-  
-    "devDependencies": {
+  "devDependencies": {
     "connect-livereload": "^0.5.3",
     "connect-modrewrite": "^0.7.11",
     "grunt": "^0.4.5",
@@ -46,6 +41,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-filerev": "^2.2.0",
     "grunt-filerev-replace": "^0.1.4",
+    "grunt-jscs": "^1.6.0",
     "grunt-newer": "^1.1.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",

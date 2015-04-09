@@ -1,11 +1,12 @@
 /*global app */
 'use strict';
-function AuthService($http, $q, $location, SessionService,USER_ROLES) {
-    
+
+function AuthService($http, $q, $location, SessionService, USER_ROLES) {
+
     var authenticated = false;
     this.isUserAuthenticated = function() {
         return authenticated;
-    }
+    };
     this.login = function(credentials) {
         var config = {
             headers: {
@@ -14,17 +15,14 @@ function AuthService($http, $q, $location, SessionService,USER_ROLES) {
             }
         };
 
-
-
         return $http.get('/rest-api/service/user/login', config).success(function(data) {
             if (data.activeSession) {
                 localStorage.token = data.token;
                 localStorage.id = data.id;
-                localStorage.login = credentials.login; 
+                localStorage.login = credentials.login;
 
-                
                 SessionService.create(data.token, data.id, USER_ROLES.guest);
-                
+
                 authenticated = true;
             } else {
                 authenticated = false;
@@ -46,15 +44,15 @@ function AuthService($http, $q, $location, SessionService,USER_ROLES) {
         if (!angular.isArray(authorizedRoles)) {
             authorizedRoles = [authorizedRoles];
         }
-       
+
         return (this.isUserAuthenticated() &&
             authorizedRoles.indexOf(SessionService.userRole) !== -1);
     };
 
-    this.init = function(){
+    this.init = function() {
 
-        if(localStorage.token && localStorage.id ){
+        if (localStorage.token && localStorage.id) {
             authenticated = true;
-        } 
+        }
     };
 }

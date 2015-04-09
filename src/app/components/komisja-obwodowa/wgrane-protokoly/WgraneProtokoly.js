@@ -1,3 +1,6 @@
+/*global KOWgraneProtokolyController*/
 'use strict';
-angular.module('komisja-obwodowa.wgrane-protokoly',[])
-.controller('KOWgraneProtokolyController',['$stateParams','KomisjaObwodowaService',KOWgraneProtokolyController]);
+angular.module('komisja-obwodowa.wgrane-protokoly', [])
+    .controller('KOWgraneProtokolyController', ['$stateParams', 'KomisjaObwodowaService',
+        KOWgraneProtokolyController
+    ]);

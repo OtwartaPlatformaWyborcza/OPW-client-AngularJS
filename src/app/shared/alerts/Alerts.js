@@ -1,3 +1,4 @@
-angular.module('alerts',['alerts.constants'])
-.controller('AlertsController',['$scope','AlertsService',AlertsController])
-.factory('AlertsService',['ALERT_TYPE',AlertsService]); 
+/*global AlertsService, AlertsController*/
+angular.module('alerts', ['alerts.constants'])
+    .controller('AlertsController', ['$scope', 'AlertsService', AlertsController])
+    .factory('AlertsService', ['ALERT_TYPE', AlertsService]);

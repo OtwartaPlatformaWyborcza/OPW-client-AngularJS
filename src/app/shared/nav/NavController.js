@@ -1,7 +1,5 @@
-
 'use strict';
-function NavController($scope,$location,AuthService) {
-   
-   
+
+function NavController($scope, $location, AuthService) {
 
 }

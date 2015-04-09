@@ -14,20 +14,21 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
     var modRewrite = require('connect-modrewrite');
 
-	grunt.initConfig({
-    	config: config,
-    	bower: grunt.file.readJSON('./bower.json'),
+    grunt.initConfig({
+        config: config,
+        bower: grunt.file.readJSON('./bower.json'),
 
-    	watch: {
+        watch: {
 
             js: {
-                files: ['<%= config.app %>/assets/js/{,*/}*.js','<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'],
+                files: ['<%= config.app %>/assets/js/{,*/}*.js',
+                        '<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'],
                 tasks: ['newer:jshint:all'],
                 options: {
                     livereload: '<%= config.livereloadPort %>'
                 }
             },
-           
+
             gruntfile: {
                 files: ['Gruntfile.js']
             },
@@ -57,10 +58,23 @@ module.exports = function(grunt) {
                 src: [
                     'Gruntfile.js',
                     '<%= config.app %>/assets/js/{,*/}*.js',
-                    '<%= config.app %>/app/components/{,*/}*.js',
+                    '<%= config.app %>/app/components/{,*/}{,*/}{,*/}*.js',
+                    '<%= config.app %>/app/shared/{,*/}{,*/}{,*/}*.js',
                     '<%= config.app %>/app/*.js'
                 ]
             },
+        },
+        jscs: {
+            src: [
+                'Gruntfile.js',
+                '<%= config.app %>/assets/js/{,*/}*.js',
+                '<%= config.app %>/app/components/{,*/}{,*/}{,*/}*.js',
+                '<%= config.app %>/app/shared/{,*/}{,*/}{,*/}*.js',
+                '<%= config.app %>/app/*.js'
+            ],
+            options: {
+                config: '.jscsrc'
+            }
         },
 
         clean: {
@@ -83,7 +97,8 @@ module.exports = function(grunt) {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['*.htaccess', 'index.html','app/components/{,*/}{,*/}*.html','assets/resources/*'],
+                    src: ['*.htaccess', 'index.html', 'app/components/{,*/}{,*/}*.html',
+                            'assets/resources/*'],
                     dest: '<%= config.dist %>',
                     filter: 'isFile',
                     nonull: true
@@ -153,42 +168,42 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.dist %>/js',
-                    src: ['myapp.js','vendors.min.js'],
+                    src: ['myapp.js', 'vendors.min.js'],
                     dest: '<%= config.dist %>/js'
                 }]
             }
         },
-        
+
         // Automatically inject Bower components into the app
         wiredep: {
             app: {
-            		src: ['<%= config.app %>/index.html'],
-            		ignorePath:  /\.\.\//
-           	}
+                src: ['<%= config.app %>/index.html'],
+                ignorePath: /\.\.\//
+            }
         },
-		bowercopy: {
-			options: {
-				// Bower components folder will be removed afterwards
-				clean: false
-			},
-			// Anything can be copied
-			js: {
-				options: {
-					destPrefix: '.tmp/vendors/'
-				},
-				files: {
-					// Keys are destinations (prefixed with `options.destPrefix`)
-					// Values are sources (prefixed with `options.srcPrefix`); One source per destination
-					// e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
-					'angular.js':'angular/angular.min.js',
-                    'angular.route.js':'angular-route/angular-route.min.js',
-					'jquery.js':'jquery/dist/jquery.min.js',
-					'JsBarcode.js' : 'jsbarcode/JsBarcode.js',
-					'md5.js': 'md5/build/md5.min.js',
-					'pdfmake.js' : 'pdfmake/build/pdfmake.min.js'
-                    
-				}
-			},
+        bowercopy: {
+            options: {
+                // Bower components folder will be removed afterwards
+                clean: false
+            },
+            // Anything can be copied
+            js: {
+                options: {
+                    destPrefix: '.tmp/vendors/'
+                },
+                files: {
+                    // Keys are destinations (prefixed with `options.destPrefix`)
+                    // Values are sources (prefixed with `options.srcPrefix`); One source per destination
+                    // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
+                    'angular.js': 'angular/angular.min.js',
+                    'angular.route.js': 'angular-route/angular-route.min.js',
+                    'jquery.js': 'jquery/dist/jquery.min.js',
+                    'JsBarcode.js': 'jsbarcode/JsBarcode.js',
+                    'md5.js': 'md5/build/md5.min.js',
+                    'pdfmake.js': 'pdfmake/build/pdfmake.min.js'
+
+                }
+            },
             /*css:{
                 options: {
                     destPrefix: '<%= config.dist %>/css'
@@ -197,9 +212,9 @@ module.exports = function(grunt) {
                     'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
                 }
             }*/
-		},
+        },
 
-		connect: {
+        connect: {
             options: {
                 port: 9000,
                 hostname: 'localhost',
@@ -209,14 +224,14 @@ module.exports = function(grunt) {
             livereload: {
                 options: {
                     open: true,
-                    base:[config.app,'.tmp'],
-                    middleware: function(connect,options) {
+                    base: [config.app, '.tmp'],
+                    middleware: function(connect, options) {
                         if (!Array.isArray(options.base)) {
-                          options.base = [options.base];
+                            options.base = [options.base];
                         }
 
                         var middlewares = [];
-                        
+
                         // 1. mod-rewrite behavior
                         middlewares = [
                             require('grunt-connect-proxy/lib/utils').proxyRequest,
@@ -224,8 +239,8 @@ module.exports = function(grunt) {
                             connect().use('/bower_components', connect.static('./bower_components'))
                         ];
 
-                         options.base.forEach(function(base) {
-                            middlewares.push(connect().use(base,connect.static(base)));
+                        options.base.forEach(function(base) {
+                            middlewares.push(connect().use(base, connect.static(base)));
                             middlewares.push(connect.static(base));
                         });
 
@@ -243,7 +258,7 @@ module.exports = function(grunt) {
                     livereload: false,
                     base: '/',
 
-                    middleware: function(connect,options) {
+                    middleware: function(connect, options) {
                         var middlewares = [];
 
                         middlewares = [
@@ -258,27 +273,29 @@ module.exports = function(grunt) {
                 }
             },
             proxies: [{
-                    context: '/rest-api',
-                    host: config.backendProxy,
-                    port: 8080,
-                    https: false,
-                    xforward: false,
-                    rewrite: {'^(\/rest-api\/)(.*)$': '/opw/$2'}
-                }]
-            
+                context: '/rest-api',
+                host: config.backendProxy,
+                port: 8080,
+                https: false,
+                xforward: false,
+                rewrite: {
+                    '^(\/rest-api\/)(.*)$': '/opw/$2'
+                }
+            }]
+
         },
+
     });
 
-	grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['clean','jshint', 'copy','wiredep','useminPrepare', 'concat',
-        'uglify', 'cssmin', 'filerev', 'usemin','htmlmin',
-    ]);
+    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'wiredep',
+                    'useminPrepare', 'concat', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin']);
 
-    
-	grunt.registerTask('server-dev', ['configureProxies','connect:livereload','watch']);
-    grunt.registerTask('server-prod', ['configureProxies','connect:prod:keepalive']);
+    grunt.registerTask('server-dev', ['configureProxies', 'connect:livereload', 'watch']);
+    grunt.registerTask('server-prod', ['configureProxies', 'connect:prod:keepalive']);
 
-    grunt.registerTask('test',['clean','jshint','copy','wiredep','useminPrepare','concat','cssmin','usemin',/*'uglify'*/'htmlmin']);
+    grunt.registerTask('test', ['clean', 'jshint', 'copy', 'wiredep', 'useminPrepare', 'concat',
+                                    'cssmin', 'usemin', 'htmlmin']);
     grunt.registerTask('test2', ['uglify:app']);
 
 };

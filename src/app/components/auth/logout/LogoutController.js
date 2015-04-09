@@ -1,5 +1,5 @@
 'use strict';
-function LogoutController(AuthService) {
 
-	AuthService.logout();
-};
+function LogoutController(AuthService) {
+    AuthService.logout();
+}

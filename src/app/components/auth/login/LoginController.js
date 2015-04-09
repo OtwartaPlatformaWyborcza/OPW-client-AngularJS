@@ -1,4 +1,5 @@
 'use strict';
+
 function LoginController($scope, $location, AuthService, AlertsService) {
 
     if (AuthService.isUserAuthenticated()) {

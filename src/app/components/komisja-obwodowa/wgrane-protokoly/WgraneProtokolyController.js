@@ -1,5 +1,5 @@
 'use strict';
-function KOWgraneProtokolyController($stateParams,KomisjaObwodowaService) {
- 
+
+function KOWgraneProtokolyController($stateParams, KomisjaObwodowaService) {
 
 }
