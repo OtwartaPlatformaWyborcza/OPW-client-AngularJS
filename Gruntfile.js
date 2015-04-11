@@ -128,6 +128,7 @@ module.exports = function(grunt) {
             dist: {
                 src: ['<%= config.dist %>/css/*.css',
                     '<%= config.dist %>/scripts/*.js',
+                    '<%= config.dist %>/css/*bootstrap.min.css'
                 ]
             }
         },
@@ -160,7 +161,7 @@ module.exports = function(grunt) {
         },
         usemin: {
             html: ['<%= config.dist %>/{,*/}*.html'],
-            css: ['<%= config.dist %>/css/*.css'],
+            //css: ['<%= config.dist %>/css/*.css'],
             options: {
                 assetsDirs: ['<%= config.dist %>']
             }
