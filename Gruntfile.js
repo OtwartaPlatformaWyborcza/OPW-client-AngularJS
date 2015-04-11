@@ -189,30 +189,9 @@ module.exports = function(grunt) {
                 // Bower components folder will be removed afterwards
                 clean: false
             },
-            // Anything can be copied
-            js: {
-                options: {
-                    destPrefix: '.tmp/vendors/'
-                },
+            fonts:{
                 files: {
-                    // Keys are destinations (prefixed with `options.destPrefix`)
-                    // Values are sources (prefixed with `options.srcPrefix`); One source per destination
-                    // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
-                    'angular.js': 'angular/angular.min.js',
-                    'angular.route.js': 'angular-route/angular-route.min.js',
-                    'jquery.js': 'jquery/dist/jquery.min.js',
-                    'JsBarcode.js': 'jsbarcode/JsBarcode.js',
-                    'md5.js': 'md5/build/md5.min.js',
-                    'pdfmake.js': 'pdfmake/build/pdfmake.min.js'
-
-                }
-            },
-            css:{
-                options: {
-                    destPrefix: '<%= config.dist %>/css'
-                },
-                files: {
-                    'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
+                    '<%= config.dist %>/fonts':'bootstrap/dist/fonts/*'
                 }
             }
         },
@@ -291,16 +270,11 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'wiredep',
+    grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'bowercopy', 'wiredep',
         'useminPrepare', 'concat', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin'
     ]);
 
     grunt.registerTask('server-dev', ['configureProxies', 'connect:livereload', 'watch']);
     grunt.registerTask('server-prod', ['configureProxies', 'connect:prod:keepalive']);
-
-    grunt.registerTask('test', ['clean', 'jshint', 'copy', 'wiredep', 'useminPrepare', 'concat',
-        'cssmin', 'usemin', 'htmlmin'
-    ]);
-    grunt.registerTask('test2', ['uglify:app']);
 
 };
