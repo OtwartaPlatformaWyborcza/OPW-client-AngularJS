@@ -22,7 +22,8 @@ module.exports = function(grunt) {
 
             js: {
                 files: ['<%= config.app %>/assets/js/{,*/}*.js',
-                        '<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'],
+                    '<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'
+                ],
                 tasks: ['newer:jshint:all'],
                 options: {
                     livereload: '<%= config.livereloadPort %>'
@@ -98,7 +99,8 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: '<%= config.app %>',
                     src: ['*.htaccess', 'index.html', 'app/components/{,*/}{,*/}*.html',
-                            'assets/resources/*'],
+                        'assets/resources/*'
+                    ],
                     dest: '<%= config.dist %>',
                     filter: 'isFile',
                     nonull: true
@@ -204,14 +206,14 @@ module.exports = function(grunt) {
 
                 }
             },
-            /*css:{
+            css:{
                 options: {
                     destPrefix: '<%= config.dist %>/css'
                 },
                 files: {
                     'bootstrap.min.css':'bootstrap/dist/css/bootstrap.min.css'
                 }
-            }*/
+            }
         },
 
         connect: {
@@ -289,13 +291,15 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'wiredep',
-                    'useminPrepare', 'concat', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin']);
+        'useminPrepare', 'concat', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin'
+    ]);
 
     grunt.registerTask('server-dev', ['configureProxies', 'connect:livereload', 'watch']);
     grunt.registerTask('server-prod', ['configureProxies', 'connect:prod:keepalive']);
 
     grunt.registerTask('test', ['clean', 'jshint', 'copy', 'wiredep', 'useminPrepare', 'concat',
-                                    'cssmin', 'usemin', 'htmlmin']);
+        'cssmin', 'usemin', 'htmlmin'
+    ]);
     grunt.registerTask('test2', ['uglify:app']);
 
 };
