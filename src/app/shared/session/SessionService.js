@@ -13,7 +13,7 @@ function SessionService(USER_ROLES) {
     };
 
     this.getUserId = function() {
-        return 1;
+        return this.userId;
     };
 
     this.userRole = USER_ROLES.guest;
