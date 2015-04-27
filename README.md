@@ -1,5 +1,5 @@
 # OtwartaPlatformaWyborczaFronted
 
 
-start dev 
-npm run server-dev
+start dev  
+`npm run server-dev`
