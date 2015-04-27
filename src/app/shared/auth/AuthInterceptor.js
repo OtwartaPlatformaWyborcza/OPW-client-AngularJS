@@ -3,15 +3,6 @@
 function AuthInterceptor($rootScope, $q, $location, AUTH, AUTH_EVENTS, AuthService) {
 
     return {
-        response: function(response) {
-
-            if (response.headers(AUTH.TOKEN_HEADER_NAME)) {
-                localStorage.token = response.headers(AUTH.TOKEN_HEADER_NAME);
-                console.log('new token is: ' + localStorage.token);
-            }
-            return response;
-        },
-
         request: function(config) {
             //console.log('send token: ' + localStorage.token)
             config.headers[AUTH.TOKEN_HEADER_NAME] = localStorage.token;

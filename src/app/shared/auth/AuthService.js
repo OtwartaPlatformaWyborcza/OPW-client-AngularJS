@@ -16,7 +16,8 @@ function AuthService($http, $q, $location, SessionService, USER_ROLES) {
         };
 
         return $http.get('/rest-api/service/user/login', config).success(function(data) {
-            if (data.activeSession) {
+            console.log(data);
+            if (data.sessionActive) {
                 localStorage.token = data.token;
                 localStorage.id = data.id;
                 localStorage.login = credentials.login;
