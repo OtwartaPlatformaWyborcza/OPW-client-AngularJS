@@ -29,8 +29,8 @@
 
 </head>
 
-<body ng-controller="ApplicationController"  ng-cloak="">
-    <nav ng-controller="NavController" ng-show="isUserAuthenticated()" class="navbar navbar-default navbar-fixed-top">
+<body ng-controller="ApplicationController as vm"  ng-cloak="">
+    <nav ng-show="vm.isUserAuthenticated()" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -51,68 +51,48 @@
         </div>
     </nav>
 
-    <div class="container alerts-controller" ng-controller="AlertsController" ng-hide="areAlertsEmpty() == true" ng-class="{'container' : isUserAuthenticated() === true,  'container bg-none' : isUserAuthenticated() == false }">
-        <div ng-repeat="(key,val) in alerts" class="alert {{key}}">
+    <div class="container alerts-controller" ng-controller="AlertsController as vm" ng-hide="vm.areAlertsEmpty() == true" ng-class="{'container' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
+        <div ng-repeat="(key,val) in vm.alerts" class="alert {{key}}">
             <div ng-repeat="msg in val">{{msg}}</div>
         </div>
     </div>
-    <div ui-view ng-class="{'container ui-view' : isUserAuthenticated() === true,  'container bg-none' : isUserAuthenticated() == false }">
+    <div ui-view ng-class="{'container ui-view' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
 
     </div>
 
 
     <!-- build:js js/myapp.js -->
-    <script src="app/app.run-config.js"></script>
-    <script src="app/app.routes-config.js"></script>
-    <script src="app/app.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+
+    <script src="app/shared/auth/auth.module.js"></script>
+    <script src="app/shared/auth/auth.service.js"></script>
+    <script src="app/shared/auth/auth.constants.js"></script>
+
+    <script src="app/shared/session/session.module.js"></script>
+    <script src="app/shared/session/session.service.js"></script>
     
+    <script src="app/components/application/application.controller.js"></script>
+    <script src="app/shared/alerts/alerts.controller.js"></script>
+    <script src="app/shared/alerts/alerts.service.js"></script>
+    
+    <script src="app/components/auth/auth.module.js"></script>
+    <script src="app/components/auth/login.controller.js"></script>
+    <script src="app/components/auth/logout.controller.js"></script>
+
+    <script src="app/components/komisja-obwodowa/komisja-obwodowa.module.js"></script>
+    <script src="app/components/komisja-obwodowa/komisja-obwodowa.controller.js"></script>
+    <script src="app/components/komisja-obwodowa/komisja-obwodowa.service.js"></script>
+    
+    <script src="app/components/komisja-obwodowa/lista/lista.controller.js"></script>    
+    <script src="app/components/komisja-obwodowa/wgrane-protokoly/wgrane-protokoly.controller.js"></script>
+
+    <script src="app/shared/controls/pagination/pagination.module.js"></script>
+    <script src="app/shared/controls/pagination/pagination.directive.js"></script>
     
 
-    <script src="app/shared/Shared.js"></script>
 
-
-    <script src="app/shared/session/SessionService.js"></script>
-    <script src="app/shared/session/Session.js"></script>
-
-    <script src="app/shared/auth/AuthInterceptor.js"></script>
-    <script src="app/shared/auth/AuthService.js"></script>
-    <script src="app/shared/auth/AuthConstants.js"></script>
-    <script src="app/shared/auth/Auth.js"></script>
-
-    <script src="app/components/application/ApplicationController.js"></script>
-    <script src="app/components/application/Application.js"></script>
     
-
-    <script src="app/shared/alerts/AlertsController.js"></script>
-    <script src="app/shared/alerts/AlertsService.js"></script>
-    <script src="app/shared/alerts/AlertsConstants.js"></script>
-    <script src="app/shared/alerts/Alerts.js"></script>
-
-    <script src="app/shared/nav/NavController.js"></script>
-    <script src="app/shared/nav/Nav.js"></script>
-
-
-    <script src="app/shared/controls/Controls.js"></script>
-    <script src="app/shared/controls/pagination/PaginationDirective.js"></script>
-    <script src="app/shared/controls/pagination/PaginationController.js"></script>
-    
-    <script src="app/components/Components.js"></script>
-    
-    <script src="app/components/auth/login/LoginController.js"></script>
-    <script src="app/components/auth/login/Login.js"></script>
-
-    <script src="app/components/auth/logout/LogoutController.js"></script>
-    <script src="app/components/auth/logout/Logout.js"></script>
-
-    <script src="app/components/komisja-obwodowa/KomisjaObwodowaController.js"></script>
-    <script src="app/components/komisja-obwodowa/KomisjaObwodowaService.js"></script>
-    <script src="app/components/komisja-obwodowa/KomisjaObwodowa.js"></script>
-
-    <script src="app/components/komisja-obwodowa/lista/ListaController.js"></script>
-    <script src="app/components/komisja-obwodowa/lista/Lista.js"></script>
-
-    <script src="app/components/komisja-obwodowa/wgrane-protokoly/WgraneProtokolyController.js"></script>
-    <script src="app/components/komisja-obwodowa/wgrane-protokoly/WgraneProtokoly.js"></script>
 
     <!-- endbuild -->
 
