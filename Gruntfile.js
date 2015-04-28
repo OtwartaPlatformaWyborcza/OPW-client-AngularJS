@@ -98,8 +98,8 @@ module.exports = function(grunt) {
                     // includes files within path
                     expand: true,
                     cwd: '<%= config.app %>',
-                    src: ['.htaccess', 'index.html', 'app/components/{,*/}{,*/}*.html',
-                        'assets/resources/*'
+                    src: ['.htaccess', 'index.html', 'app/components/{,*/}{,*/}{,*/}*.html',
+                        'assets/resources/*', 'app/shared/{,*/}{,*/}{,*/}*.html',
                     ],
                     dest: '<%= config.dist %>',
                     filter: 'isFile',
