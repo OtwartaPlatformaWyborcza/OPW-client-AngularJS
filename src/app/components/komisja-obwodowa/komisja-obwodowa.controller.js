@@ -3,9 +3,11 @@
     angular
         .module('komisja-obwodowa')
         .controller('KomisjaObwodowaController', KomisjaObwodowaController);
-    KomisjaObwodowaController.$inject = ['$stateParams', '$location', 'KomisjaObwodowaService', 'AlertsService'];
+    KomisjaObwodowaController.$inject = ['$stateParams', '$location', 'KomisjaObwodowaService',
+        'AlertsService'];
 
-    function KomisjaObwodowaController($stateParams, $location, KomisjaObwodowaService, AlertsService) {
+    function KomisjaObwodowaController($stateParams, $location,
+            KomisjaObwodowaService, AlertsService) {
 
         var vm = this;
         vm.submit = submit;
@@ -28,14 +30,6 @@
                     uprawnionych: 661
                 };
 
-
-        /*
-             private int uprawnionych;
-    private int glosujacych;
-    private int kartWaznych;
-    private int kartNieWaznych;
-    private int glosowWaznych;
-        */
         vm.labels = {
             uprawnionych : 'Uprawnionych do głosowania',
             glosujacych: 'Głosujących',

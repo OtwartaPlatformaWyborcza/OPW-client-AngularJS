@@ -24,7 +24,8 @@
 
         .state('komisja-obwodowa-protokoly', {
             url: '/komisja-obwodowa/{id:[0-9]{4}-[0-9]{1,2}}/wgrane-protokoly',
-            templateUrl: 'app/components/komisja-obwodowa/wgrane-protokoly/wgrane-protokoly.view.html',
+            templateUrl: 'app/components/komisja-obwodowa/' +
+                    'wgrane-protokoly/wgrane-protokoly.view.html',
             controller: 'KOWgraneProtokolyController as vm'
         })
 

@@ -1,4 +1,4 @@
 (function() {
-	'use strict';
-	angular.module('shared.session', []);
+    'use strict';
+    angular.module('shared.session', []);
 })();
