@@ -10,6 +10,7 @@
             login: login,
             logout: logout,
             isUserAuthorized: isUserAuthorized,
+            init: init
         };
         return service;
         function isUserAuthenticated() {
@@ -39,7 +40,6 @@
         function logout() {
             SessionService.destroy();
             authenticated = false;
-            console.log(localStorage);
             $location.path('/auth/login');
         }
 
@@ -52,7 +52,6 @@
         }
 
         function init() {
-
             if (localStorage.token && localStorage.userId) {
                 authenticated = true;
             }

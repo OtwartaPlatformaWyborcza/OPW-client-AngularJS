@@ -50,12 +50,12 @@
                             <col class="col-lg-8" />
                             <col class="col-lg-4" />
                         </colgroup>
-                        <tr ng-repeat="label in vm.labels" class="test" ng-class="{ 'has-error' : subform2.val.$invalid && (!subform2.val.$pristine || vm.form.submitted) }" ng-form="subform2">
+                        <tr ng-repeat="(key,label) in vm.labels" class="test" ng-class="{ 'has-error' : subform2.val.$invalid && (!subform2.val.$pristine || vm.form.submitted) }" ng-form="subform2">
                             <td>
                                 <label class="control-label " for="val">{{label}}</label>
                             </td>
                             <td class="text-right">
-                                <input ng-model="vm.numbers[$index]" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" />
+                                <input ng-model="vm.votes[key]" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" />
                                 <p ng-show="subform2.val.$error.required && (!subform2.val.$pristine || vm.form.submitted)" class="help-block ">Pole jest wymagane</p>
                                 <p ng-show="subform2.val.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
                                 <p ng-show="subform2.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
@@ -87,10 +87,10 @@
                                 <label class="control-label">{{$index+1}}</label>
                             </td>
                             <td>
-                                <label class="control-label " for="val">{{candidate.fullname}}</label>
+                                <label class="control-label " for="val">{{candidate.firstname}} {{candidate.lastname}}</label>
                             </td>
                             <td class="text-right">
-                                <input ng-model="vm.votes[candidate.pkwId]" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" />
+                                <input ng-model="vm.votes['k'+candidate.pkwId]" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" />
                                 <p ng-show="subform2.val.$error.required && (!subform2.val.$pristine || vm.form.submitted)" class="help-block">Pole jest wymagane</p>
                                 <p ng-show="subform2.val.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
                                 <p ng-show="subform2.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>

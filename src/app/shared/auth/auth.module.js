@@ -12,8 +12,10 @@
     function authModuleRun($rootScope, AUTH_EVENTS, AuthService, $location) {
 
         if (!AuthService.isUserAuthenticated()) {
-            AuthService.logout();
-            $location.path('/auth/login');
+            //AuthService.logout();
+            //$location.path('/auth/login');
+            AuthService.init();
+            $location.path($location.path());
         }
 
         $rootScope.$on('$stateChangeStart', function(event, next) {

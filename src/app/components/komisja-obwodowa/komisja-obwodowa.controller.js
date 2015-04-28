@@ -3,18 +3,46 @@
     angular
         .module('komisja-obwodowa')
         .controller('KomisjaObwodowaController', KomisjaObwodowaController);
-    KomisjaObwodowaController.$inject = ['$stateParams', 'KomisjaObwodowaService', 'AlertsService'];
+    KomisjaObwodowaController.$inject = ['$stateParams', '$location', 'KomisjaObwodowaService', 'AlertsService'];
 
-    function KomisjaObwodowaController($stateParams, KomisjaObwodowaService, AlertsService) {
+    function KomisjaObwodowaController($stateParams, $location, KomisjaObwodowaService, AlertsService) {
 
         var vm = this;
         vm.submit = submit;
+        vm.votes = {
+                    glosowWaznych: 100,
+                    glosujacych: 10,
+                    k1: 12,
+                    k2: 3,
+                    k3: 13,
+                    k4: 12,
+                    k5: 16,
+                    k6: 12,
+                    k7: 18,
+                    k8: 15,
+                    k9: 18,
+                    k10: 19,
+                    k11: 15,
+                    kartNieWaznych: 17,
+                    kartWaznych: 11,
+                    uprawnionych: 661
+                };
 
-        vm.labels = ['I.1 Uprawnionych do głosowania',
-            'I.4 Wydano kart do głosowania',
-            'II.11 Kart ważnych',
-            'II.12 Głosów nieważnych'
-        ];
+
+        /*
+             private int uprawnionych;
+    private int glosujacych;
+    private int kartWaznych;
+    private int kartNieWaznych;
+    private int glosowWaznych;
+        */
+        vm.labels = {
+            uprawnionych : 'Uprawnionych do głosowania',
+            glosujacych: 'Głosujących',
+            kartWaznych: 'Kart ważnych',
+            kartNieWaznych: 'Kart nie ważnych',
+            glosowWaznych: 'Głosów ważnych'
+        };
 
         vm.numbers = [];
         KomisjaObwodowaService.getById($stateParams.id).then(function(response) {
@@ -30,7 +58,19 @@
         function submit(isValid) {
             vm.submitted = true;
             if (vm.form.$valid) {
-                console.log('missing submit implementation');
+                console.log(vm.votes);
+                KomisjaObwodowaService.uploadProtocol($stateParams.id, vm.votes).then(
+                    function(response) {
+                        if (response.status === 200) {
+                            $location.path('/komisja-obwodowa/lista');
+                            AlertsService.addSuccess('Dane zostały przesłane na serwer.');
+                        } else {
+                            AlertsService.addError('Błąd podczas przesyłania danych.');
+                        }
+                    },
+                    function() {
+                        AlertsService.addError('Błąd podczas przesyłania danych');
+                    });
             } else {
                 vm.form.submitted = true;
             }
