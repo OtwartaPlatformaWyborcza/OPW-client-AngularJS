@@ -27,7 +27,7 @@
             return $http.get('/rest-api/service/user/login', config).success(function(data) {
                 console.log(data);
                 if (data.sessionActive) {
-                    SessionService.create(data.token, data.id, USER_ROLES.guest);
+                    SessionService.create(data.token, data.id, USER_ROLES.guest, data.login);
                     authenticated = true;
                 } else {
                     authenticated = false;

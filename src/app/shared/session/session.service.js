@@ -6,34 +6,55 @@
     SessionService.$inject = ['USER_ROLES'];
 
     function SessionService(USER_ROLES) {
-        var token, userId, userRole;
+        var token, userId, userRole, userLogin;
         var service = {
             create:create,
             destroy:destroy,
-            getUserId:getUserId
+            getUserId:getUserId,
+            getUserToken:getUserToken,
+            getUserLogin:getUserLogin
         };
         init();
         return service;
 
-        function create(parToken, parUserId, parUserRole) {
+        function create(parToken, parUserId, parUserRole, parUserLogin) {
             token = parToken;
             userId = parUserId;
             userRole = parUserRole;
+            userLogin = parUserLogin;
 
             localStorage.token = token;
             localStorage.userId = userId;
             localStorage.userRole = userRole;
+            localStorage.userLogin = userLogin;
         }
         function  destroy() {
             token = null;
             userId = null;
             userRole = null;
+            userLogin = null;
             localStorage.removeItem('userId');
             localStorage.removeItem('token');
             localStorage.removeItem('userRole');
+            localStorage.removeItem('userLogin');
         }
         function getUserId() {
+            if (localStorage.userId) {
+                return localStorage.userId;
+            }
             return userId;
+        }
+        function getUserToken() {
+            if (localStorage.token) {
+                return localStorage.token;
+            }
+            return token;
+        }
+        function getUserLogin() {
+            if (localStorage.userLogin) {
+                return localStorage.userLogin;
+            }
+            return userLogin;
         }
         function init() {
             userRole = USER_ROLES.guest;
@@ -41,11 +62,13 @@
                 token = localStorage.token;
             }
             if (localStorage.userId) {
-                console.log('init user id from localStorage: ' + localStorage.userId);
                 userId = localStorage.userId;
             }
             if (localStorage.userRole) {
                 userRole = localStorage.userRole;
+            }
+            if (localStorage.userLogin) {
+                userLogin = localStorage.userLogin;
             }
         }
 

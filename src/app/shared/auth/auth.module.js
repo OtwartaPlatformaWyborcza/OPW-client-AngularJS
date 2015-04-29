@@ -7,7 +7,8 @@
 
     authModuleRun.$inject = ['$rootScope', 'AUTH_EVENTS', 'AuthService', '$location'];
     addAuthInterceptor.$inject = ['$httpProvider'];
-    authInterceptor.$inject = ['$rootScope', '$q', '$location', 'AUTH', 'AUTH_EVENTS'];
+    authInterceptor.$inject = ['$rootScope', '$q', '$location', 'AUTH',
+            'AUTH_EVENTS', 'SessionService'];
 
     function authModuleRun($rootScope, AUTH_EVENTS, AuthService, $location) {
 
@@ -39,21 +40,22 @@
         $httpProvider.interceptors.push('authInterceptor');
     }
 
-    function authInterceptor($rootScope, $q, $location, AUTH, AUTH_EVENTS, AuthService) {
+    function authInterceptor($rootScope, $q, $location, AUTH,
+                            AUTH_EVENTS, SessionService) {
         return {
             request: function(config) {
                 //console.log('send token: ' + localStorage.token)
-                config.headers[AUTH.TOKEN_HEADER_NAME] = localStorage.token;
+                config.headers[AUTH.TOKEN_HEADER_NAME] = SessionService.getUserToken();
                 //no override if it has been set in other components (for example login action)
                 if (!config.headers[AUTH.LOGIN_HEADER_NAME]) {
-                    config.headers[AUTH.LOGIN_HEADER_NAME] = localStorage.login;
+                    config.headers[AUTH.LOGIN_HEADER_NAME] = SessionService.getUserLogin();
                 }
 
                 return config;
             },
 
             responseError: function(response) {
-                console.log('response status: ' + response.status);
+                console.log('responseError status: ' + response.status);
                 $rootScope.$broadcast({
                     401: AUTH_EVENTS.notAuthenticated,
                     403: AUTH_EVENTS.notAuthorized,
