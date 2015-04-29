@@ -35,8 +35,7 @@
         }
 
         function addAlert(message, type) {
-            alerts[type] = alerts[type] || [];
-            alerts[type].push(message);
+            alerts[type] = message;
         }
     }
 })();

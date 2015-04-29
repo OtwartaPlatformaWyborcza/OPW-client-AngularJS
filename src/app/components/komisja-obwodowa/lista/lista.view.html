@@ -9,13 +9,15 @@
 		<th>Akcje</th>
 	</tr>
     <tr ng-repeat="item in vm.items" class="alert {{key}}" ng-show="$index >= vm.visibleFrom && $index < vm.visibleTo">
-        <td>{{item.id}}</td>
+        <td>{{$index + 1}}</td>
         <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
         <td>{{item.name}}</td>
         <td>{{item.address}}</td>
         <td class="text-right col-lg-3">
         	<a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
-        	<a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >Wgrane protokoły (0)</a>
+        	<a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                Wgrane protokoły ({{item.protokolCount}})
+            </a>
         </td>
     </tr>
 </table>

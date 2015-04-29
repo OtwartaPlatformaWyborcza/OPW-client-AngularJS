@@ -2,8 +2,8 @@
     'use strict';
     angular
         .module('komisja-obwodowa')
-        .service('KomisjaObwodowaService', ['$http', KomisjaObwodowaService]);
-    function KomisjaObwodowaService($http) {
+        .service('KomisjaObwodowaService', ['$http', '$q', KomisjaObwodowaService]);
+    function KomisjaObwodowaService($http, $q) {
         var service = {
             getById: getById,
             getForUser: getForUser,
@@ -14,7 +14,14 @@
             return $http.get('/rest-api/service/komisja/' + id);
         }
         function getForUser(userId) {
-            return $http.get('/rest-api/service/user/' + userId + '/obwodowa');
+            var deferred = $q.defer();
+
+            $http.get('/rest-api/service/user/' + userId + '/obwodowa').then(function(response) {
+                console.log('poszlo ok');
+                console.log(response);
+                deferred.resolve({komisje: response.data});
+            });
+            return deferred.promise;
         }
         function uploadProtocol(pkwId, protocolData) {
             return $http({

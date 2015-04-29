@@ -6,7 +6,9 @@
 
     function LoginController($location, AuthService, AlertsService) {
         var vm = this;
+
         if (AuthService.isUserAuthenticated()) {
+            console.log('in login controller');
             $location.path('/komisja-obwodowa/lista');
         }
 

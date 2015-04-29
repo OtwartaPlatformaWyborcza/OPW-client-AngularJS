@@ -18,7 +18,8 @@
             items;
         var userId = SessionService.getUserId();
         KomisjaObwodowaService.getForUser(userId).then(function(response) {
-            items = response.data;
+            console.log('aaaaaa');
+            items = response.komisje;
             visibleFrom = Math.floor(itemsPerPage * (currentPage - 1));
             visibleTo = visibleFrom + itemsPerPage;
             lastPage = Math.ceil(items.length / itemsPerPage);
@@ -29,8 +30,9 @@
             vm.itemsPerPage = itemsPerPage;
             vm.currentPage = currentPage;
             vm.lastPage = lastPage;
-
+            console.log(items);
         }, function(response) {
+            console.log('wwwwwww');
             AlertsService.addError('Nie udało się pobrać listy komisji. (status: ' +
                 response.status + ' ' + response.statusText + ')');
         });

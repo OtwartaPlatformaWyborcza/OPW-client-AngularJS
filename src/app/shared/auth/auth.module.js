@@ -7,8 +7,7 @@
 
     authModuleRun.$inject = ['$rootScope', 'AUTH_EVENTS', 'AuthService', '$location'];
     addAuthInterceptor.$inject = ['$httpProvider'];
-    authInterceptor.$inject = ['$rootScope', '$q', '$location', 'AUTH',
-            'AUTH_EVENTS', 'SessionService'];
+    authInterceptor.$inject = ['$q', '$rootScope', '$location', 'AUTH', 'SessionService'];
 
     function authModuleRun($rootScope, AUTH_EVENTS, AuthService, $location) {
 
@@ -40,8 +39,7 @@
         $httpProvider.interceptors.push('authInterceptor');
     }
 
-    function authInterceptor($rootScope, $q, $location, AUTH,
-                            AUTH_EVENTS, SessionService) {
+    function authInterceptor($q, $rootScope, $location, AUTH, SessionService) {
         return {
             request: function(config) {
                 //console.log('send token: ' + localStorage.token)
@@ -55,14 +53,14 @@
             },
 
             responseError: function(response) {
-                console.log('responseError status: ' + response.status);
-                $rootScope.$broadcast({
-                    401: AUTH_EVENTS.notAuthenticated,
-                    403: AUTH_EVENTS.notAuthorized,
-                    419: AUTH_EVENTS.sessionTimeout,
-                    440: AUTH_EVENTS.sessionTimeout
-                }[response.status], response);
+                console.log(response.status);
+                if (response.status >=  400) {
+                    $rootScope.$broadcast('HTTP_REQUEST_ERROR', response.status);
+                    console.log('try logout user');
+                }
+                //AuthService.logout();
                 return $q.reject(response);
+                //return $q.reject(response);
             }
         };
     }

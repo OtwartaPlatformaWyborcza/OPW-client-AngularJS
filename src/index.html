@@ -53,7 +53,7 @@
 
     <div class="container alerts-controller" ng-controller="AlertsController as vm" ng-hide="vm.areAlertsEmpty() == true" ng-class="{'container' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
         <div ng-repeat="(key,val) in vm.alerts" class="alert {{key}}">
-            <div ng-repeat="msg in val">{{msg}}</div>
+            {{val}}
         </div>
     </div>
     <div ui-view ng-class="{'container ui-view' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
