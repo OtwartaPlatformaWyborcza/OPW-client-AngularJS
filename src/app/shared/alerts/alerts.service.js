@@ -5,37 +5,46 @@
     function AlertsService(ALERT_TYPE) {
         'use strict';
         var alerts = {};
+        init();
         var service = {
-            alerts: alerts,
-            addAlert: addAlert,
-            clearAlerts: clearAlerts,
-            addError: addError,
-            addSuccess: addSuccess,
-            addWarning: addWarning
-
+            clear: clear,
+            addError: makeAdd(ALERT_TYPE.error),
+            addSuccess: makeAdd(ALERT_TYPE.success),
+            addWarning: makeAdd(ALERT_TYPE.warning),
+            getErrors: makeGet(ALERT_TYPE.error),
+            getSuccesses: makeGet(ALERT_TYPE.success),
+            getWarnings: makeGet(ALERT_TYPE.warning),
+            clearErrors: makeClear(ALERT_TYPE.error),
+            clearWarnings: makeClear(ALERT_TYPE.warning),
+            clearSuccesses: makeClear(ALERT_TYPE.success)
         };
+
         return service;
 
-        function clearAlerts() {
-            for (var x = 0; x < alerts.length; x++) {
-                delete alerts[x];
-            }
+        function clear() {
+            init();
         }
-
-        function addError(message) {
-            addAlert(message, ALERT_TYPE.error);
+        function makeClear(type) {
+            return function() {
+                alerts[type] = [];
+            };
         }
-
-        function addSuccess(message) {
-            addAlert(message, ALERT_TYPE.success);
+        function makeAdd(type) {
+            return function (message) {
+                var alert = {msg : message};
+                alerts[type].push(alert);
+            };
         }
-
-        function addWarning(message) {
-            addAlert(message, ALERT_TYPE.warning);
+        function makeGet(type) {
+            return function () {
+                return alerts[type];
+            };
         }
-
-        function addAlert(message, type) {
-            alerts[type] = message;
+        function init() {
+            alerts = {};
+            alerts[ALERT_TYPE.error] = [];
+            alerts[ALERT_TYPE.success] = [];
+            alerts[ALERT_TYPE.warning] = [];
         }
     }
 })();

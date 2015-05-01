@@ -69,3 +69,7 @@ table.table.vote-result tr th{
   vertical-align: bottom;
   float: none;
 }
+
+ul.alert{
+  list-style-type: none;
+}

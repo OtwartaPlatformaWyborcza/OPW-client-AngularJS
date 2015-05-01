@@ -2,10 +2,10 @@
     'use strict';
     angular.module('app')
         .controller('ApplicationController', ApplicationController);
-    ApplicationController.$inject = ['$rootScope', 'USER_ROLES', 
+    ApplicationController.$inject = ['$rootScope', 'USER_ROLES',
             'AuthService', 'AlertsService', 'AUTH_EVENTS'];
 
-    function ApplicationController($rootScope, USER_ROLES, 
+    function ApplicationController($rootScope, USER_ROLES,
             AuthService, AlertsService, AUTH_EVENTS) {
         var vm = this;
         vm.currentUser = null;
@@ -15,8 +15,10 @@
         vm.isUserAuthenticated = isUserAuthenticated;
         $rootScope.$on(AUTH_EVENTS.notAuthorized,
                 function(event, responseCode) {
-                    AlertsService.addError('Zaloguj się ponownie.');
-                    AuthService.logout();
+                    if (AuthService.isUserAuthenticated()) {
+                        AlertsService.addError('Zaloguj się ponownie.');
+                        AuthService.logout();
+                    }
                 });
         function setCurrentUser(user) {
             vm.currentUser = user;

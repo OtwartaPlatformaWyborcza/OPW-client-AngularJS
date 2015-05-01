@@ -1,0 +1,21 @@
+<div class="alerts-controller" 
+        ng-hide="vm.areAlertsEmpty() == true" 
+        ng-class="{'container' : $parent.vm.isUserAuthenticated() === true, 
+                    'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
+
+        <ul class="alert alert-danger" ng-hide="vm.errors.length === 0" ng-model="vm.errors">
+             <button type="button" class="close" aria-label="Close" ng-click="vm.closeErrors()">
+                <span aria-hidden="true">&times;</span></button>
+           <li ng-repeat="(key, alert) in vm.errors">{{alert.msg}}{{console.log($parent)}}</li>
+        </ul>
+         <ul class="alert alert-warning" ng-hide="vm.warnings.length === 0">
+             <button type="button" class="close" aria-label="Close" ng-click="vm.closeWarnings()">
+                <span aria-hidden="true">&times;</span></button>
+           <li ng-repeat="(key, alert) in vm.warnings">{{alert.msg}}</li>
+        </ul>
+         <ul class="alert alert-success" ng-hide="vm.successes.length === 0">
+             <button type="button" class="close" aria-label="Close" ng-click="vm.closeSuccesses()">
+                <span aria-hidden="true">&times;</span></button>
+           <li ng-repeat="(key, alert) in vm.successes">{{alert.msg}}</li>
+        </ul>
+</div>

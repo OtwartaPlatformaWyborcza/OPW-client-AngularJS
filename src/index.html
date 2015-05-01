@@ -50,15 +50,11 @@
             </div>
         </div>
     </nav>
-
-    <div class="container alerts-controller" ng-controller="AlertsController as vm" ng-hide="vm.areAlertsEmpty() == true" ng-class="{'container' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
-        <div ng-repeat="(key,val) in vm.alerts" class="alert {{key}}">
-            {{val}}
-        </div>
-    </div>
-    <div ui-view ng-class="{'container ui-view' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
+    <opw-alerts></opw-alerts>
+    <div ui-view ng-class="{'container' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
 
     </div>
+
 
 
     <!-- build:js js/myapp.js -->
@@ -73,8 +69,10 @@
     <script src="app/shared/session/session.service.js"></script>
     
     <script src="app/components/application/application.controller.js"></script>
-    <script src="app/shared/alerts/alerts.controller.js"></script>
+    
+    <script src="app/shared/alerts/alerts.directive.js"></script>
     <script src="app/shared/alerts/alerts.service.js"></script>
+    <script src="app/shared/alerts/alerts.constants.js"></script>
     
     <script src="app/components/auth/auth.module.js"></script>
     <script src="app/components/auth/login.controller.js"></script>

@@ -58,7 +58,6 @@
                 console.log(response.status);
                 if (parseInt(response.status, 10) ===  401) {
                     $rootScope.$broadcast(AUTH_EVENTS.notAuthorized, response.status);
-                    console.log('try logout user');
                 }
                 //AuthService.logout();
                 return $q.reject(response);

@@ -8,7 +8,6 @@
 
     function KOListaController($stateParams, KomisjaObwodowaService, SessionService,
         AlertsService, $location) {
-
         var vm = this,
             currentPage = parseInt($stateParams.page, 10),
             lastPage,
