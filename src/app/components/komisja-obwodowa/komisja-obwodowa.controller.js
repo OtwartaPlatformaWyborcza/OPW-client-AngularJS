@@ -25,7 +25,7 @@
                     k9: 18,
                     k10: 19,
                     k11: 15,
-                    kartNieWaznych: 17,
+                    glosowNieWaznych: 17,
                     kartWaznych: 11,
                     uprawnionych: 661
                 };
@@ -34,7 +34,7 @@
             uprawnionych : 'Uprawnionych do głosowania',
             glosujacych: 'Głosujących',
             kartWaznych: 'Kart ważnych',
-            kartNieWaznych: 'Kart nie ważnych',
+            glosowNieWaznych: 'Głosów nieważnych',
             glosowWaznych: 'Głosów ważnych'
         };
 
