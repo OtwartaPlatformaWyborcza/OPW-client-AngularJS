@@ -5,22 +5,16 @@ html * {
     outline: 0 !important;
 }
 
-body {
-margin-top: 50px;
-background: none;
-}
-
 html,
 body {
 /*css for full size background image*/
-    background: -webkit-linear-gradient(90deg, #485563 10%, #29323c 90%); /* Chrome 10+, Saf5.1+ */
+  background: -webkit-linear-gradient(90deg, #485563 10%, #29323c 90%); /* Chrome 10+, Saf5.1+ */
   background:    -moz-linear-gradient(90deg, #485563 10%, #29323c 90%); /* FF3.6+ */
   background:     -ms-linear-gradient(90deg, #485563 10%, #29323c 90%); /* IE10 */
   background:      -o-linear-gradient(90deg, #485563 10%, #29323c 90%); /* Opera 11.10+ */
   background:         linear-gradient(90deg, #485563 10%, #29323c 90%); /* W3C */
   
   height: 100%;
-  color: #fff;
 }
 
 
