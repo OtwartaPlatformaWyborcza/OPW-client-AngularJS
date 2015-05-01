@@ -45,6 +45,6 @@
             AlertsService.clearSuccesses();
             vm.errors = AlertsService.getSuccesses();
         }
-        //$interval(AlertsService.clear, 5000);
+        $interval(AlertsService.clear, 5000);
     }
 })();
