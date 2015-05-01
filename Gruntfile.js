@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                 files: ['<%= config.app %>/assets/js/{,*/}*.js',
                     '<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'
                 ],
-                tasks: ['newer:jshint:all'],
+                tasks: ['newer:jshint:all', 'newer:jscs'],
                 options: {
                     livereload: '<%= config.livereloadPort %>'
                 }
