@@ -16,12 +16,12 @@
                 authorizedRoles: [USER_ROLES.guest]
             })
         .state('komisja-obwodowa', {
-                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,2}}',
+                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}',
                 templateUrl: 'app/components/komisja-obwodowa/komisja-obwodowa.view.html',
                 controller: 'KomisjaObwodowaController as vm'
             })
         .state('komisja-obwodowa-protokoly', {
-                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,2}}/wgrane-protokoly',
+                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}/wgrane-protokoly',
                 templateUrl: 'app/components/komisja-obwodowa/' +
                         'wgrane-protokoly/wgrane-protokoly.view.html',
                 controller: 'KOWgraneProtokolyController as vm'

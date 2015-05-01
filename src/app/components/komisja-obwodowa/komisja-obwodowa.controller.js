@@ -45,8 +45,13 @@
             vm.komisja = response.data;
 
         }, function(response) {
-            AlertsService.addError('Nie udało się pobrać danych komisji. (status: ' +
+            if (parseInt(response.status, 10) === 404) {
+                AlertsService.addError('Wybrana komisja nie istnieje.');
+            } else {
+                AlertsService.addError('Nie udało się pobrać danych komisji. (status: ' +
                 response.status + ' ' + response.statusText + ')');
+            }
+            $location.path('/komisja-obwodowa/lista');
         });
 
         function submit(isValid) {
