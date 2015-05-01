@@ -74,7 +74,8 @@ module.exports = function(grunt) {
                 '<%= config.app %>/app/*.js'
             ],
             options: {
-                config: '.jscsrc'
+                config: '.jscsrc',
+                force: true
             }
         },
 
