@@ -1,6 +1,6 @@
 <nav>
   <ul class="pagination">
-    <li ng-class="{'disabled' : vm.getCurrentPage() == 1}">
+    <li ng-class="{'disabled' : isFirstPage()}">
       <a href="{{vm.getHref(vm.getCurrentPage() - 1)}}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -10,7 +10,7 @@
     	<a href="{{vm.getHref(n)}}">{{n}}</a>
     </li> 
 
-    <li ng-class="{'disabled' : vm.getCurrentPage() == vm.lastPage}">
+    <li ng-class="{'disabled' : vm.isLastPage()}">
       <a href="{{vm.getHref(vm.getCurrentPage()+1)}}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>

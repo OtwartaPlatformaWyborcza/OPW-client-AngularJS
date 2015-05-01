@@ -51,9 +51,22 @@
         vm.getCurrentPage = function() {
             return parseInt(vm.currentPage);
         };
+        vm.isFirstPage = function(n) {
+            n = n || vm.getCurrentPage();
+            return n === 1;
+        };
+        vm.isLastPage = function(n) {
+            n = n || vm.getCurrentPage();
+            return n >= vm.lastPage;
+        };
 
         vm.getHref = function(n) {
             var params, href;
+
+            if (vm.isFirstPage(n + 1) || vm.isLastPage(n - 1)) {
+                return '#';
+            }
+
             if (vm.sParams) {
                 params = vm.sParams;
                 params[vm.sPageParamName] = n;
