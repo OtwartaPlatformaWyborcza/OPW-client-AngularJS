@@ -1,9 +1,36 @@
-<h3>Lista Komisji obwodowych</h3>
+<h3>Ręczny wybór komisji</h3>
+<form class="form-inline" novalidate name="vm.manualCommissionSelectionForm"
+    ng-submit="vm.submitManualCommissionSelectionForm(vm.manualCommissionSelectionForm.$valid)">
+<div class="form-group container-fluid" ng-form="selectedPkwId"  ng-class="{ 'has-error' : selectedPkwId.val.$invalid && (!selectedPkwId.val.$pristine || 
+        vm.manualCommissionSelectionForm.submitted) }">
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control" ng-model="vm.selectedPkwId" name="val" placeholder="Identyfikator komisji" pattern="[0-9]{4,8}-[0-9]{1,2}" required >
+             <button type="submit" class="btn btn-primary">Wprowadź protokół</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p ng-show="selectedPkwId.val.$error.required && 
+            (!selectedPkwId.val.$pristine || vm.manualCommissionSelectionForm.submitted)" 
+            class="help-block ">
+                    Wprowadź identyfikator
+            </p>
+            <p ng-show="selectedPkwId.val.$error.pattern" class="help-block">
+            Wprowadź identyfikator w poprawnym formacie
+            </p>
+        </div>
+    </div>
+</div>
+</form>
+
+
+<h3>Lista Twoich Komisji obwodowych</h3>
 
 <table  class="table table-hover table-bordered table-striped">
 	<tr>
 		<th style="width:20px;">#</th>
-		<th class="col-lg-1">PKW ID</th>
+        <th class="col-lg-1">PKW ID</th>
 		<th>Nazwa</th>
 		<th>Adres</th>
 		<th>Akcje</th>
