@@ -53,7 +53,7 @@
         };
         vm.isFirstPage = function(n) {
             n = n || vm.getCurrentPage();
-            return n === 1;
+            return parseInt(n, 10) === 1;
         };
         vm.isLastPage = function(n) {
             n = n || vm.getCurrentPage();
@@ -62,9 +62,9 @@
 
         vm.getHref = function(n) {
             var params, href;
-
+            
             if (vm.isFirstPage(n + 1) || vm.isLastPage(n - 1)) {
-                return '#';
+                //return '#';
             }
 
             if (vm.sParams) {
@@ -75,7 +75,7 @@
                 params[vm.sPageParamName] = n;
             }
 
-            href = $state.href('komisja-obwodowa-lista', params);
+            href = $state.href(vm.sName, params);
             return href;
         };
     }
