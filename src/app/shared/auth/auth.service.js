@@ -39,11 +39,15 @@
         function logout() {
             authenticated = false;
             var deferred = $q.defer();
-            $http.get('/rest-api/service/user/logout').then(function(response) {
-                SessionService.destroy();
-                deferred.resolve(response);
-                $location.path('/auth/login');
-            });
+            $http.get('/rest-api/service/user/logout').then(
+                function(response) {
+                    SessionService.destroy();
+                    deferred.resolve(response);
+                    $location.path('/auth/login');
+                },
+                function () {
+                    $location.path('/auth/login');
+                });
             return deferred.promise;
         }
 

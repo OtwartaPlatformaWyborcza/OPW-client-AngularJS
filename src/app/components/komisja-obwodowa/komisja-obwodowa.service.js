@@ -7,7 +7,8 @@
         var service = {
             getById: getById,
             getForUser: getForUser,
-            uploadProtocol: uploadProtocol
+            uploadProtocol: uploadProtocol,
+            getProtocols: getProtocols
         };
         return service;
         function getById(id) {
@@ -17,8 +18,6 @@
             var deferred = $q.defer();
 
             $http.get('/rest-api/service/user/' + userId + '/obwodowa').then(function(response) {
-                console.log('poszlo ok');
-                console.log(response);
                 deferred.resolve({komisje: response.data});
             });
             return deferred.promise;
@@ -29,6 +28,14 @@
                 url: '/rest-api/service/komisja/' + pkwId + '/protokol',
                 data: protocolData
             });
+        }
+        function getProtocols(pkwId) {
+            var deferred = $q.defer();
+
+            $http.get('/rest-api/service/komisja/' + pkwId + '/protokol').then(function(response) {
+                deferred.resolve({protocols: response.data});
+            });
+            return deferred.promise;
         }
     }
 })();

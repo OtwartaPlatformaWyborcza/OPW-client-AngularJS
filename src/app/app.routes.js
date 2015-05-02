@@ -21,10 +21,16 @@
                 controller: 'KomisjaObwodowaController as vm'
             })
         .state('komisja-obwodowa-protokoly', {
-                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}/wgrane-protokoly',
+                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}/wgrane-protokoly/{page:[0-9]*}',
                 templateUrl: 'app/components/komisja-obwodowa/' +
                         'wgrane-protokoly/wgrane-protokoly.view.html',
-                controller: 'KOWgraneProtokolyController as vm'
+                controller: 'KOWgraneProtokolyController as vm',
+                params: {
+                    page: {
+                        value: '1',
+                        squash: true
+                    }
+                }
             })
         .state('komisja-obwodowa-lista', {
                 url: '/komisja-obwodowa/lista/{page:[0-9]*}',
