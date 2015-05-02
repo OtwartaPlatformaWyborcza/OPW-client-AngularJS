@@ -12,6 +12,7 @@
                 itemsPerPage = 6,
                 visibleFrom = 0,
                 visibleTo = 10;
+        vm.commisionId = $stateParams.id;
         KomisjaObwodowaService.getProtocols($stateParams.id).then(
             function(response) {
                 vm.protocols = response.protocols;

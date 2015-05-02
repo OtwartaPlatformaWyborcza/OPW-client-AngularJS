@@ -8,7 +8,8 @@
             getById: getById,
             getForUser: getForUser,
             uploadProtocol: uploadProtocol,
-            getProtocols: getProtocols
+            getProtocols: getProtocols,
+            getProtocolDetails: getProtocolDetails
         };
         return service;
         function getById(id) {
@@ -34,6 +35,13 @@
 
             $http.get('/rest-api/service/komisja/' + pkwId + '/protokol').then(function(response) {
                 deferred.resolve({protocols: response.data});
+            });
+            return deferred.promise;
+        }
+        function getProtocolDetails(protocolId) {
+            var deferred = $q.defer();
+            $http.get('/rest-api/service/wynik/' + protocolId).then(function(response) {
+                deferred.resolve({protocol: response.data});
             });
             return deferred.promise;
         }

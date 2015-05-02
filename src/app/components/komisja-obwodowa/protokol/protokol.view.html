@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row text-left">
+        <div class="col-lg-8 col-lg-offset-2">
+
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3>Obwodowa Komisja Wyborcza</h3>
+                </div>
+                <table class="table table-bordered text-center">
+                    <tr>
+                        <td>
+                            <h4>{{vm.commision.name}}</h4>
+                        </td>
+                        <td class="col-lg-4">
+                            <h4>{{vm.commision.pkwId}}</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <h4>{{vm.commision.address}}</h4>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-default">
+
+                <div class="panel-heading text-center">
+                    <h3>Liczby wyborcze</h3>
+                </div>
+                <table class="table table-striped table-bordered table-hover vote-result">
+                    <colgroup>
+                        <col class="col-lg-8" />
+                        <col class="col-lg-4" />
+                    </colgroup>
+                    <tr ng-repeat="(key,label) in vm.labels" class="test">
+                        <td>
+                            <label class="control-label " for="val">{{label}}</label>
+                        </td>
+                        <td class="text-right">
+                            <span>{{vm.protocol[key]}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3>II. 14 Kandydaci otrzymali głosów ważnych</h3>
+                </div>
+
+                <table class="table table-striped table-bordered table-hover vote-result">
+                    <colgroup>
+                        <col class="col-lg-1" />
+                        <col class="col-lg-7" />
+                        <col class="col-lg-4" />
+                    </colgroup>
+                    <tr>
+                        <th>Lp.</th>
+                        <th>Nazwisko i Imię - imiona</th>
+                        <th>Głosy</th>
+                    </tr>
+                    <tr ng-repeat="candidate in vm.commision.kandydatList">
+                        <td class="text-center">
+                            <label class="control-label">{{$index+1}}</label>
+                        </td>
+                        <td>
+                            <label class="control-label " for="val">{{candidate.firstname}} {{candidate.lastname}}</label>
+                        </td>
+                        <td class="text-right">
+                            <span>{{vm.protocol['k'+candidate.pkwId]}}</span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="panel-body">
+                    <div class="container-fluid text-center">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a href="" class="btn btn-success btn-lg">Poprawny</a>
+                                <a href class="btn btn-danger btn-lg">Niepoprawny</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

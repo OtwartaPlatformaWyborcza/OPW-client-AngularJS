@@ -47,6 +47,12 @@
                 url: '/auth/logout',
                 template: '',
                 controller: 'LogoutController'
-            });
+            })
+        .state('komisja-obwodowa-protokol', {
+            url: '/komisja-obwodowa/{commisionId:[0-9]{4,8}-[0-9]{1,3}}' +
+                    '/protokol/{protocolId:[0-9]*}',
+            templateUrl: 'app/components/komisja-obwodowa/protokol/protokol.view.html',
+            controller: 'KOProtokolController as vm'
+        });
     }
 })();
