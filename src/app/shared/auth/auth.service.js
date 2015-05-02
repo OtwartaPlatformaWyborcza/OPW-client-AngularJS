@@ -25,7 +25,6 @@
             };
 
             return $http.get('/rest-api/service/user/login', config).success(function(data) {
-                console.log(data);
                 if (data.sessionActive) {
                     SessionService.create(data.token, data.id, USER_ROLES.guest, data.login);
                     authenticated = true;
@@ -38,9 +37,14 @@
         }
 
         function logout() {
-            SessionService.destroy();
             authenticated = false;
-            $location.path('/auth/login');
+            var deferred = $q.defer();
+            $http.get('/rest-api/service/user/logout').then(function(response) {
+                SessionService.destroy();
+                deferred.resolve(response);
+                $location.path('/auth/login');
+            });
+            return deferred.promise;
         }
 
         function isUserAuthorized(authorizedRoles) {

@@ -5,6 +5,8 @@
     LogoutController.$inject = ['AuthService', 'AlertsService'];
     function LogoutController(AuthService, AlertsService) {
         AlertsService.clear();
-        AuthService.logout();
+        AuthService.logout().then(function() {
+            AlertsService.addSuccess('Zostałeś wylogowany');
+        });
     }
 })();
