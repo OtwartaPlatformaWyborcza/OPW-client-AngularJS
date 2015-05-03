@@ -4,8 +4,9 @@
         .module('komisja-obwodowa')
         .controller('KOProtokolController', KOProtokolController);
 
-    KOProtokolController.$inject = ['$stateParams', 'AlertsService', 'KomisjaObwodowaService'];
-    function KOProtokolController($stateParams, AlertsService, KomisjaObwodowaService) {
+    KOProtokolController.$inject = ['$stateParams', '$location',
+                        'AlertsService', 'KomisjaObwodowaService'];
+    function KOProtokolController($stateParams, $location, AlertsService, KomisjaObwodowaService) {
         var vm = this;
         vm.labels = {
             uprawnionych : 'Uprawnionych do głosowania',
@@ -14,6 +15,8 @@
             glosowNieWaznych: 'Głosów nieważnych',
             glosowWaznych: 'Głosów ważnych'
         };
+        vm.ratePositive = ratePositive;
+        vm.rateNegative = rateNegative;
         KomisjaObwodowaService.getProtocolDetails($stateParams.protocolId).then(
             function(response) {
                 vm.protocol = response.protocol;
@@ -28,6 +31,23 @@
             function() {
                 AlertsService.addError('Nie udało się pobrac danych protokołu.');
             });
+        function ratePositive() {
+            KomisjaObwodowaService.rateProtocolPositive($stateParams.protocolId)
+                .then(rateResultSuccess, rateResultFailure);
+        }
+        function rateNegative() {
+            KomisjaObwodowaService.rateProtocolNegative($stateParams.protocolId)
+                .then(rateResultSuccess, rateResultFailure);
+        }
+        function rateResultSuccess() {
+            AlertsService.addSuccess('Głos został przyjęty.');
+            $location.path('komisja-obwodowa/' + $stateParams.commisionId + '/wgrane-protokoly/');
+        }
+        function rateResultFailure() {
+            AlertsService.addSuccess('Wystąpił błąd. Głos nie został przyjęty.');
+            $location.path('komisja-obwodowa/' + $stateParams.commisionId + '/wgrane-protokoly/');
+        }
+
     }
 })();
 

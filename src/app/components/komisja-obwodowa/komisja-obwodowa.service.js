@@ -9,7 +9,9 @@
             getForUser: getForUser,
             uploadProtocol: uploadProtocol,
             getProtocols: getProtocols,
-            getProtocolDetails: getProtocolDetails
+            getProtocolDetails: getProtocolDetails,
+            rateProtocolNegative: rateProtocolNegative,
+            rateProtocolPositive: rateProtocolPositive
         };
         return service;
         function getById(id) {
@@ -43,6 +45,22 @@
             $http.get('/rest-api/service/wynik/' + protocolId).then(function(response) {
                 deferred.resolve({protocol: response.data});
             });
+            return deferred.promise;
+        }
+        function rateProtocolPositive(protocolId) {
+            var deferred = $q.defer();
+            $http.get('/rest-api/service/wynik/' + protocolId + '/positive').then(
+                function(response) {
+                    deferred.resolve({protocol: response.data});
+                });
+            return deferred.promise;
+        }
+        function rateProtocolNegative(protocolId) {
+            var deferred = $q.defer();
+            $http.get('/rest-api/service/wynik/' + protocolId + '/negative').then(
+                function(response) {
+                    deferred.resolve({protocol: response.data});
+                });
             return deferred.promise;
         }
     }
