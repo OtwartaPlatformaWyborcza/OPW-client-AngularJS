@@ -40,7 +40,6 @@
 
         vm.numbers = [];
         KomisjaObwodowaService.getById($stateParams.id).then(function(response) {
-            console.log(response.data);
             vm.data = JSON.stringify(response.data);
             vm.komisja = response.data;
 
@@ -56,6 +55,7 @@
 
         function submit(isValid) {
             vm.submitted = true;
+            console.log(vm.form);
             if (vm.form.$valid) {
                 console.log(vm.votes);
                 KomisjaObwodowaService.uploadProtocol($stateParams.id, vm.votes).then(
