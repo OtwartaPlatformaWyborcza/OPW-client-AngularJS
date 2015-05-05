@@ -30,9 +30,9 @@ module.exports = function(grunt) {
             },
             sass: {
                 files: [
-                    '<%= config.app %>/assets/**/*.scss'
+                    '<%= config.app %>/assets/sass/**/*.scss'
                 ],
-                tasks: ['newer:sass']
+                tasks: ['sass']
             },
             gruntfile: {
                 files: ['Gruntfile.js']
@@ -44,8 +44,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     '<%= config.app %>/index.html',
-                    '<%= config.app %>app/*.html',
-                    '<%= config.app %>/app/components/{,*/}*.html',
+                    '<%= config.app %>/app/**/*.html',
                     '<%= config.app %>/assets/css/{,*/}*.css',
                     '.tmp/css/{,*/}*.css',
                     '<%= config.app %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
