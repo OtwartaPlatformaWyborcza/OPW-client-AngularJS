@@ -1,3 +1,4 @@
+/*jshint -W084 */
 (function() {
     'use strict';
     angular.module('shared.table', [])
