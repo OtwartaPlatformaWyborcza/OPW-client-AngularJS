@@ -1,0 +1,21 @@
+/*-----------------------------------------------*\
+  Responsive table
+\*-----------------------------------------------*/
+.responsiveTable {
+  text-rendering: optimizeLegibility;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .responsiveTable thead { display: none !important; }
+  .responsiveTable tbody td { padding: .6rem; display: block; }
+  .responsiveTable tbody tr td:first-child {}
+  .responsiveTable tbody td:before {
+    content: attr(data-th);
+    font-weight: bold;
+    width: 20%;
+    display: inline-block;
+    text-align: left;
+    padding: 0 5px;
+    float: left;
+  }
+}
