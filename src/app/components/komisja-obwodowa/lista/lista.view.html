@@ -1,7 +1,7 @@
 <h3>Ręczny wybór komisji</h3>
 <form class="form-inline" novalidate name="vm.manualCommissionSelectionForm"
     ng-submit="vm.submitManualCommissionSelectionForm(vm.manualCommissionSelectionForm.$valid)">
-<div class="form-group container-fluid" ng-form="selectedPkwId"  ng-class="{ 'has-error' : selectedPkwId.val.$invalid && (!selectedPkwId.val.$pristine || 
+<div class="form-group container-fluid" ng-form="selectedPkwId"  ng-class="{ 'has-error' : selectedPkwId.val.$invalid && (!selectedPkwId.val.$pristine ||
         vm.manualCommissionSelectionForm.submitted) }">
     <div class="row">
         <div class="col-lg-12">
@@ -11,8 +11,8 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <p ng-show="selectedPkwId.val.$error.required && 
-            (!selectedPkwId.val.$pristine || vm.manualCommissionSelectionForm.submitted)" 
+            <p ng-show="selectedPkwId.val.$error.required &&
+            (!selectedPkwId.val.$pristine || vm.manualCommissionSelectionForm.submitted)"
             class="help-block ">
                     Wprowadź identyfikator
             </p>
@@ -27,26 +27,78 @@
 
 <h3>Lista Twoich Komisji obwodowych</h3>
 
-<table  class="table table-hover table-bordered table-striped">
-	<tr>
-		<th style="width:20px;">#</th>
-        <th class="col-lg-1">PKW ID</th>
-		<th>Nazwa</th>
-		<th>Adres</th>
-		<th>Akcje</th>
-	</tr>
-    <tr ng-repeat="item in vm.items" class="alert {{key}}" ng-show="$index >= vm.visibleFrom && $index < vm.visibleTo">
-        <td>{{$index + 1}}</td>
-        <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
-        <td>{{item.name}}</td>
-        <td>{{item.address}}</td>
-        <td class="text-right col-lg-3">
-        	<a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
-        	<a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
-                Wgrane protokoły ({{item.protokolCount}})
-            </a>
-        </td>
-    </tr>
+<table class="table table-hover table-bordered table-striped" responsive-table>
+    <thead>
+        <tr>
+            <th style="width:20px;">#</th>
+            <th class="col-lg-1">PKW ID</th>
+            <th>Nazwa</th>
+            <th>Adres</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><a href="/komisja-obwodowa/{{item.pkwId}}">12345</a></td>
+            <td>name</td>
+            <td>address</td>
+            <td class="text-right col-lg-3">
+                <a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+                <a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                    Wgrane protokoły ({{item.protokolCount}})
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><a href="/komisja-obwodowa/{{item.pkwId}}">12345</a></td>
+            <td>name</td>
+            <td>address</td>
+            <td class="text-right col-lg-3">
+                <a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+                <a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                    Wgrane protokoły ({{item.protokolCount}})
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><a href="/komisja-obwodowa/{{item.pkwId}}">12345</a></td>
+            <td>name</td>
+            <td>address</td>
+            <td class="text-right col-lg-3">
+                <a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+                <a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                    Wgrane protokoły ({{item.protokolCount}})
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><a href="/komisja-obwodowa/{{item.pkwId}}">12345</a></td>
+            <td>name</td>
+            <td>address</td>
+            <td class="text-right col-lg-3">
+                <a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+                <a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                    Wgrane protokoły ({{item.protokolCount}})
+                </a>
+            </td>
+        </tr>
+        <tr ng-repeat="item in vm.items" class="alert {{key}}" ng-show="$index >= vm.visibleFrom && $index < vm.visibleTo">
+            <td>{{$index + 1}}</td>
+            <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
+            <td>{{item.name}}</td>
+            <td>{{item.address}}</td>
+            <td class="text-right col-lg-3">
+                <a class="btn btn-success btn-xs" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+                <a class="btn btn-primary btn-xs" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                    Wgrane protokoły ({{item.protokolCount}})
+                </a>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 <div class="text-center">

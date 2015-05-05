@@ -7,14 +7,12 @@
     <base href="/" />
 
     <!-- build:js(.) js/vendors.min.js-->
-
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
-
     <!-- endbuild -->
 
     <!-- build:css(.) css/bootstrap.min.css-->
@@ -44,7 +42,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/komisja-obwodowa/lista">Lista Komisji Obwodowych</a></li>
-                    
+
                 </ul>
                 <a href="/auth/logout" class="btn btn-sm btn-danger pull-right" style="margin-top:8px;"><span class="glyphicon glyphicon-off"></span> Wyloguj się</a>
             </div>
@@ -73,11 +71,13 @@
 
 
     <script src="app/components/application/application.controller.js"></script>
-    
+
     <script src="app/shared/alerts/alerts.directive.js"></script>
     <script src="app/shared/alerts/alerts.service.js"></script>
     <script src="app/shared/alerts/alerts.constants.js"></script>
-    
+
+    <script src="app/shared/table/table.js"></script>
+
     <script src="app/components/auth/auth.module.js"></script>
     <script src="app/components/auth/login.controller.js"></script>
     <script src="app/components/auth/logout.controller.js"></script>
@@ -85,18 +85,13 @@
     <script src="app/components/komisja-obwodowa/komisja-obwodowa.module.js"></script>
     <script src="app/components/komisja-obwodowa/komisja-obwodowa.controller.js"></script>
     <script src="app/components/komisja-obwodowa/komisja-obwodowa.service.js"></script>
-    
-    <script src="app/components/komisja-obwodowa/lista/lista.controller.js"></script>    
+
+    <script src="app/components/komisja-obwodowa/lista/lista.controller.js"></script>
     <script src="app/components/komisja-obwodowa/wgrane-protokoly/wgrane-protokoly.controller.js"></script>
-    <script src="app/components/komisja-obwodowa/protokol/protokol.controller.js"></script>    
+    <script src="app/components/komisja-obwodowa/protokol/protokol.controller.js"></script>
 
     <script src="app/shared/controls/pagination/pagination.module.js"></script>
     <script src="app/shared/controls/pagination/pagination.directive.js"></script>
-    
-
-
-    
-
     <!-- endbuild -->
 
 </body>

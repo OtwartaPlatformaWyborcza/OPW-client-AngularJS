@@ -19,17 +19,21 @@ module.exports = function(grunt) {
         bower: grunt.file.readJSON('./bower.json'),
 
         watch: {
-
+            options: {
+                livereload: '<%= config.livereloadPort %>'
+            },
             js: {
                 files: ['<%= config.app %>/assets/js/{,*/}*.js',
                     '<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'
                 ],
-                tasks: ['newer:jshint:all', 'newer:jscs'],
-                options: {
-                    livereload: '<%= config.livereloadPort %>'
-                }
+                tasks: ['newer:jshint:all', 'newer:jscs']
             },
-
+            sass: {
+                files: [
+                    '<%= config.app %>/assets/sass/**/*.scss'
+                ],
+                tasks: ['sass']
+            },
             gruntfile: {
                 files: ['Gruntfile.js']
             },
@@ -40,8 +44,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     '<%= config.app %>/index.html',
-                    '<%= config.app %>app/*.html',
-                    '<%= config.app %>/app/components/{,*/}*.html',
+                    '<%= config.app %>/app/**/*.html',
                     '<%= config.app %>/assets/css/{,*/}*.css',
                     '.tmp/css/{,*/}*.css',
                     '<%= config.app %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -127,9 +130,9 @@ module.exports = function(grunt) {
         },
         filerev: {
             dist: {
-                src: ['<%= config.dist %>/css/*.css',
-                    '<%= config.dist %>/scripts/*.js',
-                    '<%= config.dist %>/css/*bootstrap.min.css'
+                src: [
+                    '<%= config.dist %>/css/*.css',
+                    '<%= config.dist %>/scripts/*.js'
                 ]
             }
         },
@@ -142,6 +145,23 @@ module.exports = function(grunt) {
                     src: ['*.css', '!*.min.css'],
                     dest: '<%= config.dist %>/css',
                     ext: '.min.css'
+                }]
+            }
+        },
+        sass: {
+            options: {
+                sourceMap: false,
+                outputStyle: 'compressed',
+                precision: 5,
+                imagePath: '../images'
+            },
+            'build': {
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/assets/sass',
+                    src: ['**/*.scss'],
+                    dest: '<%= config.app %>/assets/css',
+                    ext: '.css'
                 }]
             }
         },
@@ -270,12 +290,13 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['dev', 'watch']);
+    grunt.registerTask('dev', ['wiredep', 'sass']);
     grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'bowercopy', 'wiredep',
-        'useminPrepare', 'concat', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin'
+        'sass', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin'
     ]);
 
-    grunt.registerTask('server-dev', ['configureProxies', 'connect:livereload', 'watch']);
+    grunt.registerTask('server-dev', ['configureProxies', 'dev', 'connect:livereload', 'watch']);
     grunt.registerTask('server-prod', ['configureProxies', 'connect:prod:keepalive']);
 
 };

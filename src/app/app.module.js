@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('app', ['ui.router', 'shared.auth', 'shared.alerts', 'shared.controls.pagination',
-                        'shared.session', 'shared.validators', 'auth', 'komisja-obwodowa'])
+                        'shared.session', 'shared.validators', 'shared.table', 'auth', 'komisja-obwodowa'])
         .run(['$rootScope', '$location', 'AuthService', runConfig])
         .constant('USER_ROLES', {
             admin: 'admin',
