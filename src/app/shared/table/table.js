@@ -45,9 +45,6 @@
                     }
                 }
             }
-            if (headertext.length) {
-                element.addClass('responsiveTablePadding');
-            }
         }
 
         return {
