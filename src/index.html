@@ -7,15 +7,6 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <!-- build:js(.) js/vendors.min.js-->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
     <!-- build:css(.) css/bootstrap.min.css-->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -28,8 +19,8 @@
 
 </head>
 
-<body ng-controller="ApplicationController as vm"  ng-cloak="">
-    <nav ng-show="vm.isUserAuthenticated()" class="navbar navbar-default navbar-fixed-top">
+<body ng-controller="ApplicationController as app"  ng-cloak="">
+    <nav ng-show="app.isUserAuthenticated()" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -43,55 +34,56 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/komisja-obwodowa/lista">Lista Komisji Obwodowych</a></li>
-
                 </ul>
                 <a href="/auth/logout" class="btn btn-sm btn-danger pull-right responsive-spacing" style="margin-top:8px;"><span class="glyphicon glyphicon-off"></span> Wyloguj się</a>
             </div>
         </div>
     </nav>
     <opw-alerts></opw-alerts>
-    <div ui-view ng-class="{'container' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }" class="app-container">
+    <div ui-view ng-class="{'container' : app.isUserAuthenticated() === true,  'container bg-none' : app.isUserAuthenticated() == false }" class="app-container">
     </div>
 
-
+    <!-- build:js(.) js/vendor.min.js-->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
     <!-- build:js js/myapp.js -->
     <script src="app/app.module.js"></script>
-    <script src="app/app.routes.js"></script>
 
-    <script src="app/shared/auth/auth.module.js"></script>
+    <script src="app/shared/auth/auth.js"></script>
     <script src="app/shared/auth/auth.service.js"></script>
-    <script src="app/shared/auth/auth.constants.js"></script>
 
-    <script src="app/shared/session/session.module.js"></script>
-    <script src="app/shared/session/session.service.js"></script>
-    <script src="app/shared/validators/less-than-or-equal.directive.js"></script>
-    <script src="app/shared/validators/greater-than-or-equal.direcitve.js"></script>
-    <script src="app/shared/validators/equal.direcitve.js"></script>
-
+    <script src="app/shared/session/session.js"></script>
+    <script src="app/shared/validators/validators.js"></script>
+    <script src="app/shared/validators/less-than-or-equal.js"></script>
+    <script src="app/shared/validators/greater-than-or-equal.js"></script>
+    <script src="app/shared/validators/equal.js"></script>
 
     <script src="app/components/application/application.controller.js"></script>
 
-    <script src="app/shared/alerts/alerts.directive.js"></script>
+    <script src="app/shared/alerts/alerts.js"></script>
     <script src="app/shared/alerts/alerts.service.js"></script>
-    <script src="app/shared/alerts/alerts.constants.js"></script>
 
     <script src="app/shared/table/table.js"></script>
 
-    <script src="app/components/auth/auth.module.js"></script>
-    <script src="app/components/auth/login.controller.js"></script>
-    <script src="app/components/auth/logout.controller.js"></script>
+    <script src="app/components/auth/auth.js"></script>
+    <script src="app/components/auth/login/login.js"></script>
+    <script src="app/components/auth/logout/logout.js"></script>
 
-    <script src="app/components/komisja-obwodowa/komisja-obwodowa.module.js"></script>
-    <script src="app/components/komisja-obwodowa/komisja-obwodowa.controller.js"></script>
+    <script src="app/components/komisja-obwodowa/komisja-obwodowa.js"></script>
     <script src="app/components/komisja-obwodowa/komisja-obwodowa.service.js"></script>
 
-    <script src="app/components/komisja-obwodowa/lista/lista.controller.js"></script>
-    <script src="app/components/komisja-obwodowa/wgrane-protokoly/wgrane-protokoly.controller.js"></script>
-    <script src="app/components/komisja-obwodowa/protokol/protokol.controller.js"></script>
+    <script src="app/components/komisja-obwodowa/lista/lista.js"></script>
+    <script src="app/components/komisja-obwodowa/wgrane-protokoly/wgrane-protokoly.js"></script>
+    <script src="app/components/komisja-obwodowa/protokol/protokol.js"></script>
 
-    <script src="app/shared/controls/pagination/pagination.module.js"></script>
-    <script src="app/shared/controls/pagination/pagination.directive.js"></script>
+    <script src="app/shared/controls/pagination/pagination.js"></script>
     <!-- endbuild -->
 
 </body>

@@ -1,21 +1,30 @@
 (function() {
     angular
     .module('shared.alerts', [])
+    .constant('ALERT_TYPE', {
+        success: 'alert-success',
+        error: 'alert-danger',
+        warning: 'alert-warning'
+    })
     .directive('opwAlerts', opwAlerts)
     .controller('OpwAlertsController', OpwAlertsController);
 
+    ////////////////
+    // Directives //
+    ////////////////
     function opwAlerts() {
         return {
             restrict: 'E',
             scope:{},
             templateUrl: 'app/shared/alerts/alerts.view.html',
-            controller: ['AlertsService', '$interval', OpwAlertsController],
-            controllerAs: 'vm',
+            controller: 'OpwAlertsController as Alerts',
             bindToController: true
         };
     }
 
-    OpwAlertsController.$inject = ['AlertsService', '$interval'];
+    /////////////////
+    // Controllers //
+    /////////////////
     function OpwAlertsController(AlertsService, $interval) {
         var vm = this;
         vm.errors = AlertsService.getErrors();

@@ -26,13 +26,13 @@ module.exports = function(grunt) {
                 files: ['<%= config.app %>/assets/js/{,*/}*.js',
                     '<%= config.app %>/app/{,*/}{,*/}{,*/}*.js'
                 ],
-                tasks: ['newer:jshint:all', 'newer:jscs']
+                tasks: ['newer:jshint:all', 'newer:jscs', 'beep:error']
             },
             sass: {
                 files: [
                     '<%= config.app %>/assets/sass/**/*.scss'
                 ],
-                tasks: ['sass']
+                tasks: ['sass', 'beep:error']
             },
             gruntfile: {
                 files: ['Gruntfile.js']
@@ -55,7 +55,6 @@ module.exports = function(grunt) {
         jshint: {
             options: {
                 globalstrict: true,
-                reporter: require('jshint-stylish'),
                 jshintrc: '.jshintrc',
             },
             all: {
@@ -168,33 +167,13 @@ module.exports = function(grunt) {
         useminPrepare: {
             html: '<%= config.app %>/index.html',
             options: {
-                dest: '<%= config.dist %>',
-                flow: {
-                    html: {
-                        steps: {
-                            css: ['concat', 'cssmin'],
-                            js: ['concat']
-                        },
-                        post: {}
-                    }
-                }
+                dest: '<%= config.dist %>'
             }
         },
         usemin: {
             html: ['<%= config.dist %>/{,*/}*.html'],
-            //css: ['<%= config.dist %>/css/*.css'],
             options: {
                 assetsDirs: ['<%= config.dist %>']
-            }
-        },
-        uglify: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.dist %>/js',
-                    src: ['myapp.js', 'vendors.min.js'],
-                    dest: '<%= config.dist %>/js'
-                }]
             }
         },
 
@@ -214,6 +193,20 @@ module.exports = function(grunt) {
                 files: {
                     '<%= config.dist %>/fonts':'bootstrap/dist/fonts/*'
                 }
+            }
+        },
+
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '.tmp/concat',
+                    src: '**/*.js',
+                    dest: '.tmp/concat'
+                }]
             }
         },
 
@@ -293,7 +286,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['dev', 'watch']);
     grunt.registerTask('dev', ['wiredep', 'sass']);
     grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'bowercopy', 'wiredep',
-        'sass', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin'
+        'sass', 'useminPrepare', 'concat', 'ngAnnotate', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin'
     ]);
 
     grunt.registerTask('server-dev', ['configureProxies', 'dev', 'connect:livereload', 'watch']);

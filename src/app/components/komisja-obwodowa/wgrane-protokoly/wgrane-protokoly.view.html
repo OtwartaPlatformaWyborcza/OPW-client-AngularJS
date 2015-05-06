@@ -19,12 +19,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="protocol in vm.protocols" ng-show="$index >= vm.visibleFrom && $index < vm.visibleTo" responsive-table>
+            <tr ng-repeat="protocol in Protokoly.protocols" ng-show="$index >= Protokoly.visibleFrom && $index < Protokoly.visibleTo" responsive-table>
                 <td class="text-center">{{$index + 1}}</td>
                 <td class="text-right">{{protocol.uploadTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td class="text-right">{{protocol.ratedPositiv}}</td>
                 <td class="text-right">{{protocol.ratedNegativ}}</td>
-                <td><a class="btn btn-success btn-xs pull-right" ui-sref="komisja-obwodowa-protokol({protocolId: protocol.id, commisionId: vm.commisionId})" role="button">
+                <td><a class="btn btn-success btn-xs pull-right" ui-sref="komisja-obwodowa-protokol({protocolId: protocol.id, commisionId: Protokoly.commisionId})" role="button">
                     Zobacz Protokół
                     </a>
                 </td>
@@ -33,7 +33,7 @@
     </table>
 
     <div class="text-center">
-        <pagination currentpage="{{vm.currentPage}}" lastpage="{{vm.lastPage}}" sname="komisja-obwodowa-protokoly" />
+        <pagination currentpage="{{Protokoly.currentPage}}" lastpage="{{Protokoly.lastPage}}" sname="komisja-obwodowa-protokoly" />
     </div>
 
 </div>

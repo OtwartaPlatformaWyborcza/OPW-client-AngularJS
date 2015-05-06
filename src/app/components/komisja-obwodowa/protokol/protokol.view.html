@@ -9,15 +9,15 @@
                 <table class="table table-bordered text-center">
                     <tr>
                         <td>
-                            <h4>{{vm.commision.name}}</h4>
+                            <h4>{{Protokol.commision.name}}</h4>
                         </td>
                         <td class="col-lg-4">
-                            <h4>{{vm.commision.pkwId}}</h4>
+                            <h4>{{Protokol.commision.pkwId}}</h4>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <h4>{{vm.commision.address}}</h4>
+                            <h4>{{Protokol.commision.address}}</h4>
                         </td>
                     </tr>
                 </table>
@@ -32,12 +32,12 @@
                         <col class="col-lg-8" />
                         <col class="col-lg-4" />
                     </colgroup>
-                    <tr ng-repeat="(key,label) in vm.labels" class="test">
+                    <tr ng-repeat="(key,label) in Protokol.labels" class="test">
                         <td>
                             <label class="control-label " for="val">{{label}}</label>
                         </td>
                         <td class="text-right">
-                            <span>{{vm.protocol[key]}}</span>
+                            <span>{{Protokol.protocol[key]}}</span>
                         </td>
                     </tr>
                 </table>
@@ -60,7 +60,7 @@
                         <th>Nazwisko i Imię - imiona</th>
                         <th>Głosy</th>
                     </tr>
-                    <tr ng-repeat="candidate in vm.commision.kandydatList">
+                    <tr ng-repeat="candidate in Protokol.commision.kandydatList">
                         <td class="text-center">
                             <label class="control-label">{{$index+1}}</label>
                         </td>
@@ -68,7 +68,7 @@
                             <label class="control-label " for="val">{{candidate.firstname}} {{candidate.lastname}}</label>
                         </td>
                         <td class="text-right">
-                            <span>{{vm.protocol['k'+candidate.pkwId]}}</span>
+                            <span>{{Protokol.protocol['k'+candidate.pkwId]}}</span>
                         </td>
                     </tr>
                 </table>
@@ -76,8 +76,8 @@
                     <div class="container-fluid text-center">
                         <div class="row">
                             <div class="col-lg-12">
-                                <a href="" class="btn btn-success btn-lg responsive-spacing responsive-width" ng-click="vm.ratePositive()">Poprawny</a>
-                                <a href class="btn btn-danger btn-lg responsive-width" ng-click="vm.rateNegative()">Niepoprawny</a>
+                                <a href="" class="btn btn-success btn-lg responsive-spacing responsive-width" ng-click="Protokol.ratePositive()">Poprawny</a>
+                                <a href class="btn btn-danger btn-lg responsive-width" ng-click="Protokol.rateNegative()">Niepoprawny</a>
                             </div>
                         </div>
                     </div>

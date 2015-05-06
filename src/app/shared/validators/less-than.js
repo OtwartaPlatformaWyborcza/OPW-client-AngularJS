@@ -2,22 +2,24 @@
     'use strict';
     angular
         .module('shared.validators')
-        .directive('equal', Equal);
+        .directive('lessThan', LessThan);
 
-    function Equal() {
+    ////////////////
+    // Directives //
+    ////////////////
+    function LessThan() {
         return {
             restrict: 'A',
             require: 'ngModel',
             scope: {
-                equal: '='
+                lessThan: '='
             },
             link: function(scope, element, iAttrs, ctrl) {
                 ctrl.$parsers.unshift(function(value) {
                     var valid;
                     if (value) {
-                        valid = parseInt(value) === parseInt(scope.equal);
-                        console.log(scope.equal);
-                        ctrl.$setValidity('equal', valid);
+                        valid = parseInt(value) <= parseInt(scope.lessThan);
+                        ctrl.$setValidity('lessThan', valid);
                     }
                     return value;
                 });

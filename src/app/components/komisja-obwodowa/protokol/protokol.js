@@ -1,11 +1,26 @@
 (function () {
     'use strict';
     angular
-        .module('komisja-obwodowa')
+        .module('komisja-obwodowa.protokol', [])
+        .config(routesConfig)
         .controller('KOProtokolController', KOProtokolController);
 
-    KOProtokolController.$inject = ['$stateParams', '$location',
-                        'AlertsService', 'KomisjaObwodowaService'];
+    ////////////
+    // Config //
+    ////////////
+    function routesConfig($stateProvider) {
+        $stateProvider
+            .state('komisja-obwodowa-protokol', {
+                url: '/komisja-obwodowa/{commisionId:[0-9]{4,8}-[0-9]{1,3}}' +
+                '/protokol/{protocolId:[0-9]*}',
+                templateUrl: 'app/components/komisja-obwodowa/protokol/protokol.view.html',
+                controller: 'KOProtokolController as Protokol'
+            });
+    }
+
+    /////////////////
+    // Controllers //
+    /////////////////
     function KOProtokolController($stateParams, $location, AlertsService, KomisjaObwodowaService) {
         var vm = this;
         vm.labels = {

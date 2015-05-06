@@ -1,11 +1,30 @@
 (function() {
     'use strict';
-    angular.module('komisja-obwodowa')
+    angular.module('komisja-obwodowa.lista', [])
+        .config(routesConfig)
         .controller('KOListaController', KOListaController);
 
-    KOListaController.$inject = ['$stateParams', 'KomisjaObwodowaService',
-        'SessionService', 'AlertsService', '$location'];
+    ////////////
+    // Config //
+    ////////////
+    function routesConfig($stateProvider) {
+        $stateProvider
+            .state('komisja-obwodowa-lista', {
+                url: '/komisja-obwodowa/lista/{page:[0-9]*}',
+                templateUrl: 'app/components/komisja-obwodowa/lista/lista.view.html',
+                controller: 'KOListaController as Lista',
+                params: {
+                    page: {
+                        value: '1',
+                        squash: true
+                    }
+                }
+            });
+    }
 
+    /////////////////
+    // Controllers //
+    /////////////////
     function KOListaController($stateParams, KomisjaObwodowaService, SessionService,
         AlertsService, $location) {
         var vm = this,

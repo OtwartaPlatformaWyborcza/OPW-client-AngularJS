@@ -1,7 +1,10 @@
 (function() {
     angular.module('shared.alerts')
         .factory('AlertsService', AlertsService);
-    AlertsService.$inject = ['ALERT_TYPE'];
+
+    //////////////
+    // Services //
+    //////////////
     function AlertsService(ALERT_TYPE) {
         'use strict';
         var alerts = {};

@@ -2,7 +2,10 @@
     'use strict';
     angular.module('shared.auth')
             .service('AuthService', AuthService);
-    AuthService.$inject = ['$http', '$q', '$location', 'SessionService', 'USER_ROLES'];
+
+    //////////////
+    // Services //
+    //////////////
     function AuthService($http, $q, $location, SessionService, USER_ROLES) {
         var authenticated = false;
         var service = {

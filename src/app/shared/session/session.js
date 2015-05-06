@@ -1,10 +1,11 @@
 (function() {
     'use strict';
-    angular
-        .module('shared.session')
+    angular.module('shared.session', [])
         .service('SessionService', SessionService);
-    SessionService.$inject = ['USER_ROLES'];
 
+    //////////////
+    // Services //
+    //////////////
     function SessionService(USER_ROLES) {
         var token, userId, userRole, userLogin;
         var service = {
@@ -71,6 +72,5 @@
                 userLogin = localStorage.userLogin;
             }
         }
-
     }
 })();

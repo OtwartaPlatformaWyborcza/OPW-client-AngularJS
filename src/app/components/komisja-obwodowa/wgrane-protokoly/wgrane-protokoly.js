@@ -1,10 +1,32 @@
 (function() {
     'use strict';
     angular
-        .module('komisja-obwodowa')
+        .module('komisja-obwodowa.protokoly', [])
+        .config(routesConfig)
         .controller('KOWgraneProtokolyController', KOWgraneProtokolyController);
-    KOWgraneProtokolyController.$inject = ['$stateParams', 'KomisjaObwodowaService',
-             'AlertsService'];
+
+    ////////////
+    // Config //
+    ////////////
+    function routesConfig($stateProvider) {
+        $stateProvider
+            .state('komisja-obwodowa-protokoly', {
+                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}/wgrane-protokoly/{page:[0-9]*}',
+                templateUrl: 'app/components/komisja-obwodowa/' +
+                'wgrane-protokoly/wgrane-protokoly.view.html',
+                controller: 'KOWgraneProtokolyController as Protokoly',
+                params: {
+                    page: {
+                        value: '1',
+                        squash: true
+                    }
+                }
+            });
+    }
+
+    /////////////////
+    // Controllers //
+    /////////////////
     function KOWgraneProtokolyController($stateParams, KomisjaObwodowaService, AlertsService) {
         var vm = this,
                 currentPage = parseInt($stateParams.page, 10),

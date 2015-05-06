@@ -2,7 +2,11 @@
     'use strict';
     angular
         .module('komisja-obwodowa')
-        .service('KomisjaObwodowaService', ['$http', '$q', KomisjaObwodowaService]);
+        .service('KomisjaObwodowaService', KomisjaObwodowaService);
+
+    //////////////
+    // Services //
+    //////////////
     function KomisjaObwodowaService($http, $q) {
         var service = {
             getById: getById,

@@ -4,6 +4,9 @@
         .module('shared.validators')
         .directive('greaterThan', GreaterThan);
 
+    ////////////////
+    // Directives //
+    ////////////////
     function GreaterThan() {
         return {
             restrict: 'A',

@@ -1,13 +1,30 @@
 (function() {
     'use strict';
     angular
-        .module('komisja-obwodowa')
+        .module('komisja-obwodowa', [
+            'komisja-obwodowa.lista',
+            'komisja-obwodowa.protokol',
+            'komisja-obwodowa.protokoly'
+        ])
+        .config(routesConfig)
         .controller('KomisjaObwodowaController', KomisjaObwodowaController);
-    KomisjaObwodowaController.$inject = ['$stateParams', '$location', 'KomisjaObwodowaService',
-        'AlertsService'];
 
-    function KomisjaObwodowaController($stateParams, $location,
-            KomisjaObwodowaService, AlertsService) {
+    ////////////
+    // Config //
+    ////////////
+    function routesConfig($stateProvider) {
+        $stateProvider
+            .state('komisja-obwodowa', {
+                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}',
+                templateUrl: 'app/components/komisja-obwodowa/komisja-obwodowa.view.html',
+                controller: 'KomisjaObwodowaController as KO'
+            });
+    }
+
+    /////////////////
+    // Controllers //
+    /////////////////
+    function KomisjaObwodowaController($stateParams, $location, KomisjaObwodowaService, AlertsService) {
 
         var vm = this;
         vm.submit = submit;

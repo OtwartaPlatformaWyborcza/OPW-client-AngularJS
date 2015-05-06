@@ -1,11 +1,26 @@
 (function() {
     'use strict';
-    angular.module('auth')
+    angular.module('auth.login', [])
+        .config(routesConfig)
         .controller('LoginController', LoginController);
-    LoginController.$inject = ['$location', 'AuthService',
-                        'AlertsService', 'AUTH_EVENTS', '$rootScope'];
 
-    function LoginController($location, AuthService, AlertsService, AUTH_EVENTS, $rootScope) {
+    ////////////
+    // Config //
+    ////////////
+    function routesConfig($stateProvider, USER_ROLES) {
+        $stateProvider
+            .state('authlogin', {
+                url: '/auth/login',
+                templateUrl: 'app/components/auth/login/login.view.html',
+                controller: 'LoginController as Login',
+                authorizedRoles: [USER_ROLES.guest]
+            });
+    }
+
+    /////////////////
+    // Controllers //
+    /////////////////
+    function LoginController($location, AuthService, AlertsService) {
         var vm = this;
 
         if (AuthService.isUserAuthenticated()) {

@@ -1,9 +1,12 @@
 (function() {
     'use strict';
     angular
-        .module('shared.validators', [])
+        .module('shared.validators')
         .directive('lessThanOrEqual', LessThanOrEqual);
 
+    ////////////////
+    // Directives //
+    ////////////////
     function LessThanOrEqual() {
         return {
             restrict: 'A',

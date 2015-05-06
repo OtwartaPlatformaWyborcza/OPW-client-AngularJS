@@ -12,11 +12,6 @@
     ],
     "requireOperatorBeforeLineBreak": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
-    "maximumLineLength": {
-      "value": 100,
-      "allowComments": true,
-      "allowRegex": true
-    },
     "validateIndentation": 4,
     "validateQuoteMarks": "'",
 

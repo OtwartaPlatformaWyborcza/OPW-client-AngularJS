@@ -1,12 +1,13 @@
 (function() {
     'use strict';
-    angular
-        .module('shared.controls.pagination')
+    angular.module('shared.controls.pagination', [])
         .directive('pagination', Pagination)
         .controller('PaginationController', PaginationController);
 
+    ////////////////
+    // Directives //
+    ////////////////
     function Pagination() {
-
         return {
             restrict: 'E',
             replace: true,
@@ -20,8 +21,7 @@
 
             },
             templateUrl: 'app/shared/controls/pagination/pagination.view.html',
-            controller: ['$state', PaginationController],
-            controllerAs: 'vm',
+            controller: 'PaginationController as Pagination',
             bindToController: true,
 
             link: function postLink(scope, iElement, iAttrs) {
@@ -32,11 +32,13 @@
                 if (!iAttrs.sparams) {
                     iAttrs.sparams = '';
                 }
-            },
+            }
         };
     }
 
-    PaginationController.$inject = ['$state'];
+    /////////////////
+    // Controllers //
+    /////////////////
     function PaginationController($state) {
         var vm = this;
         vm.getPageRange = function() {
