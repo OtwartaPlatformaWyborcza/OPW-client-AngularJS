@@ -45,7 +45,7 @@
                     <div class="panel-heading text-center">
                         <h3>Liczby wyborcze</h3>
                     </div>
-                    <table class="table table-striped table-bordered table-hover vote-result">
+                    <table class="table table-striped table-bordered table-hover vote-result" responsive-table>
                         <colgroup>
                             <col class="col-lg-8" />
                             <col class="col-lg-4" />
@@ -97,7 +97,7 @@
                                 <p ng-show="kartWaznych.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
                                 <p ng-show="kartWaznych.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
                                 <p ng-show="kartWaznych.$error.equal || glosowWaznych.$error.equal || glosowNieWaznych.$error.equal" class="help-block">
-                                        P3 Liczba kart ważnych (pkt. 11) musi być równa sumie liczby głosów nieważnych (pkt. 12) 
+                                        P3 Liczba kart ważnych (pkt. 11) musi być równa sumie liczby głosów nieważnych (pkt. 12)
                                         i liczby głosów ważnych oddanych na wszystkich kandydatów (pkt. 13).
                                 </p>
                             </td>
@@ -138,7 +138,7 @@
                         <h3>II. 14 Kandydaci otrzymali głosów ważnych</h3>
                     </div>
 
-                    <table class="table table-striped table-bordered table-hover vote-result">
+                    <table class="table table-striped table-bordered table-hover vote-result" responsive-table>
                         <colgroup>
                             <col class="col-lg-1" />
                             <col class="col-lg-7" />
@@ -174,9 +174,9 @@
                                 <p ng-show="glosowRazem.val.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
                                 <p ng-show="glosowRazem.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
                                 <p ng-show="glosowRazem.val.$error.equal" class="help-block">
-                                        P8 Suma głosów oddanych na wszystkich kandydatów (pkt. 14 pole RAZEM) nie może 
+                                        P8 Suma głosów oddanych na wszystkich kandydatów (pkt. 14 pole RAZEM) nie może
                                         być różna od sumy głosów oddanych na poszczególnych kandydatów (w pkt. 14).
-                                        <br />    
+                                        <br />
                                         P9 Suma głosów oddanych na wszystkich kandydatów (w pkt. 14) musi być równa liczbie głosów ważnych (w pkt. 13).
                                 </p>
                             </td>

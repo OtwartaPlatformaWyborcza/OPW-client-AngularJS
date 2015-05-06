@@ -16,7 +16,7 @@
                 var $tableElement = element.closest('table');
 
                 $tableElement.addClass('responsiveTable');
-                tableService.addHeadersToRows($tableElement[0]);
+                tableService.addHeadersToRows($tableElement);
             }
         };
     }
@@ -27,22 +27,26 @@
     function tableService() {
         function addHeadersToRows(element) {
             var headertext = [],
-                headers = element.querySelectorAll('th'),
-                tablebody = element.querySelector('tbody'),
+                headers = element.find('th'),
+                tablebody = element.find('tbody'),
+                tablerows = tablebody.children('tr'),
                 i, j, row, col, current;
 
             for (i = 0; i < headers.length; i++) {
                 current = headers[i];
                 headertext.push(current.textContent.replace(/\r?\n|\r/, ''));
             }
-            if (tablebody && tablebody.rows && tablebody.rows.length) {
-                for (i = 0; row = tablebody.rows[i]; i++) {
+            if (tablebody && tablerows.length) {
+                for (i = 0; row = tablerows[i]; i++) {
                     for (j = 0; col = row.cells[j]; j++) {
                         if (headertext[j]) {
                             col.setAttribute('data-th', headertext[j]);
                         }
                     }
                 }
+            }
+            if (headertext.length) {
+                element.addClass('responsiveTablePadding');
             }
         }
 
