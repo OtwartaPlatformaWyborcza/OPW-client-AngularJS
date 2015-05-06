@@ -4,28 +4,34 @@
 .responsiveTable {
     text-rendering: optimizeLegibility;
     width: 100%;
+    position: relative;
 
     @media screen and (max-width: 767px) {
         thead {
             display: none !important;
         }
-        tbody td {
+        & tbody > tr > td {
             display: block;
+            padding-left: 25%;
         }
-        tbody td:before {
+        & tbody > tr > td:before {
             content: attr(data-th);
             font-weight: bold;
             width: 25%;
             display: inline-block;
             text-align: left;
-            padding: 0 5px;
+            position: absolute;
+            left: 10px;
             float: left;
         }
     }
 
     @media screen and (max-width: 480px) {
-        tbody td:before {
-            width: 35%;
+        & tbody > tr > td {
+            padding-left: 30%;
+        }
+        & tbody > tr > td:before {
+            width: 30%;
         }
     }
 }
