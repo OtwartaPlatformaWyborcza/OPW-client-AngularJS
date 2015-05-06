@@ -1,3 +1,15 @@
+.responsive-width {
+    @media screen and (max-width: 767px) {
+        width: 100%;
+    }
+}
+
+.responsive-spacing {
+    @media screen and (max-width: 767px) {
+        margin-bottom: 10px;
+    }
+}
+
 /*-----------------------------------------------*\
   Responsive table
 \*-----------------------------------------------*/
@@ -12,6 +24,7 @@
         }
         & tbody > tr > td {
             display: block;
+            text-align: left;
         }
         & tbody > tr > td:before {
             content: attr(data-th);
@@ -19,27 +32,13 @@
             width: 25%;
             display: inline-block;
             text-align: left;
-            position: absolute;
-            left: 10px;
-            float: left;
+            margin-right: 20px;
         }
     }
 
     @media screen and (max-width: 480px) {
         & tbody > tr > td:before {
             width: 30%;
-        }
-    }
-}
-.responsiveTablePadding {
-    @media screen and (max-width: 767px) {
-        & tbody > tr > td {
-            padding-left: 25%;
-        }
-    }
-    @media screen and (max-width: 480px) {
-        & tbody > tr > td {
-            padding-left: 30%;
         }
     }
 }

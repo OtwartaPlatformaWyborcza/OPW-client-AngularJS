@@ -5,6 +5,7 @@
     <title>Otwarta Platforma Wyborcza</title>
     <meta charset="utf-8">
     <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <!-- build:js(.) js/vendors.min.js-->
     <!-- bower:js -->
@@ -44,13 +45,12 @@
                     <li class="active"><a href="/komisja-obwodowa/lista">Lista Komisji Obwodowych</a></li>
 
                 </ul>
-                <a href="/auth/logout" class="btn btn-sm btn-danger pull-right" style="margin-top:8px;"><span class="glyphicon glyphicon-off"></span> Wyloguj się</a>
+                <a href="/auth/logout" class="btn btn-sm btn-danger pull-right responsive-spacing" style="margin-top:8px;"><span class="glyphicon glyphicon-off"></span> Wyloguj się</a>
             </div>
         </div>
     </nav>
     <opw-alerts></opw-alerts>
-    <div ui-view ng-class="{'container' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }">
-
+    <div ui-view ng-class="{'container' : $parent.vm.isUserAuthenticated() === true,  'container bg-none' : $parent.vm.isUserAuthenticated() == false }" class="app-container">
     </div>
 
 

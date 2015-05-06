@@ -4,32 +4,36 @@
 			<h3>Wgrane protokoły</h3>
 		</div>
 		<div class="col-lg-4" style="padding-top:12px">
-			<a ui-sref="komisja-obwodowa-lista"  class="btn btn-primary pull-right">Powrót do listy</a>
-		</div>
+			<a ui-sref="komisja-obwodowa-lista" class="btn btn-primary pull-right responsive-width responsive-spacing">Powrót do listy</a>
+        </div>
+    </div>
 
+    <table class="table table-bordered table-striped" responsive-table="">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Data wysyłki na serwer</th>
+                <th>Ilość potwierdzeń</th>
+                <th>Ilość zaprzeczeń</th>
+                <th>Dane Protokołu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="protocol in vm.protocols" ng-show="$index >= vm.visibleFrom && $index < vm.visibleTo" responsive-table>
+                <td class="text-center">{{$index + 1}}</td>
+                <td class="text-right">{{protocol.uploadTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td class="text-right">{{protocol.ratedPositiv}}</td>
+                <td class="text-right">{{protocol.ratedNegativ}}</td>
+                <td><a class="btn btn-success btn-xs pull-right" ui-sref="komisja-obwodowa-protokol({protocolId: protocol.id, commisionId: vm.commisionId})" role="button">
+                    Zobacz Protokół
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-</div>
+    <div class="text-center">
+        <pagination currentpage="{{vm.currentPage}}" lastpage="{{vm.lastPage}}" sname="komisja-obwodowa-protokoly" />
+    </div>
 
-<table class="table table-bordered table-striped">
-	<tr>
-		<th>#</th>
-		<th>Data wysyłki na serwer</th>
-		<th>Ilość potwierdzeń</th>
-		<th>Ilość zaprzeczeń</th>
-		<th>Dane Protokołu</th>
-	</tr>
-	<tr ng-repeat="protocol in vm.protocols" ng-show="$index >= vm.visibleFrom && $index < vm.visibleTo">
-		<td class="text-center">{{$index + 1}}</td>
-		<td class="text-right">{{protocol.uploadTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-		<td class="text-right">{{protocol.ratedPositiv}}</td>
-		<td class="text-right">{{protocol.ratedNegativ}}</td>
-		<td><a class="btn btn-success btn-xs pull-right" ui-sref="komisja-obwodowa-protokol({protocolId: protocol.id, commisionId: vm.commisionId})" role="button" >
-			Zobacz Protokół
-			</a>
-		</td>
-	</tr>
-</table>
-
-<div class="text-center">
-	<pagination currentpage="{{vm.currentPage}}" lastpage="{{vm.lastPage}}" sname="komisja-obwodowa-protokoly" />
 </div>
