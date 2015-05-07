@@ -47,13 +47,8 @@
                     uprawnionych: 661
                 };
 
-        vm.labels = {
-            uprawnionych : 'Uprawnionych do głosowania',
-            glosujacych: 'Głosujących',
-            kartWaznych: 'Kart ważnych',
-            glosowNieWaznych: 'Głosów nieważnych',
-            glosowWaznych: 'Głosów ważnych'
-        };
+        vm.votes.razem = vm.votes.k1 + vm.votes.k2 + vm.votes.k3 + vm.votes.k4 + vm.votes.k5 +
+        vm.votes.k6 + vm.votes.k7 + vm.votes.k8 + vm.votes.k9 + vm.votes.k10 + vm.votes.k11;
 
         vm.numbers = [];
         KomisjaObwodowaService.getById($stateParams.id).then(function(response) {
@@ -72,7 +67,6 @@
 
         function submit(isValid) {
             vm.submitted = true;
-            console.log(vm.form);
             if (vm.form.$valid) {
                 console.log(vm.votes);
                 KomisjaObwodowaService.uploadProtocol($stateParams.id, vm.votes).then(

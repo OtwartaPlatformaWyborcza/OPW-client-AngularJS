@@ -19,7 +19,7 @@
                     var valid;
                     if (value) {
                         valid = parseInt(value) === parseInt(scope.equal);
-                        console.log(scope.equal);
+                        console.log('equal: ' + value + ' == ' + scope.equal);
                         ctrl.$setValidity('equal', valid);
                     }
                     return value;
