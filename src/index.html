@@ -35,7 +35,14 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/komisja-obwodowa/lista">Lista Komisji Obwodowych</a></li>
                 </ul>
-                <a href="/auth/logout" class="btn btn-sm btn-danger pull-right responsive-spacing" style="margin-top:8px;"><span class="glyphicon glyphicon-off"></span> Wyloguj się</a>
+                <div class="btn-group pull-right" role="group" aria-label="..." style="margin-top:8px;">
+                    <button type="button" class="btn btn-sm btn-default">
+                        <span class="glyphicon glyphicon-user"></span> {{app.userLogin}}
+                    </button>
+                    <a href="/auth/logout" class="btn btn-sm btn-danger responsive-spacing">
+                        <span class="glyphicon glyphicon-off"></span> Wyloguj się
+                    </a>
+                </div>
             </div>
         </div>
     </nav>

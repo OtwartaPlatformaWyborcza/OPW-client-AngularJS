@@ -3,12 +3,11 @@
     angular.module('app')
         .controller('ApplicationController', ApplicationController);
 
-    function ApplicationController($rootScope, USER_ROLES, AuthService, AlertsService, AUTH_EVENTS) {
+    function ApplicationController($rootScope, USER_ROLES, AuthService, AlertsService, 
+                                SessionService, AUTH_EVENTS) {
         var vm = this;
-        vm.currentUser = null;
-        vm.userRoles = USER_ROLES;
         vm.isAuthorized = AuthService.isAuthorized;
-        vm.setCurrentUser = setCurrentUser;
+        vm.userLogin = SessionService.getUserLogin();
         vm.isUserAuthenticated = isUserAuthenticated;
         $rootScope.$on(AUTH_EVENTS.notAuthorized,
                 function(event, responseCode) {
@@ -17,9 +16,6 @@
                         AuthService.logout();
                     }
                 });
-        function setCurrentUser(user) {
-            vm.currentUser = user;
-        }
         function isUserAuthenticated() {
             return AuthService.isUserAuthenticated();
         }
