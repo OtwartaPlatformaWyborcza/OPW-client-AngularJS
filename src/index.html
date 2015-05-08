@@ -46,7 +46,9 @@
         </div>
     </nav>
     <opw-alerts></opw-alerts>
-    <div ui-view ng-class="{'container' : app.isUserAuthenticated() === true,  'container bg-none' : app.isUserAuthenticated() == false }" class="app-container">
+    <div ui-view
+         ng-class="{'container' : app.isUserAuthenticated() === true,  'container bg-none' : app.isUserAuthenticated() == false }"
+         class="app-container">
     </div>
 
     <!-- build:js(.) js/vendor.min.js-->
@@ -56,10 +58,11 @@
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js js/myapp.js -->
+    <!-- build:js js/app.js -->
     <script src="app/app.module.js"></script>
 
     <script src="app/shared/auth/auth.js"></script>
@@ -81,6 +84,7 @@
     <script src="app/shared/alerts/alerts.service.js"></script>
 
     <script src="app/shared/table/table.js"></script>
+    <script src="app/shared/table/responsive/table.responsive.js"></script>
 
     <script src="app/components/auth/auth.js"></script>
     <script src="app/components/auth/login/login.js"></script>
@@ -92,8 +96,6 @@
     <script src="app/components/komisja-obwodowa/lista/lista.js"></script>
     <script src="app/components/komisja-obwodowa/wgrane-protokoly/wgrane-protokoly.js"></script>
     <script src="app/components/komisja-obwodowa/protokol/protokol.js"></script>
-
-    <script src="app/shared/controls/pagination/pagination.js"></script>
     <!-- endbuild -->
 
 </body>

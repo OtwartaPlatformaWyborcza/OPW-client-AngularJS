@@ -1,54 +1,44 @@
-/*jshint -W084 */
 (function() {
     'use strict';
-    angular.module('shared.table', [])
-        .directive('responsiveTable', ['tableService', responsiveTable])
-        .service('tableService', tableService);
+    angular.module('shared.table', [
+        'smart-table',
+        'shared.table.responsive'
+    ])
+
+    ////////////
+    // Config //
+    ////////////
+    .config(function(stConfig) {
+        stConfig.pagination.template = 'app/shared/table/table-pagination.tpl.html';
+    })
 
     ////////////////
     // Directives //
     ////////////////
-    function responsiveTable(tableService) {
+    .directive('pageSelect', function() {
         return {
-            restrict: 'EA',
-            scope: {},
-            link: function postLink(scope, element) {
-                var $tableElement = element.closest('table');
-
-                $tableElement.addClass('responsiveTable');
-                tableService.addHeaderNamesToRows($tableElement);
+            restrict: 'E',
+            template: '<input type="text" class="select-page" ng-model="inputPage" ng-change="selectPage(inputPage)">',
+            link: function(scope) {
+                scope.$watch('currentPage', function(c) {
+                    scope.inputPage = c;
+                });
             }
         };
-    }
+    })
 
-    //////////////
-    // Services //
-    //////////////
-    function tableService() {
-        function addHeaderNamesToRows(element) {
-            var headertext = [],
-                headers = element.find('th'),
-                tablebody = element.find('tbody'),
-                tablerows = tablebody.children('tr'),
-                i, j, row, col, current;
-
-            for (i = 0; i < headers.length; i++) {
-                current = headers[i];
-                headertext.push(current.textContent.replace(/\r?\n|\r/, ''));
+    /////////////
+    // Filters //
+    /////////////
+    .filter('commonTableFormat', function() {
+        return function(item) {
+            if (angular.isNumber(parseInt(item, 10))) {
+                return parseInt(item, 10);
             }
-            if (tablebody && tablerows.length) {
-                for (i = 0; row = tablerows[i]; i++) {
-                    for (j = 0; col = row.cells[j]; j++) {
-                        if (headertext[j]) {
-                            col.setAttribute('data-th', headertext[j]);
-                        }
-                    }
-                }
+            else {
+                return item;
             }
-        }
-
-        return {
-            addHeaderNamesToRows: addHeaderNamesToRows
         };
-    }
+    });
+
 })();

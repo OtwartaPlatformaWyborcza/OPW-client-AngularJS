@@ -6,7 +6,6 @@
             'ui.router',
             'shared.auth',
             'shared.alerts',
-            'shared.controls.pagination',
             'shared.utilities',
             'shared.session',
             'shared.form',

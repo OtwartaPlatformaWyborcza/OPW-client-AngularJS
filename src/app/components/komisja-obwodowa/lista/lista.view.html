@@ -28,33 +28,58 @@
 
     <h3>Lista Twoich Komisji obwodowych</h3>
 
-    <table class="table table-hover table-bordered table-striped">
+    <!-- Table
+    -------------------------------------->
+    <table class="table table-hover table-bordered table-striped smartTable" st-table="displayedData" st-safe-src="Lista.items">
         <thead>
-            <tr>
-                <th style="width:20px;">#</th>
-                <th class="col-lg-1">PKW ID</th>
-                <th>Nazwa</th>
-                <th>Adres</th>
-                <th>Akcje</th>
-            </tr>
+        <tr>
+            <th st-sort="index" st-skip-natural="true" st-sort-default="true" style="width:20px;">#</th>
+            <th st-sort="pkwId" st-skip-natural="true" class="col-lg-1">PKW ID</th>
+            <th st-sort="name" st-skip-natural="true">Nazwa</th>
+            <th st-sort="address" st-skip-natural="true">Adres</th>
+            <th>Akcje</th>
+        </tr>
+        <!-- Show search based on number of rows
+        -------------------------------------->
+        <tr ng-if="Lista.items.length > 6" class="searchRow">
+            <td colspan="5" class="formLine tableIcon" data-icon="x">
+                <input st-search="" st-delay="10" placeholder="wyszukaj..." type="text" class="form-control input-sm"/>
+            </td>
+        </tr>
         </thead>
-        <tbody>
-            <tr ng-repeat="item in Lista.items" class="alert {{key}}" ng-show="$index >= Lista.visibleFrom && $index < Lista.visibleTo"  responsive-table>
-                <td>{{$index + 1}}</td>
-                <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
-                <td>{{item.name}}</td>
-                <td>{{item.address}}</td>
-                <td class="text-right col-lg-3">
-                    <a class="btn btn-success btn-sm responsive-width responsive-spacing" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
-                    <a class="btn btn-primary btn-sm responsive-width" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
-                        Wgrane protokoły ({{item.protokolCount}})
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
-    <div class="text-center">
-        <pagination currentpage="{{Lista.currentPage}}" lastpage="{{Lista.lastPage}}" sname="komisja-obwodowa-lista" />
-    </div>
+        <tbody>
+        <!-- Showing data
+        -------------------------------------->
+        <tr ng-repeat="item in displayedData" class="alert {{key}}" responsive-table>
+            <td>{{item.index}}</td>
+            <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
+            <td>{{item.name}}</td>
+            <td>{{item.address}}</td>
+            <td class="text-right col-lg-3">
+                <a class="btn btn-success btn-sm responsive-width responsive-spacing" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+                <a class="btn btn-primary btn-sm responsive-width" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                    Wgrane protokoły ({{item.protokolCount}})
+                </a>
+            </td>
+        </tr>
+        <!-- Showing if no data is available
+        -------------------------------------->
+        <tr ng-if="!displayedData || displayedData.length === 0">
+            <td colspan="5">
+                <p>Brak wyników</p>
+            </td>
+        </tr>
+        </tbody>
+
+        <!-- Showing pagination based on number of rows
+        -------------------------------------->
+        <tfoot class="paginationWrapper" ng-if="Lista.items.length >= 6 && displayedData.length > 0">
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination st-items-by-page="6"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
 </div>

@@ -1,0 +1,82 @@
+.table {
+    position: relative;
+
+    [st-sort] {
+        cursor: pointer;
+        white-space: nowrap;
+    }
+}
+
+th:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 5px 0 0;
+}
+
+tr:last-child > td {
+    border-bottom: none;
+}
+
+table .searchRow {
+    position: absolute;
+    right: 0;
+    top: -40px;
+    border: none;
+
+    input[type=text] {
+        width: 100%;
+    }
+}
+
+.table-bordered > thead >.searchRow > td {
+    border: 0;
+    padding: 0;
+}
+
+span.asc, span.desc,
+.st-sort-ascent:after,
+.st-sort-descent:after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 4px;
+    margin: 0 0px 2px 3px;
+}
+.st-sort-ascent:after {
+    content: '▲';
+}
+.st-sort-descent:after {
+    content: '▼';
+}
+
+span.desc,
+.st-sort-descent:after {
+    background-position: -59px -6px;
+}
+
+[st-pagination] .pagination {
+    margin: 5px 0 0;
+
+    & li > a {
+        font-size: 13px;
+        cursor: pointer;
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        -o-user-select: none;
+        user-select: none;
+    }
+
+    .pagination-select a {
+        color: $text-muted;
+        cursor: default;
+    }
+
+    input {
+        width: 30px;
+        height: 18px;
+        text-align: center;
+    }
+}

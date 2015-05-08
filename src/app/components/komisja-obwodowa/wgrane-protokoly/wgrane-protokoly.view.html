@@ -8,32 +8,49 @@
         </div>
     </div>
 
-    <table class="table table-bordered table-striped" responsive-table="">
+    <!-- Table
+    -------------------------------------->
+    <table class="table table-hover table-bordered table-striped smartTable" st-table="displayedData" st-safe-src="Protokoly.protocols">
         <thead>
-            <tr>
-                <th>#</th>
-                <th>Data wysyłki na serwer</th>
-                <th>Ilość potwierdzeń</th>
-                <th>Ilość zaprzeczeń</th>
-                <th>Dane Protokołu</th>
-            </tr>
+        <tr>
+            <th st-sort="index" st-skip-natural="true" st-sort-default="true">#</th>
+            <th st-sort="uploadTimestamp" st-skip-natural="true" class="col-lg-1">Data wysyłki na serwer</th>
+            <th st-sort="ratedPositiv" st-skip-natural="true">Ilość potwierdzeń</th>
+            <th st-sort="ratedNegativ" st-skip-natural="true">Ilość zaprzeczeń</th>
+            <th>Dane Protokołu</th>
+        </tr>
         </thead>
-        <tbody>
-            <tr ng-repeat="protocol in Protokoly.protocols" ng-show="$index >= Protokoly.visibleFrom && $index < Protokoly.visibleTo" responsive-table>
-                <td class="text-center">{{$index + 1}}</td>
-                <td class="text-right">{{protocol.uploadTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td class="text-right">{{protocol.ratedPositiv}}</td>
-                <td class="text-right">{{protocol.ratedNegativ}}</td>
-                <td><a class="btn btn-success btn-xs pull-right" ui-sref="komisja-obwodowa-protokol({protocolId: protocol.id, commisionId: Protokoly.commisionId})" role="button">
-                    Zobacz Protokół
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
-    <div class="text-center">
-        <pagination currentpage="{{Protokoly.currentPage}}" lastpage="{{Protokoly.lastPage}}" sname="komisja-obwodowa-protokoly" />
-    </div>
+        <tbody>
+        <!-- Showing data
+        -------------------------------------->
+        <tr ng-repeat="protocol in displayedData" responsive-table>
+            <td class="text-center">{{$index + 1}}</td>
+            <td class="text-right">{{protocol.uploadTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td class="text-right">{{protocol.ratedPositiv}}</td>
+            <td class="text-right">{{protocol.ratedNegativ}}</td>
+            <td><a class="btn btn-success btn-xs pull-right" ui-sref="komisja-obwodowa-protokol({protocolId: protocol.id, commisionId: Protokoly.commisionId})" role="button">
+                Zobacz Protokół
+            </a>
+            </td>
+        </tr>
+        <!-- Showing if no data is available
+        -------------------------------------->
+        <tr ng-if="!displayedData || displayedData.length === 0">
+            <td colspan="5">
+                <p>Brak wyników</p>
+            </td>
+        </tr>
+        </tbody>
+        <!-- Showing pagination based on number of rows
+        -------------------------------------->
+        <tfoot class="paginationWrapper" ng-if="Protokoly.protocols.length >= 6 && displayedData.length > 0">
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination st-items-by-page="6"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
 
 </div>
