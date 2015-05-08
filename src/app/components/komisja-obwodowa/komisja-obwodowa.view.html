@@ -216,8 +216,9 @@
                                     <label class="control-label">{{$index+1}}</label>
                                 </td>
                                 <td>
-                                    <label class="control-label " ng-for="{{'k'+candidate.pkwId}}">
-                                        {{candidate.firstname}} {{candidate.lastname}}
+                                    <label class="control-label " for="{{'k'+candidate.pkwId}}">
+                                        <span class="text-uppercase">{{candidate.lastname}}</span>
+                                        {{candidate.firstname}}
                                     </label>
                                 </td>
                                 <td class="text-right">
