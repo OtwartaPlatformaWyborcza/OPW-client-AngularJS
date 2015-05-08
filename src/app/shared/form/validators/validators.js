@@ -1,5 +1,5 @@
 (function() {
     'use strict';
     angular
-        .module('shared.validators', []);
+        .module('shared.form.validators', []);
 })();

@@ -9,3 +9,4 @@ Thumbs.db
 .idea
 *.tmp
 src/assets/css
+src/assets/fonts/bootstrap

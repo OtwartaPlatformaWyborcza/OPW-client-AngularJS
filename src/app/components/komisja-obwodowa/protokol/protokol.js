@@ -2,13 +2,13 @@
     'use strict';
     angular
         .module('komisja-obwodowa.protokol', [])
-        .config(routesConfig)
+        .config(config)
         .controller('KOProtokolController', KOProtokolController);
 
     ////////////
     // Config //
     ////////////
-    function routesConfig($stateProvider) {
+    function config($stateProvider) {
         $stateProvider
             .state('komisja-obwodowa-protokol', {
                 url: '/komisja-obwodowa/{commisionId:[0-9]{4,8}-[0-9]{1,3}}' +

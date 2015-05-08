@@ -1,0 +1,24 @@
+<!-- show form messages
+-------------------------------------->
+<div ng-if="(form.$submitted || form[name].$touched)"
+     ng-messages="form[name].$error">
+
+    <div ng-transclude></div>
+
+    <div ng-messages-include="app/shared/form/form.error-messages.tpl.html"></div>
+
+    <div ng-message="validatorMin">
+        <error-box>P1 Liczba osób, którym wydano karty do głosowania (pkt. 4), nie może być większa od liczby wyborców uprawnionych do głosowania (pkt. 1).</error-box>
+    </div>
+    <div ng-message="validatorMax">
+        <error-box>P1 Liczba osób, którym wydano karty do głosowania (pkt. 4), nie może być większa od liczby wyborców uprawnionych do głosowania (pkt. 1).</error-box>
+    </div>
+    <div ng-message="validatorEqualEntered">
+        <!--Do not show errors untill validator is correct (but make form invalid)-->
+    </div>
+
+    <div ng-message="validatorEqual">
+        <error-box>P3 Liczba kart ważnych (pkt. 11) musi być równa sumie liczby głosów nieważnych (pkt. 12)
+            i liczby głosów ważnych oddanych na wszystkich kandydatów (pkt. 13).</error-box>
+    </div>
+</div>

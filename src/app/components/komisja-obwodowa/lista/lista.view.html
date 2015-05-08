@@ -1,58 +1,60 @@
-<h3>Ręczny wybór komisji</h3>
-<form class="form-inline" novalidate name="Lista.manualCommissionSelectionForm"
-    ng-submit="Lista.submitManualCommissionSelectionForm(Lista.manualCommissionSelectionForm.$valid)">
-<div class="form-group container-fluid" ng-form="selectedPkwId"  ng-class="{ 'has-error' : selectedPkwId.val.$invalid && (!selectedPkwId.val.$pristine ||
-        Lista.manualCommissionSelectionForm.submitted) }">
-    <div class="row">
-        <div class="col-lg-12">
-            <input type="text" class="form-control responsive-spacing" ng-model="Lista.selectedPkwId" name="val" placeholder="Identyfikator komisji" pattern="[0-9]{4,8}-[0-9]{1,3}" required >
-             <button type="submit" class="btn btn-primary form-control">Wprowadź protokół</button>
+<div class="page--komisja-obwodowa">
+    <h3>Ręczny wybór komisji</h3>
+    <form class="form-inline" novalidate name="Lista.manualCommissionSelectionForm"
+        ng-submit="Lista.submitManualCommissionSelectionForm(Lista.manualCommissionSelectionForm.$valid)">
+    <div class="form-group container-fluid" ng-form="selectedPkwId"  ng-class="{ 'has-error' : selectedPkwId.val.$invalid && (!selectedPkwId.val.$pristine ||
+            Lista.manualCommissionSelectionForm.submitted) }">
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="text" class="form-control responsive-spacing" ng-model="Lista.selectedPkwId" name="val" placeholder="Identyfikator komisji" pattern="[0-9]{4,8}-[0-9]{1,3}" required >
+                 <button type="submit" class="btn btn-primary form-control">Wprowadź protokół</button>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <p ng-show="selectedPkwId.val.$error.required &&
-            (!selectedPkwId.val.$pristine || Lista.manualCommissionSelectionForm.submitted)"
-            class="help-block ">
+        <div class="row">
+            <div class="col-lg-12">
+                <p ng-show="selectedPkwId.val.$error.required &&
+                (!selectedPkwId.val.$pristine || Lista.manualCommissionSelectionForm.submitted)"
+                class="help-block ">
                     Wprowadź identyfikator
-            </p>
-            <p ng-show="selectedPkwId.val.$error.pattern" class="help-block">
-            Wprowadź identyfikator w poprawnym formacie
-            </p>
+                </p>
+                <p ng-show="selectedPkwId.val.$error.pattern" class="help-block">
+                    Wprowadź identyfikator w poprawnym formacie
+                </p>
+            </div>
         </div>
     </div>
-</div>
-</form>
+    </form>
 
 
-<h3>Lista Twoich Komisji obwodowych</h3>
+    <h3>Lista Twoich Komisji obwodowych</h3>
 
-<table class="table table-hover table-bordered table-striped">
-    <thead>
-        <tr>
-            <th style="width:20px;">#</th>
-            <th class="col-lg-1">PKW ID</th>
-            <th>Nazwa</th>
-            <th>Adres</th>
-            <th>Akcje</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="item in Lista.items" class="alert {{key}}" ng-show="$index >= Lista.visibleFrom && $index < Lista.visibleTo"  responsive-table>
-            <td>{{$index + 1}}</td>
-            <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
-            <td>{{item.name}}</td>
-            <td>{{item.address}}</td>
-            <td class="text-right col-lg-3">
-                <a class="btn btn-success btn-xs responsive-width responsive-spacing" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
-                <a class="btn btn-primary btn-xs responsive-width" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
-                    Wgrane protokoły ({{item.protokolCount}})
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                <th style="width:20px;">#</th>
+                <th class="col-lg-1">PKW ID</th>
+                <th>Nazwa</th>
+                <th>Adres</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in Lista.items" class="alert {{key}}" ng-show="$index >= Lista.visibleFrom && $index < Lista.visibleTo"  responsive-table>
+                <td>{{$index + 1}}</td>
+                <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
+                <td>{{item.name}}</td>
+                <td>{{item.address}}</td>
+                <td class="text-right col-lg-3">
+                    <a class="btn btn-success btn-xs responsive-width responsive-spacing" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
+                    <a class="btn btn-primary btn-xs responsive-width" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
+                        Wgrane protokoły ({{item.protokolCount}})
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<div class="text-center">
-	<pagination currentpage="{{Lista.currentPage}}" lastpage="{{Lista.lastPage}}" sname="komisja-obwodowa-lista" />
+    <div class="text-center">
+        <pagination currentpage="{{Lista.currentPage}}" lastpage="{{Lista.lastPage}}" sname="komisja-obwodowa-lista" />
+    </div>
 </div>

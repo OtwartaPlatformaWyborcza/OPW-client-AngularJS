@@ -1,13 +1,13 @@
 (function() {
     'use strict';
     angular.module('komisja-obwodowa.lista', [])
-        .config(routesConfig)
+        .config(config)
         .controller('KOListaController', KOListaController);
 
     ////////////
     // Config //
     ////////////
-    function routesConfig($stateProvider) {
+    function config($stateProvider) {
         $stateProvider
             .state('komisja-obwodowa-lista', {
                 url: '/komisja-obwodowa/lista/{page:[0-9]*}',

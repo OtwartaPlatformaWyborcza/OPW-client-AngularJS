@@ -1,4 +1,4 @@
-<form ng-submit="KO.submit(KO.form.$valid)" name="KO.form" novalidate class="form-horizontal">
+<form ng-submit="KO.submit(KO.form.$valid)" name="KO.form" novalidate class="page--komisja-obwodowa form-horizontal">
     <div class="container-fluid">
         <div class="row text-left">
             <div class="col-lg-8 col-lg-offset-2">
@@ -47,76 +47,127 @@
                     <div class="panel-heading text-center">
                         <h3>Liczby wyborcze</h3>
                     </div>
-                    <table class="table table-striped table-bordered table-hover vote-result" responsive-table>
+                    <table ng-form="KO.formVotingNumbers"
+                           class="table table-striped table-bordered table-hover vote-result" responsive-table>
                         <colgroup>
                             <col class="col-lg-8" />
                             <col class="col-lg-4" />
                         </colgroup>
                         <tbody>
-                            <tr ng-form="uprawnionych" ng-class="{ 'has-error' : uprawnionych.$invalid && (!uprawnionych.$pristine || KO.form.submitted) }">
+                            <tr>
                                 <td>
                                     <label class="control-label " for="val">1. Liczba wyborców uprawnionych do głosowania</label>
                                 </td>
                                 <td class="text-right">
-                                    <input ng-model="KO.votes.uprawnionych" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="uprawnionych" greater-than-or-equal="KO.votes.glosujacych"/>
-                                    <p ng-show="uprawnionych.$error.required && (!uprawnionych.$pristine || KO.form.submitted)" class="help-block ">Pole jest wymagane</p>
-                                    <p ng-show="uprawnionych.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="uprawnionych.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
-                                    <p ng-show="uprawnionych.$error.greaterThanOrEqual" class="help-block">P1 Liczba osób, którym wydano karty do głosowania (pkt. 4), nie może być większa od liczby wyborców uprawnionych do głosowania (pkt. 1).</p>
+                                    <input ng-model="KO.votes.uprawnionych"
+                                           name="uprawnionych"
+                                           validator-min="{{KO.votes.glosujacych}}"
+                                           required
+                                           min="0"
+                                           placeholder="0"
+                                           type="number"
+                                           class="ko-form-control"/>
+                                    <ko-form-messages
+                                        form="KO.formVotingNumbers"
+                                        name="uprawnionych">
+                                    </ko-form-messages>
                                 </td>
                             </tr>
-                            <tr ng-form="glosujacych" ng-class="{ 'has-error' : glosujacych.$invalid && (!glosujacych.$pristine || KO.form.submitted) }">
+                            <tr>
                                 <td>
                                     <label class="control-label " for="val">4. Liczba wyborców, którym wydano karty do głosowania</label>
                                 </td>
                                 <td class="text-right">
-                                    <input ng-model="KO.votes.glosujacych" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="glosujacych" less-than-or-equal="KO.votes.uprawnionych"/>
-                                    <p ng-show="glosujacych.$error.required && (!glosujacych.$pristine || KO.form.submitted)" class="help-block ">Pole jest wymagane</p>
-                                    <p ng-show="glosujacych.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="glosujacych.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
-                                    <p ng-show="glosujacych.$error.lessThanOrEqual" class="help-block">P1 Liczba osób, którym wydano karty do głosowania (pkt. 4), nie może być większa od liczby wyborców uprawnionych do głosowania (pkt. 1).</p>
+                                    <input ng-model="KO.votes.glosujacych"
+                                           name="glosujacych"
+                                           validator-max="{{KO.votes.uprawnionych}}"
+                                           required
+                                           min="0"
+                                           placeholder="0"
+                                           type="number"
+                                           class="ko-form-control"/>
+                                    <ko-form-messages
+                                        form="KO.formVotingNumbers"
+                                        name="glosujacych">
+                                    </ko-form-messages>
                                 </td>
                             </tr>
-                             <tr ng-form="kartWaznych" ng-class="{ 'has-error' : (kartWaznych.$invalid && (!kartWaznych.$pristine || KO.form.submitted)) || glosowWaznych.$error.equal || glosowNieWaznych.$error.equal }">
+                             <tr>
                                 <td>
                                     <label class="control-label " for="val">11. Liczba kart ważnych</label>
                                 </td>
                                 <td class="text-right">
-                                    <input ng-model="KO.votes.kartWaznych" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="kartWaznych" equal="KO.votes.glosowNieWaznych + KO.votes.glosowWaznych"/>
-                                    <p ng-show="kartWaznych.$error.required && (!kartWaznych.$pristine || KO.form.submitted)" class="help-block ">Pole jest wymagane</p>
-                                    <p ng-show="kartWaznych.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="kartWaznych.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
-                                    <p ng-show="kartWaznych.$error.equal || glosowWaznych.$error.equal || glosowNieWaznych.$error.equal" class="help-block">
-                                            P3 Liczba kart ważnych (pkt. 11) musi być równa sumie liczby głosów nieważnych (pkt. 12)
-                                            i liczby głosów ważnych oddanych na wszystkich kandydatów (pkt. 13).
-                                    </p>
+                                    <!--As model value is not updated in invalid state
+                                    we should use $viewValue in validator-->
+                                    <input ng-model="KO.votes.kartWaznych"
+                                           name="kartWaznych"
+                                           validator-equal="{{
+                                               (KO.formVotingNumbers.glosowNieWaznych.$viewValue | num) +
+                                               (KO.formVotingNumbers.glosowWaznych.$viewValue | num)
+                                           }}"
+                                           validator-equal-entered
+                                           required
+                                           min="0"
+                                           placeholder="0"
+                                           type="number"
+                                           class="ko-form-control"/>
+                                    <ko-form-messages
+                                        form="KO.formVotingNumbers"
+                                        name="kartWaznych">
+                                    </ko-form-messages>
                                 </td>
                             </tr>
 
-
-                            <tr ng-form="glosowNieWaznych" ng-class="{ 'has-error' : glosowNieWaznych.$invalid && (!glosowNieWaznych.$pristine || KO.form.submitted) }">
+                            <tr>
                                 <td>
                                     <label class="control-label" for="val">12. Liczba głosów nieważnych(z kart ważnych)</label>
                                 </td>
                                 <td class="text-right">
-                                    <input ng-model="KO.votes.glosowNieWaznych" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="glosowNieWaznych" equal="KO.votes.kartWaznych - KO.votes.glosowWaznych"/>
-                                    <p ng-show="glosowNieWaznych.$error.required && (!glosowNieWaznych.$pristine || KO.form.submitted)" class="help-block ">Pole jest wymagane</p>
-                                    <p ng-show="glosowNieWaznych.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="glosowNieWaznych.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
+                                    <!--As model value is not updated in invalid state
+                                    we should use $viewValue in validator-->
+                                    <input ng-model="KO.votes.glosowNieWaznych"
+                                           name="glosowNieWaznych"
+                                           validator-equal="{{
+                                               (KO.formVotingNumbers.kartWaznych.$viewValue | num) -
+                                               (KO.formVotingNumbers.glosowWaznych.$viewValue | num)
+                                           }}"
+                                           validator-equal-entered
+                                           required
+                                           min="0"
+                                           placeholder="0"
+                                           type="number"
+                                           class="ko-form-control"/>
+                                    <ko-form-messages
+                                        form="KO.formVotingNumbers"
+                                        name="glosowNieWaznych">
+                                    </ko-form-messages>
                                 </td>
                             </tr>
-
-                            <tr ng-form="glosowWaznych" ng-class="{ 'has-error' : glosowWaznych.$invalid && (!glosowWaznych.$pristine || KO.form.submitted) }">
+                            <tr>
                                 <td>
                                     <label class="control-label" for="val">
                                         13. Liczba głosów ważnych oddanych łącznie na wszystkich kandydatów (z kart ważnych)
                                     </label>
                                 </td>
                                 <td class="text-right">
-                                    <input ng-model="KO.votes.glosowWaznych" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="glosowWaznych" equal="KO.votes.kartWaznych - KO.votes.glosowNieWaznych"/>
-                                    <p ng-show="glosowWaznych.$error.required && (!glosowWaznych.$pristine || KO.form.submitted)" class="help-block ">Pole jest wymagane</p>
-                                    <p ng-show="glosowWaznych.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="glosowWaznych.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
+                                    <!--As model value is not updated in invalid state
+                                    we should use $viewValue in validator-->
+                                    <input ng-model="KO.votes.glosowWaznych"
+                                           name="glosowWaznych"
+                                           validator-equal="{{
+                                               (KO.formVotingNumbers.kartWaznych.$viewValue | num) -
+                                               (KO.formVotingNumbers.glosowNieWaznych.$viewValue | num)
+                                           }}"
+                                           validator-equal-entered
+                                           required
+                                           min="0"
+                                           placeholder="0"
+                                           type="number"
+                                           class="ko-form-control"/>
+                                    <ko-form-messages
+                                        form="KO.formVotingNumbers"
+                                        name="glosowWaznych">
+                                    </ko-form-messages>
                                 </td>
                             </tr>
                         </tbody>
@@ -129,7 +180,8 @@
                         <h3>II. 14 Kandydaci otrzymali głosów ważnych</h3>
                     </div>
 
-                    <table class="table table-striped table-bordered table-hover vote-result">
+                        <table ng-form="KO.formCandidates"
+                           class="table table-striped table-bordered table-hover vote-result">
                         <colgroup>
                             <col class="col-lg-1" />
                             <col class="col-lg-7" />
@@ -143,31 +195,62 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="candidate in KO.komisja.kandydatList" class="test" ng-class="{ 'has-error' : subform2.val.$invalid && (!subform2.val.$pristine || KO.form.submitted) }" ng-form="subform2">
-
+                            <tr ng-repeat="candidate in KO.komisja.kandydatList">
                                 <td class="text-center">
                                     <label class="control-label">{{$index+1}}</label>
                                 </td>
                                 <td>
-                                    <label class="control-label " for="val">{{candidate.firstname}} {{candidate.lastname}}</label>
+                                    <label class="control-label " ng-for="{{'k'+candidate.pkwId}}">
+                                        {{candidate.firstname}} {{candidate.lastname}}
+                                    </label>
                                 </td>
                                 <td class="text-right">
-                                    <input ng-model="KO.votes['k'+candidate.pkwId]" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" />
-                                    <p ng-show="subform2.val.$error.required && (!subform2.val.$pristine || KO.form.submitted)" class="help-block">Pole jest wymagane</p>
-                                    <p ng-show="subform2.val.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="subform2.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
+                                    <input ng-model="KO.votes['k'+candidate.pkwId]"
+                                           name="{{'k'+candidate.pkwId}}"
+                                           id="{{'k'+candidate.pkwId}}"
+                                           required
+                                           min="0"
+                                           placeholder="0"
+                                           type="number"
+                                           class="ko-form-control"/>
+                                    <ko-form-messages
+                                        form="KO.formCandidates"
+                                        name="{{'k'+candidate.pkwId}}">
+                                    </ko-form-messages>
                                 </td>
                             </tr>
-                            <tr ng-form="glosowRazem" ng-class="{ 'has-error' : glosowRazem.$invalid && (!glosowRazem.$pristine || KO.form.submitted) }">
+                            <tr>
                                 <td colspan="2" class="text-right">
                                     <label class="control-label " for="val">Razem</label>
                                 </td>
                                 <td class="text-right">
-                                    <input ng-model="KO.votes.razem" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" equal="(KO.votes['k1'] + KO.votes['k2'] + KO.votes['k3'] + KO.votes['k4'] + KO.votes['k5'] + KO.votes['k6'] + KO.votes['k7'] + KO.votes['k8'] + KO.votes['k9'] + KO.votes['k10'] + KO.votes['k11'] + KO.votes.glosowWaznych) / 2"/>
-                                    <p ng-show="glosowRazem.val.$error.required && (!glosowRazem.val.$pristine || KO.form.submitted)" class="help-block">Pole jest wymagane</p>
-                                    <p ng-show="glosowRazem.val.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="glosowRazem.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
-                                    <p ng-show="glosowRazem.val.$error.equal" class="help-block">
+                                    <input ng-model="KO.votes.razem"
+                                           name="razem"
+                                           required
+                                           validator-equal="{{(KO.votes['k1'] + KO.votes['k2'] + KO.votes['k3'] + KO.votes['k4'] + KO.votes['k5'] + KO.votes['k6'] + KO.votes['k7'] + KO.votes['k8'] + KO.votes['k9'] + KO.votes['k10'] + KO.votes['k11'] + KO.votes.glosowWaznych) / 2}}"
+                                           min="0"
+                                           placeholder="0"
+                                           type="number"
+                                           class="ko-form-control"/>
+                                    <ko-form-messages
+                                        form="KO.formCandidates"
+                                        name="razem">
+
+                                        <div ng-message="validatorEqual">
+                                            <error-box>
+                                                P8 Suma głosów oddanych na wszystkich kandydatów (pkt. 14 pole RAZEM) nie może
+                                                być różna od sumy głosów oddanych na poszczególnych kandydatów (w pkt. 14).
+                                                <br />
+                                                P9 Suma głosów oddanych na wszystkich kandydatów (w pkt. 14) musi być równa liczbie głosów ważnych (w pkt. 13).
+                                            </error-box>
+                                        </div>
+                                    </ko-form-messages>
+
+                                    <!--<input ng-model="KO.votes.razem" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" equal="(KO.votes['k1'] + KO.votes['k2'] + KO.votes['k3'] + KO.votes['k4'] + KO.votes['k5'] + KO.votes['k6'] + KO.votes['k7'] + KO.votes['k8'] + KO.votes['k9'] + KO.votes['k10'] + KO.votes['k11'] + KO.votes.glosowWaznych) / 2"/>-->
+                                    <p ng-show="KO.formCandidates.val.$error.required && (!KO.formCandidates.val.$pristine || KO.form.submitted)" class="help-block">Pole jest wymagane</p>
+                                    <p ng-show="KO.formCandidates.val.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
+                                    <p ng-show="KO.formCandidates.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
+                                    <p ng-show="KO.formCandidates.val.$error.equal" class="help-block">
                                             P8 Suma głosów oddanych na wszystkich kandydatów (pkt. 14 pole RAZEM) nie może
                                             być różna od sumy głosów oddanych na poszczególnych kandydatów (w pkt. 14).
                                             <br />
