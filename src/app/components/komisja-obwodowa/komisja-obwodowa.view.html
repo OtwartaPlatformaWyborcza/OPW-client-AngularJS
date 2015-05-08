@@ -66,10 +66,15 @@
                                            min="0"
                                            placeholder="0"
                                            type="number"
+                                           ignore-mouse-wheel
+                                           tabindex="1"
                                            class="ko-form-control"/>
                                     <ko-form-messages
                                         form="KO.formVotingNumbers"
                                         name="uprawnionych">
+                                        <div ng-message="validatorMin">
+                                            <error-box>P1 Liczba osób, którym wydano karty do głosowania (pkt. 4), nie może być większa od liczby wyborców uprawnionych do głosowania (pkt. 1).</error-box>
+                                        </div>
                                     </ko-form-messages>
                                 </td>
                             </tr>
@@ -84,11 +89,16 @@
                                            required
                                            min="0"
                                            placeholder="0"
+                                           ignore-mouse-wheel
                                            type="number"
+                                           tabindex="2"
                                            class="ko-form-control"/>
                                     <ko-form-messages
                                         form="KO.formVotingNumbers"
                                         name="glosujacych">
+                                        <div ng-message="validatorMax">
+                                            <error-box>P1 Liczba osób, którym wydano karty do głosowania (pkt. 4), nie może być większa od liczby wyborców uprawnionych do głosowania (pkt. 1).</error-box>
+                                        </div>
                                     </ko-form-messages>
                                 </td>
                             </tr>
@@ -109,7 +119,9 @@
                                            required
                                            min="0"
                                            placeholder="0"
+                                           ignore-mouse-wheel
                                            type="number"
+                                           tabindex="3"
                                            class="ko-form-control"/>
                                     <ko-form-messages
                                         form="KO.formVotingNumbers"
@@ -135,7 +147,9 @@
                                            required
                                            min="0"
                                            placeholder="0"
+                                           ignore-mouse-wheel
                                            type="number"
+                                           tabindex="4"
                                            class="ko-form-control"/>
                                     <ko-form-messages
                                         form="KO.formVotingNumbers"
@@ -162,7 +176,9 @@
                                            required
                                            min="0"
                                            placeholder="0"
+                                           ignore-mouse-wheel
                                            type="number"
+                                           tabindex="5"
                                            class="ko-form-control"/>
                                     <ko-form-messages
                                         form="KO.formVotingNumbers"
@@ -206,12 +222,15 @@
                                 </td>
                                 <td class="text-right">
                                     <input ng-model="KO.votes['k'+candidate.pkwId]"
+                                           ng-change="KO.sumCandidateVotes()"
                                            name="{{'k'+candidate.pkwId}}"
                                            id="{{'k'+candidate.pkwId}}"
                                            required
                                            min="0"
                                            placeholder="0"
+                                           ignore-mouse-wheel
                                            type="number"
+                                           tabindex="{{6+$index}}"
                                            class="ko-form-control"/>
                                     <ko-form-messages
                                         form="KO.formCandidates"
@@ -226,16 +245,17 @@
                                 <td class="text-right">
                                     <input ng-model="KO.votes.razem"
                                            name="razem"
+                                           validator-equal="{{(KO.votes.razem + KO.votes.glosowWaznych) / 2}}"
                                            required
-                                           validator-equal="{{(KO.votes['k1'] + KO.votes['k2'] + KO.votes['k3'] + KO.votes['k4'] + KO.votes['k5'] + KO.votes['k6'] + KO.votes['k7'] + KO.votes['k8'] + KO.votes['k9'] + KO.votes['k10'] + KO.votes['k11'] + KO.votes.glosowWaznych) / 2}}"
+                                           readonly
                                            min="0"
                                            placeholder="0"
+                                           ignore-mouse-wheel
                                            type="number"
                                            class="ko-form-control"/>
                                     <ko-form-messages
                                         form="KO.formCandidates"
                                         name="razem">
-
                                         <div ng-message="validatorEqual">
                                             <error-box>
                                                 P8 Suma głosów oddanych na wszystkich kandydatów (pkt. 14 pole RAZEM) nie może
@@ -245,17 +265,6 @@
                                             </error-box>
                                         </div>
                                     </ko-form-messages>
-
-                                    <!--<input ng-model="KO.votes.razem" class="form-control input-lg text-right" placeholder="0" type="number" min="0" required name="val" equal="(KO.votes['k1'] + KO.votes['k2'] + KO.votes['k3'] + KO.votes['k4'] + KO.votes['k5'] + KO.votes['k6'] + KO.votes['k7'] + KO.votes['k8'] + KO.votes['k9'] + KO.votes['k10'] + KO.votes['k11'] + KO.votes.glosowWaznych) / 2"/>-->
-                                    <p ng-show="KO.formCandidates.val.$error.required && (!KO.formCandidates.val.$pristine || KO.form.submitted)" class="help-block">Pole jest wymagane</p>
-                                    <p ng-show="KO.formCandidates.val.$error.number" class="help-block">Wprowadź poprawną liczbę</p>
-                                    <p ng-show="KO.formCandidates.val.$error.min" class="help-block">Liczba powinna byc wieksza od 0</p>
-                                    <p ng-show="KO.formCandidates.val.$error.equal" class="help-block">
-                                            P8 Suma głosów oddanych na wszystkich kandydatów (pkt. 14 pole RAZEM) nie może
-                                            być różna od sumy głosów oddanych na poszczególnych kandydatów (w pkt. 14).
-                                            <br />
-                                            P9 Suma głosów oddanych na wszystkich kandydatów (w pkt. 14) musi być równa liczbie głosów ważnych (w pkt. 13).
-                                    </p>
                                 </td>
 
                             </tr>
@@ -265,7 +274,7 @@
                         <div class="container-fluid text-center">
                             <div class="row">
                                 <div class="col-lg-4 col-lg-offset-8">
-                                    <button ng-disabled="form.$invalid" type="submit" class="btn btn-primary btn-lg btn-block pull-right">Wyślij dane</button>
+                                    <button ng-disabled="form.$invalid" tabindex="16" type="submit" class="btn btn-primary btn-lg btn-block pull-right">Wyślij dane</button>
                                 </div>
                             </div>
                         </div>

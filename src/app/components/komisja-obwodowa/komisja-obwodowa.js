@@ -44,15 +44,30 @@
         var vm = this;
         vm.submit = submit;
 
-        vm.votes = {};
-
-        vm.labels = {
-            uprawnionych : 'Uprawnionych do głosowania',
-            glosujacych: 'Głosujących',
-            kartWaznych: 'Kart ważnych',
-            glosowNieWaznych: 'Głosów nieważnych',
-            glosowWaznych: 'Głosów ważnych'
+        vm.votes = {
+            glosowWaznych: 100,
+            glosujacych: 10,
+            k1: 12,
+            k2: 3,
+            k3: 13,
+            k4: 12,
+            k5: 16,
+            k6: 12,
+            k7: 18,
+            k8: 15,
+            k9: 18,
+            k10: 19,
+            k11: 15,
+            glosowNieWaznych: 17,
+            kartWaznych: 11,
+            uprawnionych: 661
         };
+
+        vm.sumCandidateVotes = function() {
+            vm.votes.razem = vm.votes.k1 + vm.votes.k2 + vm.votes.k3 + vm.votes.k4 + vm.votes.k5 +
+            vm.votes.k6 + vm.votes.k7 + vm.votes.k8 + vm.votes.k9 + vm.votes.k10 + vm.votes.k11;
+        };
+        vm.sumCandidateVotes();
 
         vm.numbers = [];
         KomisjaObwodowaService.getById($stateParams.id).then(function(response) {
