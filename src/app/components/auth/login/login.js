@@ -1,13 +1,13 @@
 (function() {
     'use strict';
     angular.module('auth.login', [])
-        .config(routesConfig)
+        .config(config)
         .controller('LoginController', LoginController);
 
     ////////////
     // Config //
     ////////////
-    function routesConfig($stateProvider, USER_ROLES) {
+    function config($stateProvider, USER_ROLES) {
         $stateProvider
             .state('authlogin', {
                 url: '/auth/login',

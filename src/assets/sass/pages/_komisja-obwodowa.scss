@@ -1,0 +1,15 @@
+.page--komisja-obwodowa {
+    .ko-form-control {
+        @extend .form-control;
+        @extend .input-lg;
+        @extend .text-right;
+
+        &.ng-invalid.ng-touched {
+            @extend .text-danger;
+        }
+    }
+
+    table .control-label {
+        min-width: 100%;
+    }
+}

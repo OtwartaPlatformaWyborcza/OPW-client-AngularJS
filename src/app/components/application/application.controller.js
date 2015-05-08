@@ -3,8 +3,7 @@
     angular.module('app')
         .controller('ApplicationController', ApplicationController);
 
-    function ApplicationController($rootScope, USER_ROLES, AuthService, AlertsService, 
-                                SessionService, AUTH_EVENTS) {
+    function ApplicationController($rootScope, AuthService, AlertsService, SessionService, AUTH_EVENTS) {
         var vm = this;
         vm.isAuthorized = AuthService.isAuthorized;
         vm.userLogin = SessionService.getUserLogin();

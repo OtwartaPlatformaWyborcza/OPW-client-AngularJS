@@ -6,19 +6,34 @@
             'komisja-obwodowa.protokol',
             'komisja-obwodowa.protokoly'
         ])
-        .config(routesConfig)
+        .config(config)
+        .directive('koFormMessages', koFormMessages)
         .controller('KomisjaObwodowaController', KomisjaObwodowaController);
 
     ////////////
     // Config //
     ////////////
-    function routesConfig($stateProvider) {
+    function config($stateProvider) {
         $stateProvider
             .state('komisja-obwodowa', {
                 url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}',
                 templateUrl: 'app/components/komisja-obwodowa/komisja-obwodowa.view.html',
                 controller: 'KomisjaObwodowaController as KO'
             });
+    }
+
+    ////////////////
+    // Directives //
+    ////////////////
+    function koFormMessages() {
+        return {
+            scope: {
+                form: '=',
+                name: '@'
+            },
+            transclude: true,
+            templateUrl: 'app/components/komisja-obwodowa/komisja-obwodowa.form-messages.html'
+        };
     }
 
     /////////////////
@@ -28,27 +43,31 @@
 
         var vm = this;
         vm.submit = submit;
-        vm.votes = {
-                    glosowWaznych: 100,
-                    glosujacych: 10,
-                    k1: 12,
-                    k2: 3,
-                    k3: 13,
-                    k4: 12,
-                    k5: 16,
-                    k6: 12,
-                    k7: 18,
-                    k8: 15,
-                    k9: 18,
-                    k10: 19,
-                    k11: 15,
-                    glosowNieWaznych: 17,
-                    kartWaznych: 11,
-                    uprawnionych: 661
-                };
 
-        vm.votes.razem = vm.votes.k1 + vm.votes.k2 + vm.votes.k3 + vm.votes.k4 + vm.votes.k5 +
-        vm.votes.k6 + vm.votes.k7 + vm.votes.k8 + vm.votes.k9 + vm.votes.k10 + vm.votes.k11;
+        vm.votes = {
+            glosowWaznych: 100,
+            glosujacych: 10,
+            k1: 12,
+            k2: 3,
+            k3: 13,
+            k4: 12,
+            k5: 16,
+            k6: 12,
+            k7: 18,
+            k8: 15,
+            k9: 18,
+            k10: 19,
+            k11: 15,
+            glosowNieWaznych: 17,
+            kartWaznych: 11,
+            uprawnionych: 661
+        };
+
+        vm.sumCandidateVotes = function() {
+            vm.votes.razem = vm.votes.k1 + vm.votes.k2 + vm.votes.k3 + vm.votes.k4 + vm.votes.k5 +
+            vm.votes.k6 + vm.votes.k7 + vm.votes.k8 + vm.votes.k9 + vm.votes.k10 + vm.votes.k11;
+        };
+        vm.sumCandidateVotes();
 
         vm.numbers = [];
         KomisjaObwodowaService.getById($stateParams.id).then(function(response) {
@@ -67,6 +86,7 @@
 
         function submit(isValid) {
             vm.submitted = true;
+            console.log(vm.form);
             if (vm.form.$valid) {
                 console.log(vm.votes);
                 KomisjaObwodowaService.uploadProtocol($stateParams.id, vm.votes).then(

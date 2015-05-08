@@ -1,5 +1,14 @@
+//Theme variables
+@import "variables";
+
+//Bootstrap
+@import "bootstrap";
+
 //main
 @import "layout";
 
 //modules
 @import "modules/responsive";
+
+//pages
+@import "pages/komisja-obwodowa";

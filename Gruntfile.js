@@ -189,9 +189,14 @@ module.exports = function(grunt) {
                 // Bower components folder will be removed afterwards
                 clean: false
             },
-            fonts:{
+            dev:{
                 files: {
-                    '<%= config.dist %>/fonts':'bootstrap/dist/fonts/*'
+                    '<%= config.app %>/assets/fonts/bootstrap':'bootstrap-sass/assets/fonts/bootstrap/*'
+                }
+            },
+            prod:{
+                files: {
+                    '<%= config.dist %>/fonts/bootstrap':'bootstrap-sass/assets/fonts/bootstrap/*'
                 }
             }
         },
@@ -284,8 +289,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['dev', 'watch']);
-    grunt.registerTask('dev', ['wiredep', 'sass']);
-    grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'bowercopy', 'wiredep',
+    grunt.registerTask('dev', ['wiredep', 'bowercopy:dev', 'sass']);
+    grunt.registerTask('build', ['clean', 'jshint', 'jscs', 'copy', 'bowercopy:prod', 'wiredep',
         'sass', 'useminPrepare', 'concat', 'ngAnnotate', 'uglify', 'cssmin', 'filerev', 'usemin', 'htmlmin'
     ]);
 

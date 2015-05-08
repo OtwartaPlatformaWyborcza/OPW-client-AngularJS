@@ -9,7 +9,6 @@
 
     <!-- build:css(.) css/bootstrap.min.css-->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -55,8 +54,8 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -66,11 +65,15 @@
     <script src="app/shared/auth/auth.js"></script>
     <script src="app/shared/auth/auth.service.js"></script>
 
+    <script src="app/shared/utilities/utilities.js"></script>
     <script src="app/shared/session/session.js"></script>
-    <script src="app/shared/validators/validators.js"></script>
-    <script src="app/shared/validators/less-than-or-equal.js"></script>
-    <script src="app/shared/validators/greater-than-or-equal.js"></script>
-    <script src="app/shared/validators/equal.js"></script>
+    <script src="app/shared/form/form.js"></script>
+    <script src="app/shared/form/errorBox/errorBox.js"></script>
+
+    <script src="app/shared/form/validators/validators.js"></script>
+    <script src="app/shared/form/validators/equal.js"></script>
+    <script src="app/shared/form/validators/min.js"></script>
+    <script src="app/shared/form/validators/max.js"></script>
 
     <script src="app/components/application/application.controller.js"></script>
 

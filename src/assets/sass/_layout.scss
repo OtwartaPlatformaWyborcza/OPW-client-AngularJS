@@ -70,3 +70,7 @@ table.table.vote-result tr th{
 ul.alert{
   list-style-type: none;
 }
+
+input.ng-invalid.ng-touched {
+    @extend .text-danger;
+}

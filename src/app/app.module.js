@@ -2,23 +2,25 @@
     'use strict';
     angular
         .module('app', [
+            'ngMessages',
             'ui.router',
             'shared.auth',
             'shared.alerts',
             'shared.controls.pagination',
+            'shared.utilities',
             'shared.session',
-            'shared.validators',
+            'shared.form',
             'shared.table',
             'auth',
             'komisja-obwodowa'
         ])
-        .config(routesConfig)
+        .config(config)
         .run(['$rootScope', '$location', 'AuthService', runConfig]);
 
     ////////////
     // Config //
     ////////////
-    function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+    function config($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $urlRouterProvider.otherwise('/auth/login');
         $locationProvider.html5Mode(true);

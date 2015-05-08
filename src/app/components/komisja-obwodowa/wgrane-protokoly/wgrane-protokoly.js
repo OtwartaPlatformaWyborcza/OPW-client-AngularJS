@@ -2,13 +2,13 @@
     'use strict';
     angular
         .module('komisja-obwodowa.protokoly', [])
-        .config(routesConfig)
+        .config(config)
         .controller('KOWgraneProtokolyController', KOWgraneProtokolyController);
 
     ////////////
     // Config //
     ////////////
-    function routesConfig($stateProvider) {
+    function config($stateProvider) {
         $stateProvider
             .state('komisja-obwodowa-protokoly', {
                 url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}/wgrane-protokoly/{page:[0-9]*}',
