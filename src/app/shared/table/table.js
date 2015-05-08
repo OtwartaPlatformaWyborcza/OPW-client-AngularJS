@@ -16,7 +16,7 @@
                 var $tableElement = element.closest('table');
 
                 $tableElement.addClass('responsiveTable');
-                tableService.addHeadersToRows($tableElement);
+                tableService.addHeaderNamesToRows($tableElement);
             }
         };
     }
@@ -25,7 +25,7 @@
     // Services //
     //////////////
     function tableService() {
-        function addHeadersToRows(element) {
+        function addHeaderNamesToRows(element) {
             var headertext = [],
                 headers = element.find('th'),
                 tablebody = element.find('tbody'),
@@ -48,7 +48,7 @@
         }
 
         return {
-            addHeadersToRows: addHeadersToRows
+            addHeaderNamesToRows: addHeaderNamesToRows
         };
     }
 })();
