@@ -10,8 +10,9 @@ Sortowanie alfabetyczne po imieniu.
 
 | Członek  | Rola  |
 | ------------- | ------------- |
-| AdamK | Architektura, Backend  |
-| Marcin | AngularJS |
+| [AdamK](https://github.com/adamkowalewski)  | Architektura, Backend  |
+| [Marcin](https://github.com/marcintokarski) | AngularJS |
+| [Karol](https://github.com/karol-f) | AngularJS, UX |
 | Kacper | HTML |
 | PrzemekJ | Analiza |
 
