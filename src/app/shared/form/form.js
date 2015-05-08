@@ -14,7 +14,9 @@
             restrict: 'A',
             link: function(scope, element) {
                 element.bind('mousewheel', function () {
-                    element.blur();
+                    if (element[0] === document.activeElement) {
+                        element.blur();
+                    }
                 });
             }
         };
