@@ -8,7 +8,8 @@ RUN 	rm -rf /etc/nginx/sites-enabled/*
 COPY 	./docker/site/* /etc/nginx/sites/
 COPY 	./docker/entrypoint.sh /
 
-RUN 	cp -r ./dist/* /var/www/
+#RUN 	cp -r ./dist/* /var/www/
+ADD	./client.tar 	/var/www/
 
 RUN 	chmod +x /entrypoint.sh
 
