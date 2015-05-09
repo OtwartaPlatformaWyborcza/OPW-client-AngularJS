@@ -131,7 +131,7 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     '<%= config.dist %>/css/*.css',
-                    '<%= config.dist %>/scripts/*.js'
+                    '<%= config.dist %>/js/*.js'
                 ]
             }
         },
