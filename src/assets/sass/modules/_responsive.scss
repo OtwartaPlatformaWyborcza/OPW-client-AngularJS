@@ -1,22 +1,32 @@
 .responsive-width {
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: $screen-xs-max) {
         width: 100%;
+    }
+
+    .page--komisja-obwodowa .smartTable & {
+        @media screen and (max-width: $screen-sm-max) {
+            width: 100%;
+        }
     }
 }
 
 .responsive-spacing {
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: $screen-xs-max) {
         margin-bottom: 10px;
     }
-}
 
-.test {font-weight: bold}
+    .page--komisja-obwodowa .smartTable & {
+        @media screen and (max-width: $screen-sm-max) {
+            margin-bottom: 10px;
+        }
+    }
+}
 
 /*-----------------------------------------------*\
   Responsive table
 \*-----------------------------------------------*/
 .responsiveTable {
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: $screen-xs-max) {
         text-rendering: optimizeLegibility;
         width: 100%;
         position: relative;
@@ -38,7 +48,7 @@
         }
     }
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: $screen-xs) {
         & tbody > tr > td:before {
             width: 30%;
         }
