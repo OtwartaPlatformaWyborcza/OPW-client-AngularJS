@@ -2,8 +2,12 @@
     'use strict';
     angular
         .module('app', [
+            //vendor
             'ngMessages',
+            'angular-loading-bar',
             'ui.router',
+
+            //app
             'shared.auth',
             'shared.alerts',
             'shared.utilities',
@@ -19,10 +23,12 @@
     ////////////
     // Config //
     ////////////
-    function config($stateProvider, $urlRouterProvider, $locationProvider) {
+    function config($urlRouterProvider, $locationProvider, cfpLoadingBarProvider) {
 
         $urlRouterProvider.otherwise('/auth/login');
         $locationProvider.html5Mode(true);
+
+        cfpLoadingBarProvider.includeSpinner = false;
     }
 
     /////////
