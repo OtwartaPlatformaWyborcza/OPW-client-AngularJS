@@ -60,7 +60,7 @@
                         <th>Nazwisko i Imię - imiona</th>
                         <th>Głosy</th>
                     </tr>
-                    <tr ng-repeat="candidate in Protokol.commision.kandydatList">
+                    <tr ng-repeat="candidate in Protokol.commision.kandydatList | orderBy:'lastname'">
                         <td class="text-center">
                             <label class="control-label">{{$index+1}}</label>
                         </td>

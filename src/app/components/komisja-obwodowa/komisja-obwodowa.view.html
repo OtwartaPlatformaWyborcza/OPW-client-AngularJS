@@ -211,7 +211,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="candidate in KO.komisja.kandydatList">
+                            <tr ng-repeat="candidate in KO.komisja.kandydatList  | orderBy:'lastname'">
                                 <td class="text-center">
                                     <label class="control-label">{{$index+1}}</label>
                                 </td>
