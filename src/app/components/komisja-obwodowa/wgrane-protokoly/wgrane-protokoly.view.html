@@ -27,8 +27,8 @@
         <tr ng-repeat="protocol in displayedData" responsive-table>
             <td class="text-center">{{$index + 1}}</td>
             <td class="text-right">{{protocol.uploadTimestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-            <td class="text-right">{{protocol.ratedPositiv}}</td>
-            <td class="text-right">{{protocol.ratedNegativ}}</td>
+            <td class="text-right" ng-class="{'text-success': protocol.ratedPositiv > 0}">{{protocol.ratedPositiv}}</td>
+            <td class="text-right" ng-class="{'text-danger': protocol.ratedNegativ > 0}">{{protocol.ratedNegativ > 0 ? '-' + protocol.ratedNegativ : protocol.ratedNegativ}}</td>
             <td><a class="btn btn-success btn-xs pull-right" ui-sref="komisja-obwodowa-protokol({protocolId: protocol.id, commisionId: Protokoly.commisionId})" role="button">
                 Zobacz Protokół
             </a>
