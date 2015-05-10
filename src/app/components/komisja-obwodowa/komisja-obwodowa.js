@@ -16,7 +16,7 @@
     function config($stateProvider) {
         $stateProvider
             .state('komisja-obwodowa', {
-                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,3}}',
+                url: '/komisja-obwodowa/{id:[0-9]{4,8}-[0-9]{1,4}}',
                 templateUrl: 'app/components/komisja-obwodowa/komisja-obwodowa.view.html',
                 controller: 'KomisjaObwodowaController as KO'
             });
