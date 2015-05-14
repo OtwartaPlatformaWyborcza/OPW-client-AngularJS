@@ -1,7 +1,7 @@
 # Otwarta Platforma Wyborcza
 Otwarta Platforma Wyborcza (OPW) to oprogramowanie klasy enterprise, którego podstawowym zadaniem jest niezależna i obiektywna weryfikacja wyników wyborów prezydenckich 2015. Celem projektu OPW **nie jest kompletna implementacja wymagań sprecyzowanych przez PKW** w ramach projektu PW2 (Platforma Wyborcza 2).   
 
-# Otwarta Platforma Wyborcza Client-AngularJS 
+# Otwarta Platforma Wyborcza Client-Obwodowa-AngularJS 
 Dedydowana aplikacja dla wolonatriuszy do przesyłania liczb wyborczych.
 
 
@@ -39,3 +39,18 @@ Aby do nas dołączyć otwórz proszę nowy issue w repozytorium. Komunikacja od
 # Quickstart
 start dev  
 `npm run server-dev`
+
+
+# Roadmap 
+Plan implementacji dla aplikacji dedykowanej dla obwodów wyborczych "Client Obwodowa". Schemat nazewnictwa OPW-CO-<Nr>.
+
+## Wersja 1.1.0
+* [ ] OPW-CO-1
+
+
+
+
+## Wersja 1.2.0
+
+
+
