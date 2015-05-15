@@ -1,30 +1,10 @@
 # Otwarta Platforma Wyborcza
-Otwarta Platforma Wyborcza (OPW) to oprogramowanie klasy enterprise, którego podstawowym zadaniem jest niezależna i obiektywna weryfikacja wyników wyborów prezydenckich 2015. Celem projektu OPW **nie jest kompletna implementacja wymagań sprecyzowanych przez PKW** w ramach projektu PW2 (Platforma Wyborcza 2).   
+1. [Organizacja](https://github.com/OtwartaPlatformaWyborcza/Organizacja#otwarta-platforma-wyborcza)  
+2. [Członkowie](https://github.com/OtwartaPlatformaWyborcza/Organizacja#cz%C5%82onkowie)  
+3. [Jak do nas dołączyć?](https://github.com/OtwartaPlatformaWyborcza/Organizacja#jak-do-nas-do%C5%82%C4%85czy%C4%87) 
 
-# Otwarta Platforma Wyborcza Client-Obwodowa-AngularJS 
+# Klient obwodowy - AngularJS 
 Dedydowana aplikacja dla wolonatriuszy do przesyłania liczb wyborczych.
-
-
-# Członkowie
-Sortowanie alfabetyczne po imieniu.  
-
-| Członek  | Rola  |
-| ------------- | ------------- |
-| [AdamK](https://github.com/adamkowalewski)  | Architektura, Backend  |
-| [Marcin](https://github.com/marcintokarski) | AngularJS |
-| [Karol](https://github.com/karol-f) | AngularJS, UX |
-| Kacper | HTML |
-| PrzemekJ | Analiza |
-
-
-**Jak do nas dołączyć?**  
-Aby do nas dołączyć otwórz proszę nowy issue w repozytorium. Komunikacja odbywa się poprzez E-Mail i Skype. 
-
-**Aktualnie poszukujemy**  
-1. Doświadczonego architekta REST, który pomoże nam ulepszyć aktualny serwis (security, best practices ipt.).  
-2. Doświadczonego administratora Jenkins. Mamy aktualnie skonfigurowany CI pipeline dla 3 projektów (OPW, [OPW AngularJS](https://github.com/marcintokarski/OtwartaPlatformaWyborczaFronted) jak i [OpenPKW POC_Kalkulator](https://github.com/openpkw/PocKalkulatorWyborczyHtml)) ale na pewno da się to zrobić o wiele lepiej.  
-3. Doświadczonego administratora kontenera Java EE GlassFish 4.1 bądź WildFly 8.2.0. Celem jest konfiguracja produkcyjnego clustera.  
-4. Grafika do opracowania ikonografiki (przyciski) programu, tła, liternictwa, oraz głównego symbolu znaku graficznego / logo programu.  
 
 # Linki
 
@@ -45,7 +25,10 @@ start dev
 Plan implementacji dla aplikacji dedykowanej dla obwodów wyborczych "Client Obwodowa". Schemat nazewnictwa OPW-CO-<Nr>.
 
 ## Wersja 1.1.0
-* [ ] OPW-CO-1
+* [ ] [OPW-CO-1](https://trello.com/c/dkS3osBC/30-opw-co-1-lista-linkow-dla-protoko-u) Lista linków dla protokołu.
+* [ ] [OPW-CO-2](https://trello.com/c/mhyx6Bdj/31-opw-co-2jako-u-ytkownik-moge-przypisac-bad-usunac-linka-do-zdjecia-konkretnego-protoko-u-obwodowego) Dodawanie i usuwanie linków dla wybranego protokołu.
+* [ ] [OPW-CO-3](https://trello.com/c/2EyiikLF/32-opw-co-3-lista-przypisanych-komisji-obwodowych) Lista przypisanych komisji obwodowych.
+* [ ] [OPW-CO-4](https://trello.com/c/iiLzo7ff/34-opw-co-4-sprawdzanie-dostepnosci-serwisu) Poprawa automatycznego wylogowania.
 
 
 
