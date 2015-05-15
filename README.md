@@ -11,10 +11,9 @@ Dedydowana aplikacja dla wolonatriuszy do przesyłania liczb wyborczych.
 | Element  | Link  |
 | ------------- | ------------- |
 | Tablica Trello   | https://trello.com/b/hKes4OCP/otwarta-platforma-wyborcza  |
-| Backend daily (Java EE)   | http://91.250.114.134:8080/opw/  |
-| Frontend komisja daily (AngularJS) | http://91.250.114.134/ |
-| Frontend wyniki stable (jQuery) | http://91.250.114.134/dashboard/ |
-| Frontend wyniki daily v2 (jQuery) | http://91.250.114.134/dashboard-v2/ |
+| Backend daily (Java EE)   | http://dev.otwartapw.pl/opw/  |
+| Frontend komisja daily (AngularJS) | http://k.dev.otwartapw.pl/ |
+| Frontend wyniki stable (jQuery) | http://dev.otwartapw.pl/ |
 
 # Quickstart
 start dev  
