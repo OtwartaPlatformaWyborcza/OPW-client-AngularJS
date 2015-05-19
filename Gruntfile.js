@@ -5,7 +5,7 @@ var config = {
     app: 'src', //app sources
     dist: 'dist', // builded app
     livereloadPort: 35729,
-    backendProxy: 'dev.otwartapw.pl',//'91.250.114.134'
+    backendProxy: /*'k.dev.otwartapw.pl',*/'91.250.114.134',
     backendPort:8080
 };
 
