@@ -1,19 +1,19 @@
 <div class="page--komisja-obwodowa">
     <h3>Ręczny wybór komisji</h3>
-    <form class="form-inline" novalidate name="Lista.manualCommissionSelectionForm"
-        ng-submit="Lista.submitManualCommissionSelectionForm(Lista.manualCommissionSelectionForm.$valid)">
+    <form class="form-inline" novalidate name="Lista.addCommissionForm"
+        ng-submit="Lista.submitAddCommissionForm(Lista.addCommissionForm.$valid)">
     <div class="form-group container-fluid" ng-form="selectedPkwId"  ng-class="{ 'has-error' : selectedPkwId.val.$invalid && (!selectedPkwId.val.$pristine ||
-            Lista.manualCommissionSelectionForm.submitted) }">
+            Lista.addCommissionForm.submitted) }">
         <div class="row">
             <div class="col-lg-12">
                 <input type="text" class="form-control responsive-spacing" ng-model="Lista.selectedPkwId" name="val" placeholder="Identyfikator komisji" pattern="[0-9]{4,8}-[0-9]{1,4}" required >
-                 <button type="submit" class="btn btn-primary form-control">Wprowadź protokół</button>
+                 <button type="submit" class="btn btn-primary form-control">Dodaj Komisję</button>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <p ng-show="selectedPkwId.val.$error.required &&
-                (!selectedPkwId.val.$pristine || Lista.manualCommissionSelectionForm.submitted)"
+                (!selectedPkwId.val.$pristine || Lista.addCommissionForm.submitted)"
                 class="help-block ">
                     Wprowadź identyfikator
                 </p>
@@ -56,11 +56,12 @@
             <td><a href="/komisja-obwodowa/{{item.pkwId}}">{{item.pkwId}}</a></td>
             <td>{{item.name}}</td>
             <td>{{item.address}}</td>
-            <td class="text-center col-lg-3">
+            <td class="text-center">
                 <a class="btn btn-success btn-sm responsive-width responsive-spacing" ui-sref="komisja-obwodowa({id: item.pkwId})" role="button" >Wgraj protokół</a>
                 <a class="btn btn-primary btn-sm responsive-width" ui-sref="komisja-obwodowa-protokoly({id: item.pkwId})" role="button" >
                     Wgrane protokoły ({{item.protokolCount}})
                 </a>
+                <a class="btn btn-danger btn-sm responsive-width responsive-spacing" ng-click="Lista.removeCommission(item.pkwId)" role="button" >Usuń</a>
             </td>
         </tr>
         <!-- Showing if no data is available

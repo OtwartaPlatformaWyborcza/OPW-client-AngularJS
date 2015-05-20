@@ -5,7 +5,8 @@ var config = {
     app: 'src', //app sources
     dist: 'dist', // builded app
     livereloadPort: 35729,
-    backendProxy: '91.250.114.134'
+    backendProxy: /*'k.dev.otwartapw.pl',*/'91.250.114.134',
+    backendPort:8080
 };
 
 module.exports = function(grunt) {
@@ -276,11 +277,11 @@ module.exports = function(grunt) {
             proxies: [{
                 context: '/rest-api',
                 host: config.backendProxy,
-                port: 8080,
+                port: config.backendPort,
                 https: false,
                 xforward: false,
                 rewrite: {
-                    '^(\/rest-api\/)(.*)$': '/opw/$2'
+                    '^(\/rest-api\/)(.*)$': '/opw-ws-obwodowa/$2'
                 }
             }]
 
