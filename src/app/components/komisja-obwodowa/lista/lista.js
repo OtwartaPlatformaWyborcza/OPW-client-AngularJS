@@ -32,27 +32,54 @@
 
         var userId = SessionService.getUserId();
         vm.selectedPkwId = null;
-        vm.submitManualCommissionSelectionForm = submitManualCommissionSelectionForm;
-        KomisjaObwodowaService.getForUser(userId).then(function(response) {
-            if (response.komisje && response.komisje.length) {
-                response.komisje.forEach(function(element, index) {
-                    element.index = index + 1;
-                });
-                vm.items = response.komisje;
-            }
-        }, function(response) {
-            AlertsService.addError('Nie udało się pobrać listy komisji. (status: ' +
-                response.status + ' ' + response.statusText + ')');
-        });
+        vm.submitAddCommissionForm = submitAddCommissionForm;
+        vm.removeCommission = removeCommission;
+        loadCommissions();
 
-        function submitManualCommissionSelectionForm(isValid) {
+        function submitAddCommissionForm(isValid) {
             vm.submitted = true;
-            vm.manualCommissionSelectionForm.submitted = true;
-            if (vm.manualCommissionSelectionForm.$valid) {
-                $location.path('/komisja-obwodowa/' + vm.selectedPkwId);
+            vm.addCommissionForm.submitted = true;
+            if (vm.addCommissionForm.$valid) {
+                KomisjaObwodowaService.assignCommissionToUser(userId, vm.selectedPkwId)
+                    .then(
+                        function() {
+                            loadCommissions();
+                            AlertsService.addSuccess('Komisja została dodana');
+                        },
+                        function (response) {
+                            AlertsService.addError('Nie udało się dodać komisji.');
+                        }
+                    );
             } else {
-                vm.manualCommissionSelectionForm.submitted = true;
+                vm.addCommissionForm.submitted = true;
             }
+        }
+
+        function loadCommissions() {
+            KomisjaObwodowaService.getForUser(userId).then(function(response) {
+                if (response.komisje && response.komisje.length) {
+                    response.komisje.forEach(function(element, index) {
+                        element.index = index + 1;
+                    });
+                    vm.items = response.komisje;
+                }
+            }, function(response) {
+                AlertsService.addError('Nie udało się pobrać listy komisji. (status: ' +
+                    response.status + ' ' + response.statusText + ')');
+            });
+        }
+
+        function removeCommission(pkwId) {
+            KomisjaObwodowaService.removeCommissionFromUser(userId, pkwId)
+                .then(
+                    function() {
+                        loadCommissions();
+                        AlertsService.addSuccess('Komisja została skasowana');
+                    },
+                    function (response) {
+                        AlertsService.addError('Nie udało się skasować komisji.');
+                    }
+                );
         }
     }
 })();

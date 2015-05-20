@@ -15,7 +15,9 @@
             getProtocols: getProtocols,
             getProtocolDetails: getProtocolDetails,
             rateProtocolNegative: rateProtocolNegative,
-            rateProtocolPositive: rateProtocolPositive
+            rateProtocolPositive: rateProtocolPositive,
+            assignCommissionToUser: assignCommissionToUser,
+            removeCommissionFromUser: removeCommissionFromUser
         };
         return service;
         function getById(id) {
@@ -62,6 +64,22 @@
         function rateProtocolNegative(protocolId) {
             var deferred = $q.defer();
             $http.get('/rest-api/service/wynik/' + protocolId + '/negative').then(
+                function(response) {
+                    deferred.resolve({protocol: response.data});
+                });
+            return deferred.promise;
+        }
+        function assignCommissionToUser(userId, commissionId) {
+            var deferred = $q.defer();
+            $http.put('/rest-api/service/user/' + userId + '/obwodowa/' + commissionId).then(
+                function(response) {
+                    deferred.resolve({protocol: response.data});
+                });
+            return deferred.promise;
+        }
+        function removeCommissionFromUser(userId, commissionId) {
+            var deferred = $q.defer();
+            $http.delete('/rest-api/service/user/' + userId + '/obwodowa/' + commissionId).then(
                 function(response) {
                     deferred.resolve({protocol: response.data});
                 });
