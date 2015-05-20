@@ -275,13 +275,13 @@ module.exports = function(grunt) {
                 }
             },
             proxies: [{
-                context: '/rest-api',
+                context: '/opw',
                 host: config.backendProxy,
                 port: config.backendPort,
                 https: false,
                 xforward: false,
                 rewrite: {
-                    '^(\/rest-api\/)(.*)$': '/opw-ws-obwodowa/$2'
+                    '^(\/opw\/)(.*)$': '/opw-ws-obwodowa/$2'
                 }
             }]
 

@@ -21,12 +21,12 @@
         };
         return service;
         function getById(id) {
-            return $http.get('/rest-api/service/komisja/' + id);
+            return $http.get('/opw/service/komisja/' + id);
         }
         function getForUser(userId) {
             var deferred = $q.defer();
 
-            $http.get('/rest-api/service/user/' + userId + '/obwodowa').then(function(response) {
+            $http.get('/opw/service/user/' + userId + '/obwodowa').then(function(response) {
                 deferred.resolve({komisje: response.data});
             });
             return deferred.promise;
@@ -34,28 +34,28 @@
         function uploadProtocol(pkwId, protocolData) {
             return $http({
                 method: 'POST',
-                url: '/rest-api/service/komisja/' + pkwId + '/protokol',
+                url: '/opw/service/komisja/' + pkwId + '/protokol',
                 data: protocolData
             });
         }
         function getProtocols(pkwId) {
             var deferred = $q.defer();
 
-            $http.get('/rest-api/service/komisja/' + pkwId + '/protokol').then(function(response) {
+            $http.get('/opw/service/komisja/' + pkwId + '/protokol').then(function(response) {
                 deferred.resolve({protocols: response.data});
             });
             return deferred.promise;
         }
         function getProtocolDetails(protocolId) {
             var deferred = $q.defer();
-            $http.get('/rest-api/service/wynik/' + protocolId).then(function(response) {
+            $http.get('/opw/service/wynik/' + protocolId).then(function(response) {
                 deferred.resolve({protocol: response.data});
             });
             return deferred.promise;
         }
         function rateProtocolPositive(protocolId) {
             var deferred = $q.defer();
-            $http.get('/rest-api/service/wynik/' + protocolId + '/positive').then(
+            $http.get('/opw/service/wynik/' + protocolId + '/positive').then(
                 function(response) {
                     deferred.resolve({protocol: response.data});
                 });
@@ -63,7 +63,7 @@
         }
         function rateProtocolNegative(protocolId) {
             var deferred = $q.defer();
-            $http.get('/rest-api/service/wynik/' + protocolId + '/negative').then(
+            $http.get('/opw/service/wynik/' + protocolId + '/negative').then(
                 function(response) {
                     deferred.resolve({protocol: response.data});
                 });
@@ -71,7 +71,7 @@
         }
         function assignCommissionToUser(userId, commissionId) {
             var deferred = $q.defer();
-            $http.put('/rest-api/service/user/' + userId + '/obwodowa/' + commissionId).then(
+            $http.put('/opw/service/user/' + userId + '/obwodowa/' + commissionId).then(
                 function(response) {
                     deferred.resolve({protocol: response.data});
                 });
@@ -79,7 +79,7 @@
         }
         function removeCommissionFromUser(userId, commissionId) {
             var deferred = $q.defer();
-            $http.delete('/rest-api/service/user/' + userId + '/obwodowa/' + commissionId).then(
+            $http.delete('/opw/service/user/' + userId + '/obwodowa/' + commissionId).then(
                 function(response) {
                     deferred.resolve({protocol: response.data});
                 });
