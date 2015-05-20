@@ -47,8 +47,13 @@
         vm.votes = {};
 
         vm.sumCandidateVotes = function() {
-            vm.votes.razem = vm.votes.k1 + vm.votes.k2 + vm.votes.k3 + vm.votes.k4 + vm.votes.k5 +
-            vm.votes.k6 + vm.votes.k7 + vm.votes.k8 + vm.votes.k9 + vm.votes.k10 + vm.votes.k11;
+            var razem = 0;
+            if (vm.komisja && vm.komisja.kandydatList) {
+                for (var i = 0; i < vm.komisja.kandydatList.length; i++) {
+                    razem += parseInt(vm.votes['k' + vm.komisja.kandydatList[i].pkwId], 10);
+                }
+            }
+            vm.votes.razem = (razem > 0 ? razem : NaN);
         };
         vm.sumCandidateVotes();
 
