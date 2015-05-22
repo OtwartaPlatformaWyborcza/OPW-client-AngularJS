@@ -17,7 +17,9 @@
             rateProtocolNegative: rateProtocolNegative,
             rateProtocolPositive: rateProtocolPositive,
             assignCommissionToUser: assignCommissionToUser,
-            removeCommissionFromUser: removeCommissionFromUser
+            removeCommissionFromUser: removeCommissionFromUser,
+            deleteProtocolPhotoLink: deleteProtocolPhotoLink,
+            addProtocolPhotoLink: addProtocolPhotoLink
         };
         return service;
         function getById(id) {
@@ -82,6 +84,22 @@
             $http.delete('/opw/service/user/' + userId + '/obwodowa/' + commissionId).then(
                 function(response) {
                     deferred.resolve({protocol: response.data});
+                });
+            return deferred.promise;
+        }
+        function deleteProtocolPhotoLink(protocolId, linkId) {
+            var deferred = $q.defer();
+            $http.delete('/opw/service/wynik/' + protocolId + '/link/' + linkId).then(
+                function(response) {
+                    deferred.resolve({protocol: response.data});
+                });
+            return deferred.promise;
+        }
+        function addProtocolPhotoLink(protocolId, photoUrlData) {
+            var deferred = $q.defer();
+            $http.post('/opw/service/wynik/' + protocolId + '/link/', photoUrlData).then(
+                function(response) {
+                    deferred.resolve(response);
                 });
             return deferred.promise;
         }

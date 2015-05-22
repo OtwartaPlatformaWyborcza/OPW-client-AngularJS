@@ -3,7 +3,8 @@
     angular
         .module('komisja-obwodowa.protokol', [])
         .config(config)
-        .controller('KOProtokolController', KOProtokolController);
+        .controller('KOProtokolController', KOProtokolController)
+        .directive('koProtocolLinkFormMessages', koProtocolLinkFormMessages);
 
     ////////////
     // Config //
@@ -18,10 +19,24 @@
             });
     }
 
+    ////////////////
+    // Directives //
+    ////////////////
+    function koProtocolLinkFormMessages() {
+        return {
+            scope: {
+                form: '=',
+                name: '@'
+            },
+            transclude: true,
+            templateUrl: 'app/components/komisja-obwodowa/protokol/protokol-photo-link.form-messages.html'
+        };
+    }
+
     /////////////////
     // Controllers //
     /////////////////
-    function KOProtokolController($stateParams, $location, AlertsService, KomisjaObwodowaService) {
+    function KOProtokolController($stateParams, $location, AlertsService, KomisjaObwodowaService, $window) {
         var vm = this;
         vm.labels = {
             uprawnionych : 'Uprawnionych do głosowania',
@@ -32,7 +47,12 @@
         };
         vm.ratePositive = ratePositive;
         vm.rateNegative = rateNegative;
-        KomisjaObwodowaService.getProtocolDetails($stateParams.protocolId).then(
+        vm.addPhotoLink = addPhotoLink;
+        vm.deleteProtocolPhotoLink = deleteProtocolPhotoLink;
+        initProtocolData();
+
+        function initProtocolData() {
+            KomisjaObwodowaService.getProtocolDetails($stateParams.protocolId).then(
             function(response) {
                 vm.protocol = response.protocol;
                 KomisjaObwodowaService.getById($stateParams.commisionId).then(
@@ -45,7 +65,9 @@
             },
             function() {
                 AlertsService.addError('Nie udało się pobrac danych protokołu.');
-            });
+            }
+        );
+        }
         function ratePositive() {
             KomisjaObwodowaService.rateProtocolPositive($stateParams.protocolId)
                 .then(rateResultSuccess, rateResultFailure);
@@ -61,6 +83,37 @@
         function rateResultFailure() {
             AlertsService.addSuccess('Wystąpił błąd. Głos nie został przyjęty.');
             $location.path('komisja-obwodowa/' + $stateParams.commisionId + '/wgrane-protokoly/');
+        }
+        function addPhotoLink(isValid) {
+            if (isValid) {
+                KomisjaObwodowaService.addProtocolPhotoLink($stateParams.protocolId, vm.photo).then(
+                    function() {
+                        $window.scrollTo(0, 0);
+                        AlertsService.addSuccess('Link został zapisany.');
+                        vm.protocol.linkList.push(vm.photo);
+                        vm.photo = {};
+                        vm.formAddLink.$setPristine();
+                        vm.formAddLink.$setUntouched();
+                        initProtocolData();
+                    },
+                    function() {
+                        $window.scrollTo(0, 0);
+                        AlertsService.addError('Nie udało się zapisać linku.');
+                    });
+            }
+            return false;
+        }
+        function deleteProtocolPhotoLink(linkId) {
+            KomisjaObwodowaService.deleteProtocolPhotoLink($stateParams.protocolId, linkId).then(
+                function () {
+                    $window.scrollTo(0, 0);
+                    AlertsService.addSuccess('Link został skasowany.');
+                    initProtocolData();
+                },
+                function () {
+                    $window.scrollTo(0, 0);
+                    AlertsService.addError('Nie udało się skasować linku.');
+                });
         }
 
     }

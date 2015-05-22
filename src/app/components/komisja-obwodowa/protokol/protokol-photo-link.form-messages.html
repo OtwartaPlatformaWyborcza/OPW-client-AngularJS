@@ -1,0 +1,13 @@
+<!-- show form messages
+-------------------------------------->
+<div ng-if="(form.$submitted || (form[name].$touched))"
+     ng-messages="form[name].$error">
+
+    <div ng-transclude></div>
+
+    <div ng-messages-include="app/shared/form/form.error-messages.tpl.html"></div>
+
+    <div ng-message="pattern">
+        <error-box>Wprowadź adres w formacie 'http://www.example.com/image.jpg'<error-box>
+    </div>
+</div>
