@@ -24,10 +24,10 @@ start dev
 Plan implementacji dla aplikacji dedykowanej dla obwodów wyborczych "Client Obwodowa". Schemat nazewnictwa OPW-CO-<Nr>.
 
 ## Wersja 1.1.0
-* [ ] [OPW-U-10](https://trello.com/c/dkS3osBC/30-opw-u-1-lista-linkow-dla-protoko-u) Lista linków dla protokołu.
-* [ ] [OPW-U-11](https://trello.com/c/mhyx6Bdj/31-opw-u-2jako-u-ytkownik-moge-przypisac-bad-usunac-linka-do-zdjecia-konkretnego-protoko-u-obwodowego) Dodawanie i usuwanie linków dla wybranego protokołu.
-* [ ] [OPW-U-12](https://trello.com/c/2EyiikLF/32-opw-u-3-lista-przypisanych-komisji-obwodowych) Lista przypisanych komisji obwodowych.
-* [ ] [OPW-U-13](https://trello.com/c/iiLzo7ff/34-opw-u-4-sprawdzanie-dostepnosci-serwisu) Poprawa automatycznego wylogowania.
+* [x] [OPW-U-10](https://trello.com/c/dkS3osBC/30-opw-u-1-lista-linkow-dla-protoko-u) Lista linków dla protokołu.
+* [x] [OPW-U-11](https://trello.com/c/mhyx6Bdj/31-opw-u-2jako-u-ytkownik-moge-przypisac-bad-usunac-linka-do-zdjecia-konkretnego-protoko-u-obwodowego) Dodawanie i usuwanie linków dla wybranego protokołu.
+* [x] [OPW-U-12](https://trello.com/c/2EyiikLF/32-opw-u-3-lista-przypisanych-komisji-obwodowych) Lista przypisanych komisji obwodowych.
+* [x] [OPW-U-13](https://trello.com/c/iiLzo7ff/34-opw-u-4-sprawdzanie-dostepnosci-serwisu) Poprawa automatycznego wylogowania.
 
 
 
